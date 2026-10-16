@@ -1,0 +1,27 @@
+{
+  "game": "cartpole",
+  "baseline": "none",
+  "gamma": 0.95,
+  "lr": 0.01,
+  "seed": 0,
+  "episodes": 2000,
+  "evaluation_episodes": 500,
+  "mean": 9.37,
+  "std_sample": 0.7551426891402206,
+  "random_mean": 21.906,
+  "random_std_sample": 11.21841654332192,
+  "elapsed_seconds": 2.684832458035089,
+  "device": "cpu",
+  "analytic_gradient_absolute_errors": {
+    "0.0": 5.960464477539063e-08,
+    "1.7": 5.960464477539063e-08
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "gymnasium": "1.4.0",
+    "numpy": "2.5.4"
+  },
+  "objective": "E[sum_t gamma**t * reward_t]; full episode reward-to-go; no point resets",
+  "env_id": "CartPole-v1",
+  "preprocessing": "raw 4D observation"
+}

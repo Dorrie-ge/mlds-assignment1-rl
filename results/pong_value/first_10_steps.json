@@ -1,0 +1,102 @@
+[
+  {
+    "t": 0,
+    "state": null,
+    "pixel_sum": 36.0,
+    "policy_action": 1,
+    "env_action": 3,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 1,
+    "state": null,
+    "pixel_sum": 34.0,
+    "policy_action": 1,
+    "env_action": 3,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 2,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 0,
+    "env_action": 2,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 3,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 0,
+    "env_action": 2,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 4,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 1,
+    "env_action": 3,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 5,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 0,
+    "env_action": 2,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 6,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 0,
+    "env_action": 2,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 7,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 0,
+    "env_action": 2,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 8,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 0,
+    "env_action": 2,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 9,
+    "state": null,
+    "pixel_sum": 32.0,
+    "policy_action": 1,
+    "env_action": 3,
+    "reward": 0.0,
+    "terminated": false,
+    "truncated": false
+  }
+]
