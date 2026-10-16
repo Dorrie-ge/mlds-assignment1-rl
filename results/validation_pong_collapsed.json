@@ -1,0 +1,24 @@
+{
+  "analytic_score_function": {
+    "0.0": 5.960464477539063e-08,
+    "1.7": 5.960464477539063e-08
+  },
+  "network_finite_difference": {
+    "autograd": -0.20669621623868717,
+    "central_difference": -0.20669621624280762,
+    "absolute_error": 4.12045397801819e-12
+  },
+  "game": "pong",
+  "checkpoint_episode": 200,
+  "trajectories": 16,
+  "frozen_actor": true,
+  "held_out_seeds_start": 8000000,
+  "full_actor_gradient": true,
+  "plain_gradient_variance_trace": 4.01074131973374e-49,
+  "baseline_gradient_variance_trace": 2.111558179311783e-50,
+  "gradient_covariance_numerically_degenerate": true,
+  "baseline_to_plain_ratio": null,
+  "ratio_bootstrap_95_percentile": null,
+  "evaluation_reward_mean": -21.0,
+  "interpretation": "Near-zero gradient covariance; a variance ratio is not meaningful."
+}

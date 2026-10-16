@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "experiments": [
+    {
+      "experiment": "cartpole_none",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 9.37,
+      "sample_sd": 0.7551426891402206
+    },
+    {
+      "experiment": "cartpole_none_lr0001",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 300.24,
+      "sample_sd": 97.96831110088567
+    },
+    {
+      "experiment": "cartpole_none_lr0001_seed1",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 92.46,
+      "sample_sd": 31.62569792967545
+    },
+    {
+      "experiment": "cartpole_none_lr0001_seed2",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 106.554,
+      "sample_sd": 28.961709985609986
+    },
+    {
+      "experiment": "cartpole_none_lr0003",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 171.432,
+      "sample_sd": 42.95998716240483
+    },
+    {
+      "experiment": "cartpole_value",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 170.168,
+      "sample_sd": 11.183824563347166
+    },
+    {
+      "experiment": "cartpole_value_lr0001",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 220.218,
+      "sample_sd": 45.6176326964218
+    },
+    {
+      "experiment": "cartpole_value_lr0001_seed1",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 362.986,
+      "sample_sd": 121.36687208327714
+    },
+    {
+      "experiment": "cartpole_value_lr0001_seed2",
+      "training_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 214.266,
+      "sample_sd": 69.58326598983138
+    },
+    {
+      "experiment": "pong_none",
+      "training_episodes": 200,
+      "evaluation_episodes": 500,
+      "mean": -21.0,
+      "sample_sd": 0.0
+    },
+    {
+      "experiment": "pong_value",
+      "training_episodes": 200,
+      "evaluation_episodes": 500,
+      "mean": -21.0,
+      "sample_sd": 0.0
+    },
+    {
+      "experiment": "pong_value_early_diagnostic",
+      "training_episodes": 20,
+      "evaluation_episodes": 2,
+      "mean": -20.5,
+      "sample_sd": 0.7071067811865476
+    }
+  ]
+}

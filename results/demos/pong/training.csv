@@ -1,0 +1,3 @@
+episode,reward,discounted_return,length,gradient_norm
+1,-21.0,-0.8789214,948,8.145812034606934
+2,-21.0,-1.2056625,826,10.408345222473145

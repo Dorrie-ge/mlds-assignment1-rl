@@ -1,0 +1,128 @@
+25: reward=36.0, recent mean=19.16
+50: reward=29.0, recent mean=28.52
+75: reward=20.0, recent mean=28.87
+100: reward=26.0, recent mean=27.64
+125: reward=25.0, recent mean=29.42
+150: reward=119.0, recent mean=31.97
+175: reward=47.0, recent mean=43.36
+200: reward=51.0, recent mean=58.51
+225: reward=48.0, recent mean=68.68
+250: reward=81.0, recent mean=78.43
+275: reward=97.0, recent mean=89.60
+300: reward=85.0, recent mean=94.61
+325: reward=92.0, recent mean=105.27
+350: reward=176.0, recent mean=120.50
+375: reward=151.0, recent mean=142.28
+400: reward=251.0, recent mean=173.67
+425: reward=185.0, recent mean=205.88
+450: reward=244.0, recent mean=227.46
+475: reward=192.0, recent mean=231.09
+500: reward=187.0, recent mean=225.76
+525: reward=166.0, recent mean=212.84
+550: reward=210.0, recent mean=203.79
+575: reward=187.0, recent mean=201.32
+600: reward=188.0, recent mean=203.94
+625: reward=168.0, recent mean=204.03
+650: reward=175.0, recent mean=203.47
+675: reward=254.0, recent mean=206.35
+700: reward=182.0, recent mean=193.89
+725: reward=139.0, recent mean=186.84
+750: reward=172.0, recent mean=178.45
+775: reward=170.0, recent mean=163.86
+800: reward=196.0, recent mean=165.62
+825: reward=165.0, recent mean=168.62
+850: reward=267.0, recent mean=175.52
+875: reward=334.0, recent mean=193.86
+900: reward=358.0, recent mean=207.24
+925: reward=145.0, recent mean=219.72
+950: reward=216.0, recent mean=228.69
+975: reward=500.0, recent mean=255.67
+1000: reward=226.0, recent mean=289.40
+1025: reward=463.0, recent mean=336.79
+1050: reward=243.0, recent mean=355.93
+1075: reward=304.0, recent mean=332.88
+1100: reward=196.0, recent mean=304.62
+1125: reward=160.0, recent mean=255.04
+1150: reward=261.0, recent mean=240.67
+1175: reward=366.0, recent mean=253.03
+1200: reward=500.0, recent mean=311.41
+1225: reward=434.0, recent mean=373.99
+1250: reward=136.0, recent mean=379.32
+1275: reward=114.0, recent mean=333.90
+1300: reward=127.0, recent mean=248.73
+1325: reward=278.0, recent mean=193.40
+1350: reward=442.0, recent mean=230.03
+1375: reward=132.0, recent mean=241.19
+1400: reward=187.0, recent mean=241.32
+1425: reward=148.0, recent mean=220.46
+1450: reward=160.0, recent mean=156.14
+1475: reward=191.0, recent mean=155.60
+1500: reward=231.0, recent mean=179.37
+1525: reward=168.0, recent mean=186.54
+1550: reward=165.0, recent mean=192.82
+1575: reward=163.0, recent mean=192.35
+1600: reward=161.0, recent mean=173.21
+1625: reward=314.0, recent mean=180.68
+1650: reward=488.0, recent mean=220.11
+1675: reward=500.0, recent mean=302.30
+1700: reward=383.0, recent mean=367.02
+1725: reward=500.0, recent mean=397.10
+1750: reward=360.0, recent mean=421.77
+1775: reward=205.0, recent mean=373.00
+1800: reward=222.0, recent mean=305.94
+1825: reward=171.0, recent mean=283.02
+1850: reward=168.0, recent mean=218.90
+1875: reward=178.0, recent mean=194.47
+1900: reward=180.0, recent mean=203.13
+1925: reward=191.0, recent mean=190.06
+1950: reward=171.0, recent mean=193.47
+1975: reward=166.0, recent mean=192.62
+2000: reward=169.0, recent mean=188.23
+Evaluation 25/500: mean=170.68
+Evaluation 50/500: mean=171.08
+Evaluation 75/500: mean=170.87
+Evaluation 100/500: mean=170.19
+Evaluation 125/500: mean=170.63
+Evaluation 150/500: mean=170.73
+Evaluation 175/500: mean=170.72
+Evaluation 200/500: mean=170.21
+Evaluation 225/500: mean=170.04
+Evaluation 250/500: mean=170.53
+Evaluation 275/500: mean=170.43
+Evaluation 300/500: mean=170.86
+Evaluation 325/500: mean=171.04
+Evaluation 350/500: mean=170.88
+Evaluation 375/500: mean=170.80
+Evaluation 400/500: mean=170.39
+Evaluation 425/500: mean=170.45
+Evaluation 450/500: mean=170.33
+Evaluation 475/500: mean=170.30
+Evaluation 500/500: mean=170.17
+Matplotlib is building the font cache; this may take a moment.
+{
+  "game": "cartpole",
+  "baseline": "value",
+  "gamma": 0.95,
+  "lr": 0.01,
+  "seed": 0,
+  "episodes": 2000,
+  "evaluation_episodes": 500,
+  "mean": 170.168,
+  "std_sample": 11.183824563347166,
+  "random_mean": 21.906,
+  "random_std_sample": 11.21841654332192,
+  "elapsed_seconds": 27.508939457999077,
+  "device": "cpu",
+  "analytic_gradient_absolute_errors": {
+    "0.0": 5.960464477539063e-08,
+    "1.7": 5.960464477539063e-08
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "gymnasium": "1.4.0",
+    "numpy": "2.5.4"
+  },
+  "objective": "E[sum_t gamma**t * reward_t]; full episode reward-to-go; no point resets",
+  "env_id": "CartPole-v1",
+  "preprocessing": "raw 4D observation"
+}

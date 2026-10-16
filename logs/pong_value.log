@@ -1,0 +1,58 @@
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+25: reward=-20.0, recent mean=-20.52
+50: reward=-21.0, recent mean=-20.66
+75: reward=-21.0, recent mean=-20.77
+100: reward=-21.0, recent mean=-20.83
+125: reward=-21.0, recent mean=-20.95
+150: reward=-21.0, recent mean=-21.00
+175: reward=-21.0, recent mean=-21.00
+200: reward=-21.0, recent mean=-21.00
+Evaluation 25/500: mean=-21.00
+Evaluation 50/500: mean=-21.00
+Evaluation 75/500: mean=-21.00
+Evaluation 100/500: mean=-21.00
+Evaluation 125/500: mean=-21.00
+Evaluation 150/500: mean=-21.00
+Evaluation 175/500: mean=-21.00
+Evaluation 200/500: mean=-21.00
+Evaluation 225/500: mean=-21.00
+Evaluation 250/500: mean=-21.00
+Evaluation 275/500: mean=-21.00
+Evaluation 300/500: mean=-21.00
+Evaluation 325/500: mean=-21.00
+Evaluation 350/500: mean=-21.00
+Evaluation 375/500: mean=-21.00
+Evaluation 400/500: mean=-21.00
+Evaluation 425/500: mean=-21.00
+Evaluation 450/500: mean=-21.00
+Evaluation 475/500: mean=-21.00
+Evaluation 500/500: mean=-21.00
+Matplotlib is building the font cache; this may take a moment.
+{
+  "game": "pong",
+  "baseline": "value",
+  "gamma": 0.99,
+  "lr": 0.01,
+  "seed": 0,
+  "episodes": 200,
+  "evaluation_episodes": 500,
+  "mean": -21.0,
+  "std_sample": 0.0,
+  "random_mean": -20.412,
+  "random_std_sample": 0.8292353480918732,
+  "elapsed_seconds": 500.89844799996354,
+  "device": "cpu",
+  "analytic_gradient_absolute_errors": {
+    "0.0": 5.960464477539063e-08,
+    "1.7": 5.960464477539063e-08
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "gymnasium": "1.4.0",
+    "numpy": "2.5.4"
+  },
+  "objective": "E[sum_t gamma**t * reward_t]; full episode reward-to-go; no point resets",
+  "env_id": "ALE/Pong-v5",
+  "preprocessing": "two consecutive binary 80x80 frames"
+}

@@ -29,6 +29,7 @@ on 500 episodes. Evaluation freezes the trained weights and uses separate seeds.
 
 ```bash
 python shuttle.py --out results/shuttle
+python validate_shuttle_simulation.py
 python policy_gradient.py --test-only
 python policy_gradient.py --game cartpole --baseline none --episodes 2000 --eval-episodes 500 --out results/cartpole_none
 python policy_gradient.py --game cartpole --baseline value --episodes 2000 --eval-episodes 500 --out results/cartpole_value
@@ -125,7 +126,9 @@ Policy-gradient validation includes the following:
 ```bash
 python policy_gradient.py --test-only
 python validate_policy_gradient.py --game cartpole --checkpoint results/cartpole_value/checkpoint.pt --episodes 64 --out results/validation_cartpole.json
-python validate_policy_gradient.py --game pong --checkpoint results/pong_value/checkpoint.pt --episodes 16 --out results/validation_pong.json
+python validate_policy_gradient.py --game pong --checkpoint results/pong_value/checkpoint.pt --episodes 16 --out results/validation_pong_collapsed.json
+python policy_gradient.py --game pong --baseline value --episodes 20 --eval-episodes 2 --seed 7 --lr 0.0001 --out results/pong_value_early_diagnostic
+python validate_policy_gradient.py --game pong --checkpoint results/pong_value_early_diagnostic/checkpoint.pt --episodes 16 --out results/validation_pong.json
 ```
 
 - A two-step analytic task enumerates all action pairs and compares the exact
@@ -142,6 +145,18 @@ python validate_policy_gradient.py --game pong --checkpoint results/pong_value/c
   episode-ending flags. Output CSVs retain every training and evaluation reward.
 - Random-policy comparisons and learning-rate trials expose weak or collapsed
   runs instead of treating code execution as evidence of successful learning.
+- An independent shuttle simulator uses 40,000 rollouts from each of five starting
+  states. Four of five DP values lie inside marginal 95% intervals; the state-15
+  discrepancy is 2.44 standard errors. All five lie inside the simultaneous 95%
+  Bonferroni intervals. Results are retained without selecting a more favorable seed.
+
+The final Pong actor has nearly zero gradient covariance (about 4e-49). Its ratio
+is marked numerically uninformative in `validation_pong_collapsed.json`. The
+supplementary 20-episode, lr=0.0001 checkpoint is used for a comparison before that
+collapse. Its 2-episode score evaluation is a diagnostic, separate from the four
+main experiments and their 500-episode evaluations.
+The preliminary variance log is retained in `logs/` for debugging history; its
+near-zero-denominator ratio is superseded by the flagged collapsed-policy diagnostic.
 
 Checkpoints are generated every 100 training episodes and are ignored by Git.
 To rerun frozen-policy validation after cloning, regenerate the corresponding
@@ -164,7 +179,96 @@ and changed sticky-action probabilities as separately labeled experiments.
 - `shuttle.py`: finite-horizon enumeration, VI, PI, and numerical validation.
 - `policy_gradient.py`: training, stochastic evaluation, weights, CSVs, and figures.
 - `validate_policy_gradient.py`: numerical derivatives and frozen-policy variance.
+- `validate_shuttle_simulation.py`: independent Monte Carlo verification of DP costs.
 - `results/`: actual measurements and plots.
 - `requirements-lock.txt`: exact installed package versions.
+- `audit_results.py`: check raw CSV counts, summary means, and standard deviations.
+- `build_report.py` and `summarize_results.py`: regenerate the PDF and README tables.
 
-Measured result tables and discussion are added after the runs finish.
+<!-- MEASUREMENTS START -->
+## Measured results
+
+Main experiments, seed 0 and actor learning rate 0.01. All evaluation budgets below are 500 episodes.
+
+| Environment | Baseline | Training episodes | Mean reward | Sample SD | Random-policy mean |
+|---|---|---:|---:|---:|---:|
+| CartPole-v1 | none | 2000 | 9.370 | 0.755 | 21.906 |
+| CartPole-v1 | value | 2000 | 170.168 | 11.184 | 21.906 |
+| ALE/Pong-v5 | none | 200 | -21.000 | 0.000 | -20.412 |
+| ALE/Pong-v5 | value | 200 | -21.000 | 0.000 | -20.412 |
+
+The default-lr CartPole run without a baseline collapsed. The value baseline improved that
+particular run. Pong did not learn successful play within 200 training episodes; its weak
+results are retained. No performance for 20,000 or more training episodes is claimed.
+
+### Learning-rate and seed checks
+
+These are actual additional CartPole experiments. Each uses 2,000 training episodes and
+500 evaluation episodes. Exploration of hyperparameters uses these evaluation results, so
+the best number is not a fresh, untouched model-selection test.
+
+| Baseline | Learning rate | Seed | Mean reward | Sample SD |
+|---|---:|---:|---:|---:|
+| none | 0.001 | 0 | 300.240 | 97.968 |
+| none | 0.001 | 1 | 92.460 | 31.626 |
+| none | 0.001 | 2 | 106.554 | 28.962 |
+| none | 0.003 | 0 | 171.432 | 42.960 |
+| value | 0.001 | 0 | 220.218 | 45.618 |
+| value | 0.001 | 1 | 362.986 | 121.367 |
+| value | 0.001 | 2 | 214.266 | 69.583 |
+
+At actor lr=0.001, matched-seed evaluation means across seeds 0, 1, and 2 were:
+
+- Baseline `none`: mean of the three policy means = 166.418; between-seed sample SD = 116.107.
+- Baseline `value`: mean of the three policy means = 265.823; between-seed sample SD = 84.198.
+
+This between-seed SD is different from the rollout SD in each individual table row.
+
+Reproduce the supplementary configurations by adding `--lr 0.001 --seed 0/1/2`
+or `--lr 0.003 --seed 0` to the CartPole commands and choosing a new output directory.
+
+### Frozen-policy gradient variance
+
+| Game | Held-out trajectories | Plain variance trace | Baseline variance trace | Ratio | Bootstrap 95% interval |
+|---|---:|---:|---:|---:|---|
+| cartpole | 64 | 7280.52 | 6.76759 | 0.000929547 | [0.000704755, 0.00126997] |
+| pong | 16 | 209.838 | 34.0366 | 0.162205 | [0.115377, 0.217259] |
+
+The actor is frozen, and both gradient estimators use exactly the same held-out
+trajectories. Ratios below 1 show empirical variance reduction at that checkpoint;
+ratios above 1 show increased variance. A learned baseline does not guarantee a lower
+variance or a better score. These samples and bootstrap intervals are exploratory.
+
+### Curves and evaluation histograms
+
+**cartpole_none**
+
+![Training](results/cartpole_none/training.png)
+![Evaluation](results/cartpole_none/evaluation.png)
+
+**cartpole_value**
+
+![Training](results/cartpole_value/training.png)
+![Evaluation](results/cartpole_value/evaluation.png)
+
+**pong_none**
+
+![Training](results/pong_none/training.png)
+![Evaluation](results/pong_none/evaluation.png)
+
+**pong_value**
+
+![Training](results/pong_value/training.png)
+![Evaluation](results/pong_value/evaluation.png)
+
+### Small environment demos
+
+The initial CartPole smoke test used 5 training and 5 evaluation episodes. The
+initial Pong smoke test used 2 training and 2 evaluation episodes. Their raw results
+are in `results/demos/`; these are separate from all larger measured runs above.
+
+### Report
+
+[PDF report](assignment1_report.pdf). Regenerate with `python summarize_results.py`
+and `python build_report.py` after the measurements and variance experiments finish.
+<!-- MEASUREMENTS END -->

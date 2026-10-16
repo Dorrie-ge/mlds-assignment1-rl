@@ -1,0 +1,27 @@
+{
+  "game": "pong",
+  "baseline": "value",
+  "gamma": 0.99,
+  "lr": 0.0001,
+  "seed": 7,
+  "episodes": 20,
+  "evaluation_episodes": 2,
+  "mean": -20.5,
+  "std_sample": 0.7071067811865476,
+  "random_mean": -20.0,
+  "random_std_sample": 0.0,
+  "elapsed_seconds": 26.670752667007037,
+  "device": "cpu",
+  "analytic_gradient_absolute_errors": {
+    "0.0": 5.960464477539063e-08,
+    "1.7": 5.960464477539063e-08
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "gymnasium": "1.4.0",
+    "numpy": "2.5.4"
+  },
+  "objective": "E[sum_t gamma**t * reward_t]; full episode reward-to-go; no point resets",
+  "env_id": "ALE/Pong-v5",
+  "preprocessing": "two consecutive binary 80x80 frames"
+}

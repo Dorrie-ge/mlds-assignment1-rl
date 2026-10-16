@@ -1,0 +1,89 @@
+{
+  "seed": 314159,
+  "horizon": 500,
+  "discount": 0.95,
+  "rows": [
+    {
+      "initial_state": 0,
+      "episodes": 40000,
+      "simulated_mean": 576.7691298938023,
+      "dp_cost": 576.6701677662195,
+      "standard_error": 0.15625131594243652,
+      "ci95": [
+        576.4628773145552,
+        577.0753824730494
+      ],
+      "simultaneous_ci95_bonferroni": [
+        576.3666265039346,
+        577.17163328367
+      ],
+      "standardized_discrepancy": 0.6333522824170421
+    },
+    {
+      "initial_state": 12,
+      "episodes": 40000,
+      "simulated_mean": 673.0237399358563,
+      "dp_cost": 672.8921633807238,
+      "standard_error": 0.15265749532591394,
+      "ci95": [
+        672.7245312450175,
+        673.322948626695
+      ],
+      "simultaneous_ci95_bonferroni": [
+        672.6304942278967,
+        673.4169856438158
+      ],
+      "standardized_discrepancy": 0.8619069430660808
+    },
+    {
+      "initial_state": 13,
+      "episodes": 40000,
+      "simulated_mean": 676.8482029864168,
+      "dp_cost": 676.6701677662194,
+      "standard_error": 0.15720773979790248,
+      "ci95": [
+        676.5400758164129,
+        677.1563301564207
+      ],
+      "simultaneous_ci95_bonferroni": [
+        676.4432358486974,
+        677.2531701241362
+      ],
+      "standardized_discrepancy": 1.1324838104428951
+    },
+    {
+      "initial_state": 15,
+      "episodes": 40000,
+      "simulated_mean": 676.2864658875286,
+      "dp_cost": 676.6701677662193,
+      "standard_error": 0.15703684917987948,
+      "ci95": [
+        675.9786736631361,
+        676.5942581119211
+      ],
+      "simultaneous_ci95_bonferroni": [
+        675.8819389640412,
+        676.690992811016
+      ],
+      "standardized_discrepancy": -2.443387527797014
+    },
+    {
+      "initial_state": 200,
+      "episodes": 40000,
+      "simulated_mean": 3821.738876304693,
+      "dp_cost": 3821.5864771838897,
+      "standard_error": 0.37511199373170107,
+      "ci95": [
+        3821.0036567969787,
+        3822.474095812407
+      ],
+      "simultaneous_ci95_bonferroni": [
+        3820.77258780884,
+        3822.705164800546
+      ],
+      "standardized_discrepancy": 0.40627632107183964
+    }
+  ],
+  "maximum_discounted_tail_bound": 6.838022067752704e-08,
+  "interpretation": "Intervals describe independent simulation uncertainty; they do not certify arbitrary model assumptions."
+}

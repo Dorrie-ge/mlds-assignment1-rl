@@ -82,20 +82,23 @@ def main():
     # The trace of sample covariance measures total variance of the full actor gradient.
     var_plain=float(np.var(plain,axis=0,ddof=1).sum())
     var_base=float(np.var(baseline,axis=0,ddof=1).sum())
+    degenerate=var_plain<1e-12
     # Paired bootstrap over trajectories. This is exploratory, especially for small n.
     rng=np.random.default_rng(123);ratios=[]
     for _ in range(300):
         ix=rng.integers(0,len(plain),len(plain))
         denominator=np.var(plain[ix],axis=0,ddof=1).sum()
-        if denominator>0:
+        if denominator>1e-12:
             ratios.append(np.var(baseline[ix],axis=0,ddof=1).sum()/denominator)
     result.update(game=args.game,checkpoint_episode=checkpoint['episode'],trajectories=args.episodes,
                   frozen_actor=True,held_out_seeds_start=8_000_000,full_actor_gradient=True,
                   plain_gradient_variance_trace=var_plain,baseline_gradient_variance_trace=var_base,
-                  baseline_to_plain_ratio=var_base/var_plain if var_plain else None,
+                  gradient_covariance_numerically_degenerate=degenerate,
+                  baseline_to_plain_ratio=var_base/var_plain if not degenerate else None,
                   ratio_bootstrap_95_percentile=np.quantile(ratios,[.025,.975]).tolist() if ratios else None,
                   evaluation_reward_mean=float(np.mean(scores)),
-                  interpretation='Ratio below 1 means lower empirical gradient variance at this frozen policy only; no universal guarantee.')
+                  interpretation=('Near-zero gradient covariance; a variance ratio is not meaningful.' if degenerate else
+                                  'Ratio below 1 means lower empirical gradient variance at this frozen policy only; no universal guarantee.'))
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(result,indent=2))
     print(json.dumps(result,indent=2))

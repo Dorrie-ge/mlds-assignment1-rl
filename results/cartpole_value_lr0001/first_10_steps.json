@@ -1,0 +1,152 @@
+[
+  {
+    "t": 0,
+    "state": [
+      0.013696168549358845,
+      -0.023021329194307327,
+      -0.04590264707803726,
+      -0.04834723472595215
+    ],
+    "pixel_sum": null,
+    "policy_action": 1,
+    "env_action": 1,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 1,
+    "state": [
+      0.013235742226243019,
+      0.17272774875164032,
+      -0.04686959087848663,
+      -0.3551521897315979
+    ],
+    "pixel_sum": null,
+    "policy_action": 0,
+    "env_action": 0,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 2,
+    "state": [
+      0.016690297052264214,
+      -0.021697547286748886,
+      -0.05397263541817665,
+      -0.07760915160179138
+    ],
+    "pixel_sum": null,
+    "policy_action": 0,
+    "env_action": 0,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 3,
+    "state": [
+      0.016256345435976982,
+      -0.21600589156150818,
+      -0.05552481859922409,
+      0.19756869971752167
+    ],
+    "pixel_sum": null,
+    "policy_action": 0,
+    "env_action": 0,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 4,
+    "state": [
+      0.011936228722333908,
+      -0.41029149293899536,
+      -0.05157344415783882,
+      0.47223207354545593
+    ],
+    "pixel_sum": null,
+    "policy_action": 0,
+    "env_action": 0,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 5,
+    "state": [
+      0.0037303981371223927,
+      -0.6046485304832458,
+      -0.042128805071115494,
+      0.748224139213562
+    ],
+    "pixel_sum": null,
+    "policy_action": 0,
+    "env_action": 0,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 6,
+    "state": [
+      -0.008362572640180588,
+      -0.7991647720336914,
+      -0.027164321392774582,
+      1.0273574590682983
+    ],
+    "pixel_sum": null,
+    "policy_action": 1,
+    "env_action": 1,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 7,
+    "state": [
+      -0.024345869198441505,
+      -0.6036919951438904,
+      -0.006617172621190548,
+      0.7262710332870483
+    ],
+    "pixel_sum": null,
+    "policy_action": 1,
+    "env_action": 1,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 8,
+    "state": [
+      -0.03641970828175545,
+      -0.40847915410995483,
+      0.007908248342573643,
+      0.4315127730369568
+    ],
+    "pixel_sum": null,
+    "policy_action": 0,
+    "env_action": 0,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  },
+  {
+    "t": 9,
+    "state": [
+      -0.044589292258024216,
+      -0.6037122011184692,
+      0.016538504511117935,
+      0.726678192615509
+    ],
+    "pixel_sum": null,
+    "policy_action": 0,
+    "env_action": 0,
+    "reward": 1.0,
+    "terminated": false,
+    "truncated": false
+  }
+]

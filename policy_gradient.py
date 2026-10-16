@@ -211,6 +211,8 @@ def main():
                 torch.save(dict(policy=policy.state_dict(),value=value.state_dict() if value else None,
                                 optimizer=opt.state_dict(),episode=episode+1),args.out/'checkpoint.pt')
     torch.save(policy.state_dict(),args.out/'policy.pt')
+    torch.save(dict(policy=policy.state_dict(),value=value.state_dict() if value else None,
+                    optimizer=opt.state_dict(),episode=args.episodes),args.out/'checkpoint.pt')
     # No optimizer calls during held-out evaluation; retain policy sampling.
     policy.eval(); evaluation=[]
     for e in range(args.eval_episodes):

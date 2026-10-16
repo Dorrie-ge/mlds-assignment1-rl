@@ -1,0 +1,90 @@
+Frozen-policy trajectory 1/64
+Frozen-policy trajectory 2/64
+Frozen-policy trajectory 3/64
+Frozen-policy trajectory 4/64
+Frozen-policy trajectory 5/64
+Frozen-policy trajectory 6/64
+Frozen-policy trajectory 7/64
+Frozen-policy trajectory 8/64
+Frozen-policy trajectory 9/64
+Frozen-policy trajectory 10/64
+Frozen-policy trajectory 11/64
+Frozen-policy trajectory 12/64
+Frozen-policy trajectory 13/64
+Frozen-policy trajectory 14/64
+Frozen-policy trajectory 15/64
+Frozen-policy trajectory 16/64
+Frozen-policy trajectory 17/64
+Frozen-policy trajectory 18/64
+Frozen-policy trajectory 19/64
+Frozen-policy trajectory 20/64
+Frozen-policy trajectory 21/64
+Frozen-policy trajectory 22/64
+Frozen-policy trajectory 23/64
+Frozen-policy trajectory 24/64
+Frozen-policy trajectory 25/64
+Frozen-policy trajectory 26/64
+Frozen-policy trajectory 27/64
+Frozen-policy trajectory 28/64
+Frozen-policy trajectory 29/64
+Frozen-policy trajectory 30/64
+Frozen-policy trajectory 31/64
+Frozen-policy trajectory 32/64
+Frozen-policy trajectory 33/64
+Frozen-policy trajectory 34/64
+Frozen-policy trajectory 35/64
+Frozen-policy trajectory 36/64
+Frozen-policy trajectory 37/64
+Frozen-policy trajectory 38/64
+Frozen-policy trajectory 39/64
+Frozen-policy trajectory 40/64
+Frozen-policy trajectory 41/64
+Frozen-policy trajectory 42/64
+Frozen-policy trajectory 43/64
+Frozen-policy trajectory 44/64
+Frozen-policy trajectory 45/64
+Frozen-policy trajectory 46/64
+Frozen-policy trajectory 47/64
+Frozen-policy trajectory 48/64
+Frozen-policy trajectory 49/64
+Frozen-policy trajectory 50/64
+Frozen-policy trajectory 51/64
+Frozen-policy trajectory 52/64
+Frozen-policy trajectory 53/64
+Frozen-policy trajectory 54/64
+Frozen-policy trajectory 55/64
+Frozen-policy trajectory 56/64
+Frozen-policy trajectory 57/64
+Frozen-policy trajectory 58/64
+Frozen-policy trajectory 59/64
+Frozen-policy trajectory 60/64
+Frozen-policy trajectory 61/64
+Frozen-policy trajectory 62/64
+Frozen-policy trajectory 63/64
+Frozen-policy trajectory 64/64
+{
+  "analytic_score_function": {
+    "0.0": 5.960464477539063e-08,
+    "1.7": 5.960464477539063e-08
+  },
+  "network_finite_difference": {
+    "autograd": -0.20669621623868717,
+    "central_difference": -0.20669621624280762,
+    "absolute_error": 4.12045397801819e-12
+  },
+  "game": "cartpole",
+  "checkpoint_episode": 2000,
+  "trajectories": 64,
+  "frozen_actor": true,
+  "held_out_seeds_start": 8000000,
+  "full_actor_gradient": true,
+  "plain_gradient_variance_trace": 7280.517779920587,
+  "baseline_gradient_variance_trace": 6.767585580397206,
+  "baseline_to_plain_ratio": 0.0009295472911366237,
+  "ratio_bootstrap_95_percentile": [
+    0.000704754663080237,
+    0.0012699679233604472
+  ],
+  "evaluation_reward_mean": 169.6875,
+  "interpretation": "Ratio below 1 means lower empirical gradient variance at this frozen policy only; no universal guarantee."
+}
