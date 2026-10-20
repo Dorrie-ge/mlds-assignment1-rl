@@ -1,0 +1,35 @@
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+random mean discounted return -1.4135389563441276
+pong_batch_none mean discounted return -1.2553858029819094
+pong_batch_value mean discounted return -1.2424177533015608
+{
+  "random": {
+    "episodes": 200,
+    "mean_discounted_return": -1.4135389563441276,
+    "std_discounted_return": 0.4049997489847751,
+    "mean_score": -20.415
+  },
+  "pong_batch_none": {
+    "episodes": 200,
+    "mean_discounted_return": -1.2553858029819094,
+    "std_discounted_return": 0.47037738331192164,
+    "mean_score": -20.41,
+    "discounted_improvement_over_random": 0.1581531533622183,
+    "approximate_ci95": [
+      0.07257444142025779,
+      0.2437318653041788
+    ]
+  },
+  "pong_batch_value": {
+    "episodes": 200,
+    "mean_discounted_return": -1.2424177533015608,
+    "std_discounted_return": 0.34649890267345484,
+    "mean_score": -20.74,
+    "discounted_improvement_over_random": 0.17112120304256678,
+    "approximate_ci95": [
+      0.09681800475536043,
+      0.24542440132977314
+    ]
+  }
+}

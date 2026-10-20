@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "episode_lengths": [
+    270,
+    7
+  ],
+  "crosses_chunk_boundary": true,
+  "reference": "Dense average of full discounted episodic gradients, detached pre-fit critic",
+  "max_parameter_gradient_error": 7.152557373046875e-07,
+  "relative_l2_error": 2.4998323056024674e-07
+}

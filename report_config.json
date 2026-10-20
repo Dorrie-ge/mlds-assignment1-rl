@@ -1,0 +1,14 @@
+{
+  "main_experiments": [
+    "cartpole_none_lr0001",
+    "cartpole_value_lr0001",
+    "pong_batch_none",
+    "pong_batch_value"
+  ],
+  "validation": {
+    "cartpole": "results/validation_cartpole_lr0001.json",
+    "pong": "results/validation_pong_batch.json"
+  },
+  "repository_visibility": "public",
+  "visibility_verified_date": "2026-10-20"
+}

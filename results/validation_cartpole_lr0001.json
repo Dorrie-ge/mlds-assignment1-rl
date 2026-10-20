@@ -1,0 +1,29 @@
+{
+  "analytic_score_function": {
+    "0.0": 5.960464477539063e-08,
+    "1.7": 5.960464477539063e-08
+  },
+  "network_finite_difference": {
+    "autograd": -0.20669621623868717,
+    "central_difference": -0.20669621624280762,
+    "absolute_error": 4.12045397801819e-12
+  },
+  "game": "cartpole",
+  "checkpoint_episode": 2000,
+  "trajectories": 64,
+  "checkpoint_sha256": "d05ebe9208db46b46850a376d4b1d7d723b4eebc9113814161761ee144adbfa4",
+  "source_experiment": "cartpole_value_lr0001",
+  "frozen_actor": true,
+  "held_out_seeds_start": 8000000,
+  "full_actor_gradient": true,
+  "plain_gradient_variance_trace": 21499.147345179947,
+  "baseline_gradient_variance_trace": 33.83041214582608,
+  "gradient_covariance_numerically_degenerate": false,
+  "baseline_to_plain_ratio": 0.0015735699468756269,
+  "ratio_bootstrap_95_percentile": [
+    0.0012861735884124343,
+    0.0019145202004974128
+  ],
+  "evaluation_reward_mean": 227.984375,
+  "interpretation": "Ratio below 1 means lower empirical gradient variance at this frozen policy only; no universal guarantee."
+}

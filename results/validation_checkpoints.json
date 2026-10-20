@@ -1,0 +1,42 @@
+[
+  {
+    "path": "results/cartpole_value/validation_checkpoint.pt",
+    "episode": 2000,
+    "contains_actor": true,
+    "contains_critic": true,
+    "sha256": "0abdbde917ba3f4d58e53f418ea712854f9cbfa6f3091ec74c8a239f13638384",
+    "bytes": 10641
+  },
+  {
+    "path": "results/cartpole_value_lr0001/validation_checkpoint.pt",
+    "episode": 2000,
+    "contains_actor": true,
+    "contains_critic": true,
+    "sha256": "d05ebe9208db46b46850a376d4b1d7d723b4eebc9113814161761ee144adbfa4",
+    "bytes": 10641
+  },
+  {
+    "path": "results/pong_value/validation_checkpoint.pt",
+    "episode": 200,
+    "contains_actor": true,
+    "contains_critic": true,
+    "sha256": "033c532ec9cc60fea347ab031ce7afdb3a39888038495d2217f4461a3e22decc",
+    "bytes": 2188519
+  },
+  {
+    "path": "results/pong_value_early_diagnostic/validation_checkpoint.pt",
+    "episode": 20,
+    "contains_actor": true,
+    "contains_critic": true,
+    "sha256": "c494eae22a4583721fb4a611b8c0643bec42883c4e66071cd13937f886a56bc2",
+    "bytes": 2188519
+  },
+  {
+    "path": "results/pong_batch_value/validation_checkpoint.pt",
+    "episode": 1000,
+    "contains_actor": true,
+    "contains_critic": true,
+    "sha256": "65009a117ee09afbd00094a04ed05174de3f11c3b7d0b3925e704459e25ed739",
+    "bytes": 2188775
+  }
+]

@@ -65,6 +65,20 @@
       "sample_sd": 69.58326598983138
     },
     {
+      "experiment": "pong_batch_none",
+      "training_episodes": 1000,
+      "evaluation_episodes": 500,
+      "mean": -20.39,
+      "sample_sd": 0.8265993788203161
+    },
+    {
+      "experiment": "pong_batch_value",
+      "training_episodes": 1000,
+      "evaluation_episodes": 500,
+      "mean": -20.72,
+      "sample_sd": 0.5641245190078975
+    },
+    {
       "experiment": "pong_none",
       "training_episodes": 200,
       "evaluation_episodes": 500,

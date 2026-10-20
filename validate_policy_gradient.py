@@ -5,6 +5,7 @@ Example:
    --checkpoint results/cartpole_value/checkpoint.pt --episodes 64 --out results/validation_cartpole.json
 """
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import numpy as np
@@ -91,6 +92,8 @@ def main():
         if denominator>1e-12:
             ratios.append(np.var(baseline[ix],axis=0,ddof=1).sum()/denominator)
     result.update(game=args.game,checkpoint_episode=checkpoint['episode'],trajectories=args.episodes,
+                  checkpoint_sha256=hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
+                  source_experiment=checkpoint.get('source_experiment',args.checkpoint.parent.name),
                   frozen_actor=True,held_out_seeds_start=8_000_000,full_actor_gradient=True,
                   plain_gradient_variance_trace=var_plain,baseline_gradient_variance_trace=var_base,
                   gradient_covariance_numerically_degenerate=degenerate,

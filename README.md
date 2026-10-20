@@ -3,6 +3,8 @@
 **GitHub username:** Dorrie-ge  
 **Repository:** [Dorrie-ge/mlds-assignment1-rl](https://github.com/Dorrie-ge/mlds-assignment1-rl)
 
+**Visibility:** public, verified October 20, 2026.
+
 This repository implements the shuttle dispatch MDP, episodic REINFORCE, and
 REINFORCE with a learned state-value baseline. Results are measured runs. Short
 training budgets do not establish that a game is solved. Failed runs are retained.
@@ -23,21 +25,28 @@ Neither the virtual environment nor Atari ROM files are committed.
 
 ## Reproduce the main experiments
 
-Run from the repository root. The original runs used CPU and one PyTorch thread.
+Run from the repository root. CartPole and the historical runs used CPU and one
+PyTorch thread. The batched Pong retry used Apple MPS; `--device cpu` is supported
+but hardware and floating-point differences can change stochastic training results.
 Each game command evaluates both a random policy and the final stochastic policy
 on 500 episodes. Evaluation freezes the trained weights and uses separate seeds.
 
 ```bash
-python shuttle.py --out results/shuttle
+python shuttle.py --out runs/shuttle
 python validate_shuttle_simulation.py
 python policy_gradient.py --test-only
-python policy_gradient.py --game cartpole --baseline none --episodes 2000 --eval-episodes 500 --out results/cartpole_none
-python policy_gradient.py --game cartpole --baseline value --episodes 2000 --eval-episodes 500 --out results/cartpole_value
-python policy_gradient.py --game pong --baseline none --episodes 200 --eval-episodes 500 --out results/pong_none
-python policy_gradient.py --game pong --baseline value --episodes 200 --eval-episodes 500 --out results/pong_value
+python policy_gradient.py --game cartpole --baseline none --lr 0.001 --episodes 2000 --eval-episodes 500 --out runs/cartpole_none_lr0001
+python policy_gradient.py --game cartpole --baseline value --lr 0.001 --episodes 2000 --eval-episodes 500 --out runs/cartpole_value_lr0001
+python pong_batch.py --baseline none --lr 0.0001 --episodes 1000 --batch-episodes 8 --eval-episodes 500 --device mps --out runs/pong_batch_none
+python pong_batch.py --baseline value --lr 0.0001 --episodes 1000 --batch-episodes 8 --eval-episodes 500 --device mps --out runs/pong_batch_value
 ```
 
-The seed is 0 and actor learning rate is 0.01 unless explicitly changed. For a
+These commands write new measurements to `runs/`, leaving the committed `results/`
+available for report regeneration and direct validation. Choose another fresh
+output directory for subsequent repeats. `pong_batch.py` refuses to silently
+overwrite a training CSV; it supports `--resume PATH_TO_CHECKPOINT` for an interrupted
+run using its original directory. The paired experiments use seed 0. Historical
+lr=0.01 runs and all three CartPole lr=0.001 seeds remain in `results/`. For a
 quick environment demo, use `--episodes 5 --eval-episodes 5` for CartPole or
 `--episodes 2 --eval-episodes 2` for Pong, and choose another output directory.
 Those small evaluation budgets do not meet the assignment's 500-episode requirement.
@@ -90,9 +99,22 @@ It also downweights late actions in long Pong games; this is a limitation to exa
 Without a baseline, `b=0`. With a baseline, a separate value network predicts
 `b(s_t)` before fitting that episode. Its prediction is detached in the actor loss.
 The critic minimizes MSE to Monte Carlo rewards-to-go using a separate Adam
-optimizer with learning rate 0.001. The actor uses Adam with default learning
-rate 0.01. One complete episode is used per actor update. No return normalization,
+optimizer with learning rate 0.001 in the original trainer. That trainer uses Adam
+with default actor lr=0.01; the selected CartPole runs explicitly use lr=0.001.
+One complete episode is used per actor update in `policy_gradient.py`. No return normalization,
 reward clipping, point-based return resets, entropy bonus, or PPO is applied.
+
+The Pong retry in `pong_batch.py` averages the score gradients of eight complete
+episodes before each actor update, retaining the outer `gamma**t` and full-episode
+returns. Actor lr is 0.0001, critic lr is 0.0003, and both gradient norms are capped
+at 5. The critic is fitted once per batch, after all detached actor advantages have
+been computed. Actor head initialization has orthogonal gain 0.01 and zero bias;
+the critic's output is initially zero. These are stability interventions, without
+an entropy reward or changed game objective. Binary frames are bit-packed only
+for storage and are reconstructed exactly before network computation. Per-episode
+entropy, action fractions, points won, and time of first score are logged.
+These changes were made together; this retry is not an isolated ablation identifying
+the contribution of each individual change.
 
 CartPole uses a 4-input MLP with 128 tanh hidden units and 2 output logits.
 Pong uses the supplied 80x80 binary preprocessing and stacks the previous and
@@ -123,12 +145,24 @@ Shuttle validation is rerun automatically with `shuttle.py`:
 
 Policy-gradient validation includes the following:
 
+After cloning and installing dependencies, run all principal validation checks
+without any training:
+
+```bash
+python reproduce_validation.py
+```
+
+It verifies the committed checkpoint hashes and writes newly measured gradients
+to `validation_reproduced/`. Individual commands are also available:
+
 ```bash
 python policy_gradient.py --test-only
-python validate_policy_gradient.py --game cartpole --checkpoint results/cartpole_value/checkpoint.pt --episodes 64 --out results/validation_cartpole.json
-python validate_policy_gradient.py --game pong --checkpoint results/pong_value/checkpoint.pt --episodes 16 --out results/validation_pong_collapsed.json
-python policy_gradient.py --game pong --baseline value --episodes 20 --eval-episodes 2 --seed 7 --lr 0.0001 --out results/pong_value_early_diagnostic
-python validate_policy_gradient.py --game pong --checkpoint results/pong_value_early_diagnostic/checkpoint.pt --episodes 16 --out results/validation_pong.json
+python test_pong_batch.py
+python validate_policy_gradient.py --game cartpole --checkpoint results/cartpole_value_lr0001/validation_checkpoint.pt --episodes 64 --out results/validation_cartpole_lr0001.json
+python validate_policy_gradient.py --game pong --checkpoint results/pong_batch_value/validation_checkpoint.pt --episodes 16 --out results/validation_pong_batch.json
+# Historical diagnostics can also be repeated without retraining:
+python validate_policy_gradient.py --game pong --checkpoint results/pong_value/validation_checkpoint.pt --episodes 16 --out results/validation_pong_collapsed.json
+python validate_policy_gradient.py --game pong --checkpoint results/pong_value_early_diagnostic/validation_checkpoint.pt --episodes 16 --out results/validation_pong.json
 ```
 
 - A two-step analytic task enumerates all action pairs and compares the exact
@@ -150,7 +184,7 @@ python validate_policy_gradient.py --game pong --checkpoint results/pong_value_e
   discrepancy is 2.44 standard errors. All five lie inside the simultaneous 95%
   Bonferroni intervals. Results are retained without selecting a more favorable seed.
 
-The final Pong actor has nearly zero gradient covariance (about 4e-49). Its ratio
+The historical Pong actor has nearly zero gradient covariance (about 4e-49). Its ratio
 is marked numerically uninformative in `validation_pong_collapsed.json`. The
 supplementary 20-episode, lr=0.0001 checkpoint is used for a comparison before that
 collapse. Its 2-episode score evaluation is a diagnostic, separate from the four
@@ -158,9 +192,16 @@ main experiments and their 500-episode evaluations.
 The preliminary variance log is retained in `logs/` for debugging history; its
 near-zero-denominator ratio is superseded by the flagged collapsed-policy diagnostic.
 
-Checkpoints are generated every 100 training episodes and are ignored by Git.
-To rerun frozen-policy validation after cloning, regenerate the corresponding
-training checkpoint with the commands above. Final policy weights are committed.
+That near-zero result refers to the historical 200-episode run, not the batched retry.
+
+Portable `validation_checkpoint.pt` capsules are committed for the selected
+CartPole baseline, the batched Pong baseline, and the historical validation
+experiments. Each contains actor and critic weights plus the episode identifier;
+SHA-256 hashes are in `results/validation_checkpoints.json`. The export script
+checks tensor equality with source weights. The commands above work directly
+after cloning and installing dependencies. No training is needed to repeat these
+variance measurements. Large optimizer/resume files named `checkpoint.pt` remain
+ignored; final actor-only `policy.pt` files are also committed.
 
 ## Further experiments with three additional months
 
@@ -178,6 +219,11 @@ and changed sticky-action probabilities as separately labeled experiments.
 
 - `shuttle.py`: finite-horizon enumeration, VI, PI, and numerical validation.
 - `policy_gradient.py`: training, stochastic evaluation, weights, CSVs, and figures.
+- `pong_batch.py`: batched full-episode Pong REINFORCE and resume support.
+- `test_pong_batch.py`: dense-reference test of chunked, averaged actor gradients.
+- `export_validation_checkpoints.py`: portable actor/critic capsules and hash manifest.
+- `reproduce_validation.py`: one-command validation with committed weights, no training.
+- `evaluate_pong_objective.py`: separate held-out measurement of the exact discounted objective.
 - `validate_policy_gradient.py`: numerical derivatives and frozen-policy variance.
 - `validate_shuttle_simulation.py`: independent Monte Carlo verification of DP costs.
 - `results/`: actual measurements and plots.
@@ -188,18 +234,28 @@ and changed sticky-action probabilities as separately labeled experiments.
 <!-- MEASUREMENTS START -->
 ## Measured results
 
-Main experiments, seed 0 and actor learning rate 0.01. All evaluation budgets below are 500 episodes.
+Focus: matched CartPole lr=0.001 and batched Pong lr=0.0001, seed 0. All evaluation budgets below are 500 episodes.
 
 | Environment | Baseline | Training episodes | Mean reward | Sample SD | Random-policy mean |
 |---|---|---:|---:|---:|---:|
-| CartPole-v1 | none | 2000 | 9.370 | 0.755 | 21.906 |
-| CartPole-v1 | value | 2000 | 170.168 | 11.184 | 21.906 |
-| ALE/Pong-v5 | none | 200 | -21.000 | 0.000 | -20.412 |
-| ALE/Pong-v5 | value | 200 | -21.000 | 0.000 | -20.412 |
+| CartPole-v1 | none | 2000 | 300.240 | 97.968 | 21.906 |
+| CartPole-v1 | value | 2000 | 220.218 | 45.618 | 21.906 |
+| ALE/Pong-v5 | none | 1000 | -20.390 | 0.827 | -20.514 |
+| ALE/Pong-v5 | value | 1000 | -20.720 | 0.564 | -20.514 |
 
-The default-lr CartPole run without a baseline collapsed. The value baseline improved that
-particular run. Pong did not learn successful play within 200 training episodes; its weak
-results are retained. No performance for 20,000 or more training episodes is claimed.
+The previous lr=0.01 failures are retained below. The CartPole plots use the same seed
+for both baselines rather than selecting different best seeds. Pong is retrained for
+1,000 episodes with trajectory averaging and a lower learning rate; performance is reported
+as measured, without claiming mastery. No unmeasured longer-run score is claimed.
+
+### Historical failures
+
+| Experiment | Episodes | Actor lr | Evaluation mean | Sample SD |
+|---|---:|---:|---:|---:|
+| cartpole_none | 2000 | 0.01 | 9.370 | 0.755 |
+| cartpole_value | 2000 | 0.01 | 170.168 | 11.184 |
+| pong_none | 200 | 0.01 | -21.000 | 0.000 |
+| pong_value | 200 | 0.01 | -21.000 | 0.000 |
 
 ### Learning-rate and seed checks
 
@@ -231,35 +287,67 @@ or `--lr 0.003 --seed 0` to the CartPole commands and choosing a new output dire
 
 | Game | Held-out trajectories | Plain variance trace | Baseline variance trace | Ratio | Bootstrap 95% interval |
 |---|---:|---:|---:|---:|---|
-| cartpole | 64 | 7280.52 | 6.76759 | 0.000929547 | [0.000704755, 0.00126997] |
-| pong | 16 | 209.838 | 34.0366 | 0.162205 | [0.115377, 0.217259] |
+| cartpole | 64 | 21499.1 | 33.8304 | 0.00157357 | [0.00128617, 0.00191452] |
+| pong | 16 | 2326.8 | 281.961 | 0.121179 | [0.0733984, 0.291054] |
 
 The actor is frozen, and both gradient estimators use exactly the same held-out
 trajectories. Ratios below 1 show empirical variance reduction at that checkpoint;
 ratios above 1 show increased variance. A learned baseline does not guarantee a lower
 variance or a better score. These samples and bootstrap intervals are exploratory.
 
+### Pong retry versus a random policy
+
+Each row uses paired held-out environment seeds. Intervals are approximate 95% intervals
+for the mean per-seed score difference; they do not measure training-seed uncertainty.
+
+| Baseline | Mean score minus random | Approximate 95% interval | Final 100 training episodes mean entropy |
+|---|---:|---|---:|
+| none | 0.1240 | [0.0256, 0.2224] | 0.6914 |
+| value | -0.2060 | [-0.2881, -0.1239] | 0.6741 |
+
+![Pong training diagnostics](results/pong_batch_diagnostics.png)
+
+Entropy near log(2)=0.693 describes continued exploration, not successful play.
+The exact discounted objective still downweights rewards late in a long Pong game.
+Lower variance and stable exploration can coexist with weak task performance.
+
+### Separate discounted-objective diagnostic
+
+The following uses 200 additional episodes per policy and held-out environment seeds
+starting at 6,000,000. It evaluates the exact full-episode gamma=0.99 objective, separate
+from the main 500-episode score histograms. Paired intervals describe rollout uncertainty.
+
+| Policy | Mean discounted return | Mean game score | Discounted gain vs random (approx. 95% interval) |
+|---|---:|---:|---|
+| random | -1.41354 | -20.415 | Reference |
+| pong_batch_none | -1.25539 | -20.410 | 0.15815 [0.07257, 0.24373] |
+| pong_batch_value | -1.24242 | -20.740 | 0.17112 [0.09682, 0.24542] |
+
+Reproduce without training: `python evaluate_pong_objective.py --episodes 200 --device cpu`.
+An interval including zero does not establish a clear objective gain. Even a positive
+discounted gain would not establish that the full game has been mastered.
+
 ### Curves and evaluation histograms
 
-**cartpole_none**
+**cartpole_none_lr0001**
 
-![Training](results/cartpole_none/training.png)
-![Evaluation](results/cartpole_none/evaluation.png)
+![Training](results/cartpole_none_lr0001/training.png)
+![Evaluation](results/cartpole_none_lr0001/evaluation.png)
 
-**cartpole_value**
+**cartpole_value_lr0001**
 
-![Training](results/cartpole_value/training.png)
-![Evaluation](results/cartpole_value/evaluation.png)
+![Training](results/cartpole_value_lr0001/training.png)
+![Evaluation](results/cartpole_value_lr0001/evaluation.png)
 
-**pong_none**
+**pong_batch_none**
 
-![Training](results/pong_none/training.png)
-![Evaluation](results/pong_none/evaluation.png)
+![Training](results/pong_batch_none/training.png)
+![Evaluation](results/pong_batch_none/evaluation.png)
 
-**pong_value**
+**pong_batch_value**
 
-![Training](results/pong_value/training.png)
-![Evaluation](results/pong_value/evaluation.png)
+![Training](results/pong_batch_value/training.png)
+![Evaluation](results/pong_batch_value/evaluation.png)
 
 ### Small environment demos
 

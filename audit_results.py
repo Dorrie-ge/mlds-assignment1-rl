@@ -27,7 +27,7 @@ def main():
         audited.append(dict(experiment=directory.name,training_episodes=len(train),
                             evaluation_episodes=len(evaluation),mean=float(evaluation.mean()),
                             sample_sd=float(evaluation.std(ddof=1))))
-    main_names=['cartpole_none','cartpole_value','pong_none','pong_value']
+    main_names=json.loads((root/'report_config.json').read_text())['main_experiments']
     for name in main_names:
         assert next(x for x in audited if x['experiment']==name)['evaluation_episodes']==500
     (root/'results/audit.json').write_text(json.dumps(dict(passed=True,experiments=audited),indent=2))
