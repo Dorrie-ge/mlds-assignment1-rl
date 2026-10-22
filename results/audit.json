@@ -79,6 +79,20 @@
       "sample_sd": 0.5641245190078975
     },
     {
+      "experiment": "pong_budget3000_none",
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -20.952,
+      "sample_sd": 0.21398031486634608
+    },
+    {
+      "experiment": "pong_budget3000_value",
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -20.548,
+      "sample_sd": 0.6932945367080707
+    },
+    {
       "experiment": "pong_none",
       "training_episodes": 200,
       "evaluation_episodes": 500,

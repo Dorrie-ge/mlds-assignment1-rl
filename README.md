@@ -360,3 +360,37 @@ are in `results/demos/`; these are separate from all larger measured runs above.
 [PDF report](assignment1_report.pdf). Regenerate with `python summarize_results.py`
 and `python build_report.py` after the measurements and variance experiments finish.
 <!-- MEASUREMENTS END -->
+
+
+### Additional Pong training-budget experiment: 3,000 episodes
+
+Both existing 1,000-episode runs were resumed to a total of 3,000 episodes
+(2,000 additional episodes each). The training implementation, environment,
+architecture, learning rates, batch size, discounting, seed and device were unchanged.
+The original 1,000-episode results are preserved. Each final policy was evaluated
+for 500 episodes using the same held-out environment seeds as before.
+
+| Baseline | 1,000-episode evaluation mean | 3,000-episode evaluation mean ± sample SD | Total training environment steps |
+|---|---:|---:|---:|
+| none | -20.390 | -20.952 ± 0.214 | 2,856,725 |
+| value | -20.720 | -20.548 ± 0.693 | 2,946,028 |
+
+The paired random-policy reference mean is -20.514. The value-baseline policy
+improved modestly, while the no-baseline policy deteriorated. Neither policy
+learned successful Pong play. This single-training-seed experiment shows limited
+benefit from extending this configuration to 3,000 episodes; it does not establish
+what would happen at larger budgets or with other seeds.
+
+![Pong budget comparison](results/pong_budget3000_training_comparison.png)
+
+Raw CSVs, evaluation histograms, policies and full validation checkpoints are in
+[no-baseline results](results/pong_budget3000_none/) and
+[value-baseline results](results/pong_budget3000_value/).
+[Provenance manifest](results/pong_budget3000_manifest.json) records the source
+checkpoint/data hashes and unchanged training-code hashes;
+[comparison audit](results/pong_budget3000_comparison.json) checks the preserved
+1,000-episode CSV prefix and 375 total optimizer updates per group.
+The recorded elapsed times cover the resumed process (2,000 additional training
+episodes plus evaluation), not the entire 3,000-episode experiment.
+The existing PDF report still describes the earlier 1,000-episode Pong experiment;
+this section records the additional budget experiment separately.

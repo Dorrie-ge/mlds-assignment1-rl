@@ -1,0 +1,13 @@
+{
+  "baseline": "value",
+  "episodes": 3000,
+  "batch_episodes": 8,
+  "eval_episodes": 500,
+  "lr": 0.0001,
+  "value_lr": 0.0003,
+  "max_grad_norm": 5.0,
+  "seed": 0,
+  "device": "mps",
+  "resume": "outputs/mlds-assignment1-rl/results/pong_budget3000_value/checkpoint.pt",
+  "out": "outputs/mlds-assignment1-rl/results/pong_budget3000_value"
+}

@@ -1,0 +1,286 @@
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+Episodes 1008: recent mean=-20.710; entropy=0.6713; grad=0.3616
+Episodes 1016: recent mean=-20.710; entropy=0.6713; grad=3.561
+Episodes 1024: recent mean=-20.720; entropy=0.6710; grad=13.61
+Episodes 1032: recent mean=-20.720; entropy=0.6710; grad=3.99
+Episodes 1040: recent mean=-20.760; entropy=0.6716; grad=0.2005
+Episodes 1048: recent mean=-20.770; entropy=0.6722; grad=2.688
+Episodes 1056: recent mean=-20.760; entropy=0.6723; grad=2.114
+Episodes 1064: recent mean=-20.750; entropy=0.6726; grad=7.759
+Episodes 1072: recent mean=-20.720; entropy=0.6723; grad=4.834
+Episodes 1080: recent mean=-20.720; entropy=0.6726; grad=0.9878
+Episodes 1088: recent mean=-20.720; entropy=0.6727; grad=0.7451
+Episodes 1096: recent mean=-20.720; entropy=0.6730; grad=7.767
+Episodes 1104: recent mean=-20.730; entropy=0.6725; grad=5.52
+Episodes 1112: recent mean=-20.730; entropy=0.6718; grad=8.222
+Episodes 1120: recent mean=-20.700; entropy=0.6716; grad=6.095
+Episodes 1128: recent mean=-20.740; entropy=0.6719; grad=5.309
+Episodes 1136: recent mean=-20.700; entropy=0.6725; grad=5.65
+Episodes 1144: recent mean=-20.670; entropy=0.6733; grad=5.365
+Episodes 1152: recent mean=-20.670; entropy=0.6738; grad=6.284
+Episodes 1160: recent mean=-20.630; entropy=0.6741; grad=2.2
+Episodes 1168: recent mean=-20.650; entropy=0.6750; grad=4.836
+Episodes 1176: recent mean=-20.650; entropy=0.6754; grad=5.817
+Episodes 1184: recent mean=-20.660; entropy=0.6761; grad=0.5763
+Episodes 1192: recent mean=-20.650; entropy=0.6765; grad=3.229
+Episodes 1200: recent mean=-20.670; entropy=0.6773; grad=1.909
+Episodes 1208: recent mean=-20.680; entropy=0.6776; grad=2.589
+Episodes 1216: recent mean=-20.740; entropy=0.6783; grad=1.827
+Episodes 1224: recent mean=-20.730; entropy=0.6789; grad=3.395
+Episodes 1232: recent mean=-20.710; entropy=0.6792; grad=8.702
+Episodes 1240: recent mean=-20.680; entropy=0.6792; grad=8.609
+Episodes 1248: recent mean=-20.630; entropy=0.6796; grad=8.033
+Episodes 1256: recent mean=-20.630; entropy=0.6795; grad=2.539
+Episodes 1264: recent mean=-20.680; entropy=0.6794; grad=2.363
+Episodes 1272: recent mean=-20.660; entropy=0.6794; grad=1.783
+Episodes 1280: recent mean=-20.620; entropy=0.6796; grad=6.691
+Episodes 1288: recent mean=-20.600; entropy=0.6794; grad=0.4118
+Episodes 1296: recent mean=-20.630; entropy=0.6794; grad=4.075
+Episodes 1304: recent mean=-20.630; entropy=0.6789; grad=5.19
+Episodes 1312: recent mean=-20.610; entropy=0.6784; grad=2.294
+Episodes 1320: recent mean=-20.550; entropy=0.6781; grad=2.002
+Episodes 1328: recent mean=-20.570; entropy=0.6775; grad=11.88
+Episodes 1336: recent mean=-20.580; entropy=0.6774; grad=2.942
+Episodes 1344: recent mean=-20.660; entropy=0.6775; grad=6.098
+Episodes 1352: recent mean=-20.620; entropy=0.6771; grad=2.83
+Episodes 1360: recent mean=-20.630; entropy=0.6769; grad=4.623
+Episodes 1368: recent mean=-20.600; entropy=0.6767; grad=4.434
+Episodes 1376: recent mean=-20.620; entropy=0.6769; grad=1.308
+Episodes 1384: recent mean=-20.680; entropy=0.6772; grad=1.021
+Episodes 1392: recent mean=-20.670; entropy=0.6775; grad=6.634
+Episodes 1400: recent mean=-20.640; entropy=0.6770; grad=2.243
+Episodes 1408: recent mean=-20.620; entropy=0.6771; grad=6.708
+Episodes 1416: recent mean=-20.650; entropy=0.6773; grad=1.592
+Episodes 1424: recent mean=-20.690; entropy=0.6777; grad=1.386
+Episodes 1432: recent mean=-20.680; entropy=0.6780; grad=0.5519
+Episodes 1440: recent mean=-20.650; entropy=0.6784; grad=0.7837
+Episodes 1448: recent mean=-20.680; entropy=0.6786; grad=2.602
+Episodes 1456: recent mean=-20.630; entropy=0.6787; grad=0.2423
+Episodes 1464: recent mean=-20.620; entropy=0.6788; grad=0.1504
+Episodes 1472: recent mean=-20.610; entropy=0.6789; grad=2.477
+Episodes 1480: recent mean=-20.580; entropy=0.6787; grad=6.618
+Episodes 1488: recent mean=-20.570; entropy=0.6787; grad=2.271
+Episodes 1496: recent mean=-20.580; entropy=0.6783; grad=0.3123
+Episodes 1504: recent mean=-20.610; entropy=0.6779; grad=1.834
+Episodes 1512: recent mean=-20.600; entropy=0.6774; grad=1.918
+Episodes 1520: recent mean=-20.600; entropy=0.6772; grad=6.978
+Episodes 1528: recent mean=-20.620; entropy=0.6768; grad=1.865
+Episodes 1536: recent mean=-20.610; entropy=0.6764; grad=4.608
+Episodes 1544: recent mean=-20.610; entropy=0.6758; grad=0.8663
+Episodes 1552: recent mean=-20.650; entropy=0.6752; grad=11.19
+Episodes 1560: recent mean=-20.700; entropy=0.6755; grad=4.55
+Episodes 1568: recent mean=-20.730; entropy=0.6749; grad=5.821
+Episodes 1576: recent mean=-20.760; entropy=0.6742; grad=2.051
+Episodes 1584: recent mean=-20.740; entropy=0.6738; grad=1.634
+Episodes 1592: recent mean=-20.730; entropy=0.6735; grad=2.928
+Episodes 1600: recent mean=-20.730; entropy=0.6727; grad=9.262
+Episodes 1608: recent mean=-20.750; entropy=0.6727; grad=5.67
+Episodes 1616: recent mean=-20.740; entropy=0.6724; grad=3.344
+Episodes 1624: recent mean=-20.750; entropy=0.6716; grad=1.074
+Episodes 1632: recent mean=-20.740; entropy=0.6711; grad=1.38
+Episodes 1640: recent mean=-20.710; entropy=0.6707; grad=1.324
+Episodes 1648: recent mean=-20.710; entropy=0.6703; grad=4.983
+Episodes 1656: recent mean=-20.700; entropy=0.6702; grad=11.78
+Episodes 1664: recent mean=-20.690; entropy=0.6700; grad=4.621
+Episodes 1672: recent mean=-20.670; entropy=0.6696; grad=6.781
+Episodes 1680: recent mean=-20.680; entropy=0.6685; grad=0.9923
+Episodes 1688: recent mean=-20.630; entropy=0.6689; grad=3.833
+Episodes 1696: recent mean=-20.630; entropy=0.6690; grad=1.788
+Episodes 1704: recent mean=-20.640; entropy=0.6689; grad=11.88
+Episodes 1712: recent mean=-20.640; entropy=0.6694; grad=4.608
+Episodes 1720: recent mean=-20.600; entropy=0.6701; grad=5.049
+Episodes 1728: recent mean=-20.610; entropy=0.6703; grad=2.38
+Episodes 1736: recent mean=-20.620; entropy=0.6709; grad=2.975
+Episodes 1744: recent mean=-20.640; entropy=0.6717; grad=2.207
+Episodes 1752: recent mean=-20.670; entropy=0.6719; grad=0.3665
+Episodes 1760: recent mean=-20.660; entropy=0.6728; grad=17.11
+Episodes 1768: recent mean=-20.670; entropy=0.6728; grad=4.039
+Episodes 1776: recent mean=-20.670; entropy=0.6739; grad=6.459
+Episodes 1784: recent mean=-20.680; entropy=0.6744; grad=0.6444
+Episodes 1792: recent mean=-20.700; entropy=0.6745; grad=4.431
+Episodes 1800: recent mean=-20.670; entropy=0.6749; grad=10.14
+Episodes 1808: recent mean=-20.650; entropy=0.6751; grad=5.374
+Episodes 1816: recent mean=-20.680; entropy=0.6750; grad=2.114
+Episodes 1824: recent mean=-20.660; entropy=0.6750; grad=5.023
+Episodes 1832: recent mean=-20.650; entropy=0.6747; grad=10.74
+Episodes 1840: recent mean=-20.650; entropy=0.6752; grad=0.714
+Episodes 1848: recent mean=-20.660; entropy=0.6751; grad=0.7875
+Episodes 1856: recent mean=-20.650; entropy=0.6751; grad=2.154
+Episodes 1864: recent mean=-20.640; entropy=0.6759; grad=3.873
+Episodes 1872: recent mean=-20.600; entropy=0.6764; grad=8.143
+Episodes 1880: recent mean=-20.630; entropy=0.6762; grad=1.698
+Episodes 1888: recent mean=-20.640; entropy=0.6762; grad=1.727
+Episodes 1896: recent mean=-20.660; entropy=0.6763; grad=6.905
+Episodes 1904: recent mean=-20.640; entropy=0.6766; grad=2.303
+Episodes 1912: recent mean=-20.640; entropy=0.6773; grad=5.084
+Episodes 1920: recent mean=-20.640; entropy=0.6775; grad=1.534
+Episodes 1928: recent mean=-20.640; entropy=0.6781; grad=4.107
+Episodes 1936: recent mean=-20.640; entropy=0.6787; grad=2.982
+Episodes 1944: recent mean=-20.630; entropy=0.6794; grad=2.623
+Episodes 1952: recent mean=-20.600; entropy=0.6801; grad=0.7483
+Episodes 1960: recent mean=-20.640; entropy=0.6805; grad=1.302
+Episodes 1968: recent mean=-20.640; entropy=0.6809; grad=0.697
+Episodes 1976: recent mean=-20.630; entropy=0.6812; grad=9.817
+Episodes 1984: recent mean=-20.610; entropy=0.6812; grad=2.781
+Episodes 1992: recent mean=-20.610; entropy=0.6817; grad=0.5345
+Episodes 2000: recent mean=-20.640; entropy=0.6813; grad=4.255
+Episodes 2008: recent mean=-20.600; entropy=0.6818; grad=0.551
+Episodes 2016: recent mean=-20.620; entropy=0.6822; grad=3.651
+Episodes 2024: recent mean=-20.600; entropy=0.6817; grad=1.221
+Episodes 2032: recent mean=-20.590; entropy=0.6819; grad=0.8202
+Episodes 2040: recent mean=-20.590; entropy=0.6824; grad=6.622
+Episodes 2048: recent mean=-20.610; entropy=0.6823; grad=6.331
+Episodes 2056: recent mean=-20.610; entropy=0.6821; grad=7.743
+Episodes 2064: recent mean=-20.580; entropy=0.6822; grad=0.3611
+Episodes 2072: recent mean=-20.540; entropy=0.6824; grad=4.174
+Episodes 2080: recent mean=-20.540; entropy=0.6824; grad=5.577
+Episodes 2088: recent mean=-20.520; entropy=0.6819; grad=0.5814
+Episodes 2096: recent mean=-20.490; entropy=0.6820; grad=5.478
+Episodes 2104: recent mean=-20.490; entropy=0.6829; grad=2.992
+Episodes 2112: recent mean=-20.500; entropy=0.6821; grad=5.476
+Episodes 2120: recent mean=-20.480; entropy=0.6824; grad=4.208
+Episodes 2128: recent mean=-20.500; entropy=0.6820; grad=5.723
+Episodes 2136: recent mean=-20.510; entropy=0.6819; grad=3.832
+Episodes 2144: recent mean=-20.490; entropy=0.6816; grad=2.518
+Episodes 2152: recent mean=-20.530; entropy=0.6805; grad=1.727
+Episodes 2160: recent mean=-20.520; entropy=0.6803; grad=0.3982
+Episodes 2168: recent mean=-20.570; entropy=0.6797; grad=1.888
+Episodes 2176: recent mean=-20.610; entropy=0.6789; grad=0.7005
+Episodes 2184: recent mean=-20.600; entropy=0.6793; grad=4.981
+Episodes 2192: recent mean=-20.640; entropy=0.6778; grad=0.5157
+Episodes 2200: recent mean=-20.620; entropy=0.6775; grad=0.7091
+Episodes 2208: recent mean=-20.650; entropy=0.6775; grad=0.5083
+Episodes 2216: recent mean=-20.690; entropy=0.6764; grad=2.278
+Episodes 2224: recent mean=-20.670; entropy=0.6760; grad=2.94
+Episodes 2232: recent mean=-20.690; entropy=0.6757; grad=3.297
+Episodes 2240: recent mean=-20.690; entropy=0.6749; grad=1.842
+Episodes 2248: recent mean=-20.690; entropy=0.6750; grad=1.298
+Episodes 2256: recent mean=-20.640; entropy=0.6741; grad=4.9
+Episodes 2264: recent mean=-20.680; entropy=0.6744; grad=3.262
+Episodes 2272: recent mean=-20.650; entropy=0.6732; grad=3.97
+Episodes 2280: recent mean=-20.670; entropy=0.6729; grad=2.613
+Episodes 2288: recent mean=-20.690; entropy=0.6731; grad=10.59
+Episodes 2296: recent mean=-20.670; entropy=0.6727; grad=3.01
+Episodes 2304: recent mean=-20.690; entropy=0.6730; grad=5.047
+Episodes 2312: recent mean=-20.680; entropy=0.6721; grad=6.065
+Episodes 2320: recent mean=-20.700; entropy=0.6716; grad=4.028
+Episodes 2328: recent mean=-20.710; entropy=0.6717; grad=3.823
+Episodes 2336: recent mean=-20.700; entropy=0.6711; grad=3.115
+Episodes 2344: recent mean=-20.640; entropy=0.6699; grad=7.789
+Episodes 2352: recent mean=-20.660; entropy=0.6684; grad=1.336
+Episodes 2360: recent mean=-20.660; entropy=0.6671; grad=11
+Episodes 2368: recent mean=-20.650; entropy=0.6668; grad=0.7697
+Episodes 2376: recent mean=-20.680; entropy=0.6659; grad=0.9955
+Episodes 2384: recent mean=-20.660; entropy=0.6651; grad=3.196
+Episodes 2392: recent mean=-20.670; entropy=0.6640; grad=2.593
+Episodes 2400: recent mean=-20.640; entropy=0.6640; grad=4.97
+Episodes 2408: recent mean=-20.680; entropy=0.6642; grad=1.533
+Episodes 2416: recent mean=-20.680; entropy=0.6642; grad=7.759
+Episodes 2424: recent mean=-20.680; entropy=0.6630; grad=3.079
+Episodes 2432: recent mean=-20.680; entropy=0.6650; grad=9.637
+Episodes 2440: recent mean=-20.700; entropy=0.6654; grad=1.231
+Episodes 2448: recent mean=-20.730; entropy=0.6653; grad=8.432
+Episodes 2456: recent mean=-20.750; entropy=0.6665; grad=9.601
+Episodes 2464: recent mean=-20.740; entropy=0.6673; grad=2.578
+Episodes 2472: recent mean=-20.740; entropy=0.6684; grad=5.603
+Episodes 2480: recent mean=-20.750; entropy=0.6695; grad=0.7026
+Episodes 2488: recent mean=-20.760; entropy=0.6691; grad=1.966
+Episodes 2496: recent mean=-20.760; entropy=0.6701; grad=1.87
+Episodes 2504: recent mean=-20.780; entropy=0.6687; grad=3.521
+Episodes 2512: recent mean=-20.790; entropy=0.6688; grad=5.562
+Episodes 2520: recent mean=-20.810; entropy=0.6703; grad=3.481
+Episodes 2528: recent mean=-20.800; entropy=0.6693; grad=3.76
+Episodes 2536: recent mean=-20.790; entropy=0.6687; grad=10.28
+Episodes 2544: recent mean=-20.780; entropy=0.6689; grad=0.6012
+Episodes 2552: recent mean=-20.780; entropy=0.6700; grad=11.33
+Episodes 2560: recent mean=-20.800; entropy=0.6697; grad=2.785
+Episodes 2568: recent mean=-20.810; entropy=0.6694; grad=0.9207
+Episodes 2576: recent mean=-20.750; entropy=0.6699; grad=7.564
+Episodes 2584: recent mean=-20.740; entropy=0.6704; grad=8.645
+Episodes 2592: recent mean=-20.760; entropy=0.6713; grad=4.992
+Episodes 2600: recent mean=-20.770; entropy=0.6710; grad=3.069
+Episodes 2608: recent mean=-20.760; entropy=0.6718; grad=3.085
+Episodes 2616: recent mean=-20.750; entropy=0.6713; grad=0.3967
+Episodes 2624: recent mean=-20.750; entropy=0.6720; grad=19.94
+Episodes 2632: recent mean=-20.780; entropy=0.6726; grad=6.729
+Episodes 2640: recent mean=-20.770; entropy=0.6726; grad=1.306
+Episodes 2648: recent mean=-20.790; entropy=0.6731; grad=1.882
+Episodes 2656: recent mean=-20.780; entropy=0.6734; grad=0.914
+Episodes 2664: recent mean=-20.780; entropy=0.6734; grad=1.871
+Episodes 2672: recent mean=-20.810; entropy=0.6727; grad=6.757
+Episodes 2680: recent mean=-20.850; entropy=0.6741; grad=1.589
+Episodes 2688: recent mean=-20.830; entropy=0.6738; grad=6.805
+Episodes 2696: recent mean=-20.820; entropy=0.6741; grad=3.815
+Episodes 2704: recent mean=-20.820; entropy=0.6733; grad=0.636
+Episodes 2712: recent mean=-20.810; entropy=0.6741; grad=1.553
+Episodes 2720: recent mean=-20.790; entropy=0.6736; grad=6.278
+Episodes 2728: recent mean=-20.750; entropy=0.6734; grad=10.28
+Episodes 2736: recent mean=-20.730; entropy=0.6718; grad=2.05
+Episodes 2744: recent mean=-20.740; entropy=0.6724; grad=2.032
+Episodes 2752: recent mean=-20.720; entropy=0.6737; grad=7.522
+Episodes 2760: recent mean=-20.660; entropy=0.6730; grad=4.684
+Episodes 2768: recent mean=-20.670; entropy=0.6729; grad=6.091
+Episodes 2776: recent mean=-20.640; entropy=0.6740; grad=7.756
+Episodes 2784: recent mean=-20.590; entropy=0.6745; grad=3.815
+Episodes 2792: recent mean=-20.570; entropy=0.6743; grad=1.534
+Episodes 2800: recent mean=-20.590; entropy=0.6757; grad=0.8564
+Episodes 2808: recent mean=-20.570; entropy=0.6747; grad=4.681
+Episodes 2816: recent mean=-20.550; entropy=0.6757; grad=9.462
+Episodes 2824: recent mean=-20.600; entropy=0.6769; grad=6.794
+Episodes 2832: recent mean=-20.600; entropy=0.6767; grad=0.4633
+Episodes 2840: recent mean=-20.590; entropy=0.6780; grad=0.6566
+Episodes 2848: recent mean=-20.600; entropy=0.6779; grad=1.835
+Episodes 2856: recent mean=-20.600; entropy=0.6779; grad=0.5404
+Episodes 2864: recent mean=-20.640; entropy=0.6783; grad=5.34
+Episodes 2872: recent mean=-20.620; entropy=0.6786; grad=5.763
+Episodes 2880: recent mean=-20.670; entropy=0.6785; grad=1.851
+Episodes 2888: recent mean=-20.670; entropy=0.6796; grad=6.579
+Episodes 2896: recent mean=-20.680; entropy=0.6802; grad=8.392
+Episodes 2904: recent mean=-20.670; entropy=0.6802; grad=2.5
+Episodes 2912: recent mean=-20.670; entropy=0.6805; grad=7.219
+Episodes 2920: recent mean=-20.640; entropy=0.6804; grad=4.534
+Episodes 2928: recent mean=-20.620; entropy=0.6807; grad=2.387
+Episodes 2936: recent mean=-20.650; entropy=0.6809; grad=6.251
+Episodes 2944: recent mean=-20.650; entropy=0.6810; grad=2.405
+Episodes 2952: recent mean=-20.620; entropy=0.6810; grad=1.003
+Episodes 2960: recent mean=-20.610; entropy=0.6809; grad=5.541
+Episodes 2968: recent mean=-20.580; entropy=0.6810; grad=1.454
+Episodes 2976: recent mean=-20.620; entropy=0.6816; grad=1.959
+Episodes 2984: recent mean=-20.630; entropy=0.6812; grad=2.981
+Episodes 2992: recent mean=-20.590; entropy=0.6824; grad=2.783
+Episodes 3000: recent mean=-20.540; entropy=0.6819; grad=7.455
+Final evaluation 200/500: -20.510
+Final evaluation 400/500: -20.552
+Final evaluation 500/500: -20.548
+Random evaluation 200/500: -20.475
+Random evaluation 400/500: -20.510
+Random evaluation 500/500: -20.514
+Matplotlib is building the font cache; this may take a moment.
+{
+  "game": "pong",
+  "env_id": "ALE/Pong-v5",
+  "baseline": "value",
+  "episodes": 3000,
+  "evaluation_episodes": 500,
+  "gamma": 0.99,
+  "lr": 0.0001,
+  "seed": 0,
+  "mean": -20.548,
+  "std_sample": 0.6932945367080707,
+  "random_mean": -20.514,
+  "random_std_sample": 0.7661448661394421,
+  "elapsed_seconds": 1646.2902516250033,
+  "device": "mps",
+  "batch_episodes": 8,
+  "max_grad_norm": 5.0,
+  "value_lr": 0.0003,
+  "objective": "E[sum_t gamma**t*r_t]; full episode returns; average of per-episode score gradients",
+  "train_seed_start": 20000000,
+  "evaluation_seed_start": 4000000,
+  "versions": {
+    "torch": "2.14.1",
+    "numpy": "2.5.4"
+  },
+  "limitation": "One training seed; 500 stochastic evaluation episodes do not measure training-seed variability."
+}

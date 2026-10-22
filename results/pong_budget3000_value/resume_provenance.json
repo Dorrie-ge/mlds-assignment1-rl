@@ -1,0 +1,16 @@
+{
+  "baseline": "value",
+  "source": "results/pong_batch_value",
+  "output": "results/pong_budget3000_value",
+  "source_checkpoint_sha256": "f315d8d1d67264db46c8c90d85912139f196ec659b5f3edba627f0527eeb48f9",
+  "source_training_csv_sha256": "dc17fc9ff117f631b32e6c798fd01bf987c837ec18754cb9443c83d2d537d85c",
+  "fixed_parameters": {
+    "baseline": "value",
+    "batch_episodes": 8,
+    "lr": 0.0001,
+    "value_lr": 0.0003,
+    "seed": 0,
+    "max_grad_norm": 5.0,
+    "device": "mps"
+  }
+}

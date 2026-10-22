@@ -1,0 +1,71 @@
+{
+  "training_implementation_unchanged": true,
+  "only_training_budget_changed": true,
+  "total_actor_updates_per_group": 375,
+  "additional_actor_updates_per_group": 250,
+  "runtime_note": "Elapsed seconds cover the resumed process (extra 2000 episodes plus evaluation), not all 3000 training episodes.",
+  "uncertainty_note": "Paired intervals describe held-out rollout variability for one training seed, not training-seed variability.",
+  "training_objective_note": "Training discounted-return averages use changing policies and distinct episode seeds; they are not held-out fixed-policy objective evaluations.",
+  "comparisons": [
+    {
+      "baseline": "none",
+      "old_training_episodes": 1000,
+      "new_training_episodes": 3000,
+      "added_training_episodes": 2000,
+      "old_evaluation_mean": -20.39,
+      "new_evaluation_mean": -20.952,
+      "new_evaluation_sample_sd": 0.21398031486634608,
+      "paired_score_change": -0.562,
+      "paired_change_approx_ci95": [
+        -0.6373841210774607,
+        -0.48661587892253944
+      ],
+      "random_evaluation_mean": -20.514,
+      "old_training_steps": 1018171,
+      "new_total_training_steps": 2856725,
+      "final100_training_mean": -20.97,
+      "final100_training_entropy": 0.5936291156942552,
+      "original_final100_training_discounted_return": -1.2863427136093377,
+      "new_final100_training_discounted_return": -1.3447895117104054,
+      "random_reference_matches_original": true,
+      "original_data_unchanged": true,
+      "original_csv_exact_prefix": true,
+      "resumed_process_elapsed_seconds": 1477.3601834579968,
+      "verified_actor_optimizer_steps": [
+        375
+      ],
+      "verified_critic_optimizer_steps": null
+    },
+    {
+      "baseline": "value",
+      "old_training_episodes": 1000,
+      "new_training_episodes": 3000,
+      "added_training_episodes": 2000,
+      "old_evaluation_mean": -20.72,
+      "new_evaluation_mean": -20.548,
+      "new_evaluation_sample_sd": 0.6932945367080707,
+      "paired_score_change": 0.172,
+      "paired_change_approx_ci95": [
+        0.09419061746021598,
+        0.249809382539784
+      ],
+      "random_evaluation_mean": -20.514,
+      "old_training_steps": 1014281,
+      "new_total_training_steps": 2946028,
+      "final100_training_mean": -20.54,
+      "final100_training_entropy": 0.6810906146230833,
+      "original_final100_training_discounted_return": -1.2454632063210012,
+      "new_final100_training_discounted_return": -1.19009047659114,
+      "random_reference_matches_original": true,
+      "original_data_unchanged": true,
+      "original_csv_exact_prefix": true,
+      "resumed_process_elapsed_seconds": 1646.2902516250033,
+      "verified_actor_optimizer_steps": [
+        375
+      ],
+      "verified_critic_optimizer_steps": [
+        375
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "training_code_sha256": "6f01d4eddedb3c70062039f013f7c0ee898c104385956f88d8dfc4e9a0e8642b",
+  "target_total_episodes": 3000,
+  "starting_episodes": 1000,
+  "additional_training_episodes": 2000,
+  "evaluation_episodes": 500,
+  "runs": [
+    {
+      "baseline": "none",
+      "source": "results/pong_batch_none",
+      "output": "results/pong_budget3000_none",
+      "source_checkpoint_sha256": "06b2ec134229c251386fb0ed8321c59a662344183185cc0ee0b12e11208ad17d",
+      "source_training_csv_sha256": "61fdc29cd184ab873b1d8dacf7b89a6833b65c7556c025fa446760c84411820f",
+      "fixed_parameters": {
+        "baseline": "none",
+        "batch_episodes": 8,
+        "lr": 0.0001,
+        "value_lr": 0.0003,
+        "seed": 0,
+        "max_grad_norm": 5.0,
+        "device": "mps"
+      }
+    },
+    {
+      "baseline": "value",
+      "source": "results/pong_batch_value",
+      "output": "results/pong_budget3000_value",
+      "source_checkpoint_sha256": "f315d8d1d67264db46c8c90d85912139f196ec659b5f3edba627f0527eeb48f9",
+      "source_training_csv_sha256": "dc17fc9ff117f631b32e6c798fd01bf987c837ec18754cb9443c83d2d537d85c",
+      "fixed_parameters": {
+        "baseline": "value",
+        "batch_episodes": 8,
+        "lr": 0.0001,
+        "value_lr": 0.0003,
+        "seed": 0,
+        "max_grad_norm": 5.0,
+        "device": "mps"
+      }
+    }
+  ],
+  "imported_training_module_sha256": "b2121d8fdb0696d89070ab3eace4a0b4a216c43cbf307ac675ff191f73797bbb",
+  "base_commit": "84b42e6859584a434e913fee5ed5a48fb3bffe03",
+  "parameters_changed": [
+    "episodes: 1000 -> 3000"
+  ],
+  "continuation_method": "Existing --resume with copied full checkpoint, optimizer, RNG, and original 1000-row training CSV"
+}
