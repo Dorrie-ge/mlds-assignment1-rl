@@ -1,10 +1,6 @@
 # MLDS Assignment 1: Reinforcement Learning
 
-**GitHub username:** Dorrie-ge
-**Repository:** [Dorrie-ge/mlds-assignment1-rl](https://github.com/Dorrie-ge/mlds-assignment1-rl)
-**Visibility:** public, verified October 23, 2026.
-
-The assignment covers a shuttle-dispatch MDP, REINFORCE, and REINFORCE with a learned state-value baseline. All reported scores are measured; unsuccessful experiments are retained.
+Dorrie Ge
 
 ## Where to find things
 
@@ -19,10 +15,10 @@ The assignment covers a shuttle-dispatch MDP, REINFORCE, and REINFORCE with a le
 <!-- COMPLETE_REPORT START -->
 ## Complete report and final evidence
 
-[Download the complete PDF report](reports/assignment1_report.pdf). Updated 23 October 2026.
+[Download the complete PDF report](reports/assignment1_report.pdf). 
 The report covers the initial implementation, retained failures, controlled improvements,
 independent seed confirmation, required figures, edge cases, quantitative validation and
-the additional three-month experiment plan. All values come from stored measurements.
+the additional three-month experiment plan. 
 
 ### Improved Pong extension: independent training seeds
 
@@ -34,7 +30,7 @@ the additional three-month experiment plan. All values come from stored measurem
 
 The two independent confirmation runs average -9.641.
 Across all three policy means: -9.008, with between-seed sample SD 1.164.
-Pong learning improved, but mean scores remain negative. Three seeds are a small sample.
+Pong learning improved, but mean scores remain negative. 
 The improved extension uses uniform actor time weights; the exact start-state discounted
 objective is preserved in the separately reported four core experiments.
 
@@ -68,7 +64,7 @@ python src/pong_batch.py --baseline none --lr 0.0001 --episodes 1000 --batch-epi
 python src/pong_batch.py --baseline value --lr 0.0001 --episodes 1000 --batch-episodes 8 --eval-episodes 500 --device mps --out runs/pong_value
 ```
 
-For the improved Pong extension (3,000 training episodes), use the following command. Independent confirmation uses seeds 1 and 2 with separate output directories. Uniform actor time weights change the strict objective estimator; the report explains the distinction.
+For the improved Pong extension, use the following command. Independent confirmation uses seeds 1 and 2 with separate output directories. Uniform actor time weights change the strict objective estimator; the report explains the distinction.
 
 ```bash
 python src/pong_batch.py --baseline value --lr 0.001 --value-lr 0.0003 --episodes 3000 --eval-episodes 500 --batch-episodes 8 --seed 0 --device mps --time-weighting uniform --representation split_frame_difference --out runs/pong_improved_seed0
@@ -89,8 +85,3 @@ python src/build_report.py
 
 Report regeneration reads committed measurements selected by [reports/report_config.json](reports/report_config.json); it does not launch training. The one-time `run_*_comparison.py` / `run_seed_validation.py` controllers retain manifests and reject duplicate experiment runs. Use the explicit commands above for fresh repeats.
 
-## What to submit
-
-Upload **[the PDF report](reports/assignment1_report.pdf) to Canvas**. It includes the GitHub username, repository name/link, execution instructions, required plots and discussion answers. Keep this public repository available for the TA to inspect all code. The supplied handout does not require a separate ZIP, word count or page limit, a fixed training budget, or a minimum game score. Updating GitHub alone does not submit Canvas.
-
-The report includes all four required experiment configurations, their 500-episode evaluation histograms and statistics, shuttle plots, edge cases, quantitative validation and a three-month follow-up plan. Improved Pong scores remain negative; the practical uniform-weight extension and its limited three-seed evidence are stated explicitly. These are performance and interpretation limitations, not a guarantee of full marks.
