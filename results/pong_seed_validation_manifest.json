@@ -1,0 +1,30 @@
+{
+  "training_code_snapshot": "results/pong_representation_training_source.txt",
+  "training_code_sha256": "0413f894d06dea5aae6bb1a9d4f9103ea451dd42792856b8f35cd796e9322ea4",
+  "imported_module_sha256": "b2121d8fdb0696d89070ab3eace4a0b4a216c43cbf307ac675ff191f73797bbb",
+  "base_commit": "4b4472d66c1efd197fc50592e285a272c7751100",
+  "actor_lr": 0.001,
+  "critic_lr": 0.0003,
+  "episodes_per_group": 3000,
+  "evaluation_episodes": 500,
+  "selection_seed": 0,
+  "confirmation_seeds": [
+    1,
+    2
+  ],
+  "device": "mps",
+  "initialization": "Fresh networks and optimizers for seeds 1 and 2; seed 0 reused unchanged.",
+  "between_group_change": "training seed, including initialization, sampling and the existing per-seed environment/evaluation seed ranges",
+  "selected_seed0_hashes": {
+    "summary.json": "0b6ad95fea96a99ea04ff4266559a3f1ea6551af8711970943281811f2eb2080",
+    "training.csv": "f4330249c8cf38fb650ec92f1c320f8ec12740000daa3515ec66cc0055c9f0cf",
+    "evaluation.csv": "4548c124dfce2c69e97d2dc806dc83e6c4876125c0598f98bf69a1e2c7572d32",
+    "random_evaluation.csv": "77392068a50d93f204fb3d8383014abc447734c2ee1998df0fe360a6967173aa",
+    "validation_checkpoint.pt": "03967c825be3f5b1fea0789c7951772d769f149017054095651eacd601e3e8d8"
+  },
+  "outputs": [
+    "results/pong_motion_lr001_value",
+    "results/pong_motion_lr001_value_seed1",
+    "results/pong_motion_lr001_value_seed2"
+  ]
+}

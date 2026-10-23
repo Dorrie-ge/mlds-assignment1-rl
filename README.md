@@ -527,3 +527,24 @@ training and evaluation finish.
 
 [Raw comparison and paired intervals](results/pong_learning_rate_comparison.json).
 The unchanged 0.0001 control is reused; the two new policies start fresh. This is a one-seed exploratory comparison. The PDF has not been regenerated.
+
+
+### Independent confirmation of the selected learning rate
+
+The learning-rate comparison selected actor lr=0.001 using training seed 0.
+Two fresh models now use training seeds 1 and 2, each for 3,000 episodes and
+500 evaluation episodes. The frozen implementation, CNN, motion input, independent
+value baseline, critic lr=0.0003, uniform actor time weighting, gamma=0.99,
+batch size 8 and clipping 5 remain fixed. Seed changes affect initialization,
+action sampling and the existing per-seed training/evaluation environment ranges.
+The seed-0 result is preserved and reused, not retrained.
+
+[Validation manifest](results/pong_seed_validation_manifest.json) records source
+hashes and the selected run. `python run_seed_validation.py --device mps` runs
+this validation once. The launched batch also uses `--publish` to upload audited
+results after completion. It reports each seed separately, the average of the
+two independent confirmation seeds, and variability between the three seed means.
+These are three trained models, not 1,500 independent training runs. This checks
+the selected configuration's reproducibility; no new low-rate control models
+are included. Three training seeds remain a small sample. No new performance
+results are claimed before the runs complete.
