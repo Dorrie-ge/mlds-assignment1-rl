@@ -93,11 +93,39 @@
       "sample_sd": 0.6932945367080707
     },
     {
+      "experiment": "pong_budget5000_none",
+      "training_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -20.724,
+      "sample_sd": 0.5625450327108537
+    },
+    {
+      "experiment": "pong_budget5000_value",
+      "training_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -20.17,
+      "sample_sd": 0.9158479978196273
+    },
+    {
       "experiment": "pong_none",
       "training_episodes": 200,
       "evaluation_episodes": 500,
       "mean": -21.0,
       "sample_sd": 0.0
+    },
+    {
+      "experiment": "pong_uniform5000_none",
+      "training_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -20.444,
+      "sample_sd": 0.7975815146711276
+    },
+    {
+      "experiment": "pong_uniform5000_value",
+      "training_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -19.954,
+      "sample_sd": 1.141266392195929
     },
     {
       "experiment": "pong_value",

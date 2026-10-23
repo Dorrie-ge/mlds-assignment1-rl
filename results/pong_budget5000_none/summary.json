@@ -1,0 +1,27 @@
+{
+  "game": "pong",
+  "env_id": "ALE/Pong-v5",
+  "baseline": "none",
+  "episodes": 5000,
+  "evaluation_episodes": 500,
+  "gamma": 0.99,
+  "lr": 0.0001,
+  "seed": 0,
+  "mean": -20.724,
+  "std_sample": 0.5625450327108537,
+  "random_mean": -20.514,
+  "random_std_sample": 0.7661448661394421,
+  "elapsed_seconds": 1533.3260719579994,
+  "device": "mps",
+  "batch_episodes": 8,
+  "max_grad_norm": 5.0,
+  "value_lr": 0.0003,
+  "objective": "E[sum_t gamma**t*r_t]; full episode returns; average of per-episode score gradients",
+  "train_seed_start": 20000000,
+  "evaluation_seed_start": 4000000,
+  "versions": {
+    "torch": "2.14.1",
+    "numpy": "2.5.4"
+  },
+  "limitation": "One training seed; 500 stochastic evaluation episodes do not measure training-seed variability."
+}

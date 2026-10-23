@@ -1,0 +1,80 @@
+{
+  "runs": [
+    {
+      "kind": "control",
+      "baseline": "none",
+      "mean": -20.724,
+      "sample_sd": 0.5625450327108537,
+      "evaluation_episodes": 500,
+      "source_3000_mean": -20.952,
+      "total_training_steps": 4667438,
+      "final100_training_mean": -20.76,
+      "final100_training_entropy": 0.6686534354139313,
+      "result_directory": "results/pong_budget5000_none",
+      "original_csv_exact_prefix": true,
+      "optimizer_steps": 625
+    },
+    {
+      "kind": "control",
+      "baseline": "value",
+      "mean": -20.17,
+      "sample_sd": 0.9158479978196273,
+      "evaluation_episodes": 500,
+      "source_3000_mean": -20.548,
+      "total_training_steps": 5060937,
+      "final100_training_mean": -20.11,
+      "final100_training_entropy": 0.6623027067165548,
+      "result_directory": "results/pong_budget5000_value",
+      "original_csv_exact_prefix": true,
+      "optimizer_steps": 625
+    },
+    {
+      "kind": "uniform",
+      "baseline": "none",
+      "mean": -20.444,
+      "sample_sd": 0.7975815146711276,
+      "evaluation_episodes": 500,
+      "source_3000_mean": -20.952,
+      "total_training_steps": 4719061,
+      "final100_training_mean": -20.59,
+      "final100_training_entropy": 0.688020952127294,
+      "result_directory": "results/pong_uniform5000_none",
+      "original_csv_exact_prefix": true,
+      "optimizer_steps": 625
+    },
+    {
+      "kind": "uniform",
+      "baseline": "value",
+      "mean": -19.954,
+      "sample_sd": 1.141266392195929,
+      "evaluation_episodes": 500,
+      "source_3000_mean": -20.548,
+      "total_training_steps": 5639671,
+      "final100_training_mean": -19.97,
+      "final100_training_entropy": 0.40713829743775215,
+      "result_directory": "results/pong_uniform5000_value",
+      "original_csv_exact_prefix": true,
+      "optimizer_steps": 625
+    }
+  ],
+  "paired_differences": [
+    {
+      "baseline": "none",
+      "uniform_minus_control": 0.28,
+      "approximate_paired_ci95": [
+        0.19449802402405206,
+        0.365501975975948
+      ]
+    },
+    {
+      "baseline": "value",
+      "uniform_minus_control": 0.216,
+      "approximate_paired_ci95": [
+        0.08990380051782806,
+        0.34209619948217196
+      ]
+    }
+  ],
+  "limitation": "One training seed; intervals describe held-out rollout variability, not training-seed uncertainty. Uniform weighting begins at episode 3001 after a discounted-objective warm start, with inherited optimizer state.",
+  "objective_note": "Uniform time weighting removes only the actor outer gamma**t. Full-episode discounted reward-to-go at gamma=.99 is retained; this is a changed policy-gradient surrogate."
+}

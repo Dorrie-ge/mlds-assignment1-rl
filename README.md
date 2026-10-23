@@ -396,7 +396,7 @@ The existing PDF report still describes the earlier 1,000-episode Pong experimen
 this section records the additional budget experiment separately.
 
 
-### Pong outer time-weighting ablation (running)
+### Pong outer time-weighting ablation (completed)
 
 An additional experiment compares the original `--time-weighting episode_discount`
 with `--time-weighting uniform`. The default retains the original calculation.
@@ -454,3 +454,24 @@ comparison once in a fresh results location. The launched local batch waits for
 the preceding weighting experiment to finish delivery, then automatically runs
 both inputs, audits results and publishes measured outputs. No comparison scores
 are claimed while this batch is queued or running.
+
+
+<!-- TIME WEIGHTING RESULTS START -->
+### Measured Pong time-weighting comparison
+
+Both branches start from the same 3,000-episode checkpoint and reach 5,000 episodes.
+Uniform weighting starts at episode 3,001; all other hyperparameters and inherited optimizer states match.
+
+| Time weighting | Baseline | 500-episode evaluation mean ± sample SD |
+|---|---|---:|
+| control | none | -20.724 ± 0.563 |
+| control | value | -20.170 ± 0.916 |
+| uniform | none | -20.444 ± 0.798 |
+| uniform | value | -19.954 ± 1.141 |
+
+![Training comparison](results/pong_time_weighting_comparison.png)
+
+[Audit and paired differences](results/pong_time_weighting_comparison.json).
+This is one training seed and a warm-start experiment. Uniform time weighting changes
+the gradient surrogate; gamma=0.99 remains inside reward-to-go. The existing PDF has not been regenerated.
+<!-- TIME WEIGHTING RESULTS END -->
