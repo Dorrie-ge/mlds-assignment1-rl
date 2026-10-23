@@ -1,12 +1,12 @@
 {
   "passed": true,
-  "pages": 21,
+  "pages": 23,
   "embedded_figures": 19,
   "core_experiments": 4,
   "raw_experiment_records": 26,
   "full_500_episode_experiments": 25,
   "source_assignment_pages": 4,
-  "pdf_sha256": "fe1aeddbc9b7389cc122047198f7613e0a42dfdc01299bd09cd8d1219c1c95e4",
+  "pdf_sha256": "872dc65edde046ad8048907c03def2246376e8305cba6be7c6e10814d687daf5",
   "text_within_page_frame": true,
   "required_content_checks": [
     "GitHub username",
@@ -24,7 +24,13 @@
     "500.00",
     "9.15",
     "What three additional months",
-    "Appendix A"
+    "Appendix A",
+    "15a. Looking at the first ten decisions",
+    "15b. Part 2: does the baseline reduce variance?",
+    "0.708929104",
+    "My main lesson",
+    "I expected",
+    "I learned"
   ],
   "all_input_hashes_match": true,
   "external_links": [
@@ -40,5 +46,10 @@
   "markdown_local_links_valid": true,
   "core_training_source_bytes_unchanged": true,
   "relocated_validation_reproduced": true,
-  "relocated_shuttle_validation_passed": true
+  "relocated_shuttle_validation_passed": true,
+  "narrative_style": "First-person discussion tied to measured experiments",
+  "explicit_per_part_prediction_result_interpretation": true,
+  "first_ten_decision_trace_included": true,
+  "visual_review_passed": true,
+  "all_23_pages_rendered_and_reviewed": true
 }
