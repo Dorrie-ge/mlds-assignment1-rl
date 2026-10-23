@@ -548,3 +548,18 @@ These are three trained models, not 1,500 independent training runs. This checks
 the selected configuration's reproducibility; no new low-rate control models
 are included. Three training seeds remain a small sample. No new performance
 results are claimed before the runs complete.
+
+### Independent training-seed confirmation at actor lr=0.001
+
+| Training seed | Role | 500-episode mean ± sample SD |
+|---|---|---:|
+| 0 | selection_run | -7.742 ± 6.311 |
+| 1 | independent_confirmation | -9.250 ± 3.668 |
+| 2 | independent_confirmation | -10.032 ± 3.796 |
+
+Mean across three training-seed means: -9.008; sample SD between seed means: 1.164.
+The two independent confirmation runs average -9.641.
+
+![Seed validation](results/pong_seed_validation.png)
+
+[Raw results and scope](results/pong_seed_validation.json). Seed 0 was used for selection; seeds 1 and 2 were held out from that selection. Three training seeds remain a small sample. The PDF has not been regenerated.

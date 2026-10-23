@@ -1,0 +1,60 @@
+{
+  "runs": [
+    {
+      "seed": 0,
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "evaluation_mean": -7.742,
+      "evaluation_sample_sd": 6.310870794142494,
+      "positive_score_episodes": 60,
+      "random_mean": -20.514,
+      "mean_gain_over_random": 12.772,
+      "paired_rollout_gain_ci95": [
+        12.21234845534559,
+        13.331651544654411
+      ],
+      "result_directory": "results/pong_motion_lr001_value",
+      "role": "selection_run"
+    },
+    {
+      "seed": 1,
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "evaluation_mean": -9.25,
+      "evaluation_sample_sd": 3.668025193157112,
+      "positive_score_episodes": 9,
+      "random_mean": -20.478,
+      "mean_gain_over_random": 11.228,
+      "paired_rollout_gain_ci95": [
+        10.899653721982759,
+        11.55634627801724
+      ],
+      "result_directory": "results/pong_motion_lr001_value_seed1",
+      "role": "independent_confirmation"
+    },
+    {
+      "seed": 2,
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "evaluation_mean": -10.032,
+      "evaluation_sample_sd": 3.7957596845909953,
+      "positive_score_episodes": 2,
+      "random_mean": -20.446,
+      "mean_gain_over_random": 10.414,
+      "paired_rollout_gain_ci95": [
+        10.076695213061862,
+        10.751304786938137
+      ],
+      "result_directory": "results/pong_motion_lr001_value_seed2",
+      "role": "independent_confirmation"
+    }
+  ],
+  "three_seed_mean": -9.008000000000001,
+  "sample_sd_between_three_seed_means": 1.164022336555446,
+  "independent_confirmation_mean": -9.641,
+  "confirmation_seeds": [
+    1,
+    2
+  ],
+  "limitation": "Seed 0 was used to select the learning rate; seeds 1 and 2 are independent confirmation runs. Three training seeds are a small sample. Between-seed variability is reported separately from the 500 rollout scores per model; these are not 1500 independent training runs. All models have the same fixed training budget. No new low-learning-rate models are included, so this tests reproducibility of the selected configuration, not a full learning-rate-by-seed interaction."
+}

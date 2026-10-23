@@ -1,0 +1,30 @@
+{
+  "game": "pong",
+  "env_id": "ALE/Pong-v5",
+  "baseline": "value",
+  "episodes": 3000,
+  "evaluation_episodes": 500,
+  "gamma": 0.99,
+  "lr": 0.001,
+  "seed": 2,
+  "mean": -10.032,
+  "std_sample": 3.7957596845909953,
+  "random_mean": -20.446,
+  "random_std_sample": 0.8417250156696117,
+  "elapsed_seconds": 6342.618522334,
+  "device": "mps",
+  "batch_episodes": 8,
+  "max_grad_norm": 5.0,
+  "value_lr": 0.0003,
+  "objective": "Uniform-time reward-to-go policy-gradient surrogate; gamma=.99 inside returns only; average of per-episode score gradients",
+  "time_weighting": "uniform",
+  "time_weighting_start_episode": 1,
+  "representation": "split_frame_difference",
+  "train_seed_start": 20200000,
+  "evaluation_seed_start": 4020000,
+  "versions": {
+    "torch": "2.14.1",
+    "numpy": "2.5.4"
+  },
+  "limitation": "One training seed; 500 stochastic evaluation episodes do not measure training-seed variability."
+}
