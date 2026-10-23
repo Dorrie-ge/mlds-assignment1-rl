@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "baseline": "none",
+  "episodes": [
+    3001,
+    3008
+  ],
+  "checked_fields": [
+    "episode",
+    "reward",
+    "discounted_return",
+    "length",
+    "entropy",
+    "right_fraction",
+    "points_won",
+    "first_point_step"
+  ],
+  "note": "Recorded first-batch rollout statistics match before the first differently weighted actor update; gradient_norm is intentionally excluded."
+}

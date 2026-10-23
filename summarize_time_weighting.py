@@ -40,6 +40,19 @@ def main():
             if kind == 'uniform':
                 assert summary['time_weighting'] == 'uniform'
                 assert summary['time_weighting_start_episode'] == 3001
+                control = ROOT / f"results/pong_budget5000_{summary['baseline']}"
+                with (control / 'training.csv').open() as stream:
+                    control_train = list(csv.DictReader(stream))
+                fields = ['episode', 'reward', 'discounted_return', 'length',
+                          'entropy', 'right_fraction', 'points_won', 'first_point_step']
+                paired = all(np.isclose(float(a[key]), float(b[key]), rtol=1e-5, atol=1e-6)
+                             for a, b in zip(control_train[3000:3008], train[3000:3008])
+                             for key in fields)
+                assert paired, 'Recorded first-batch statistics differ before the first changed update'
+                pairing = dict(passed=True, baseline=summary['baseline'], episodes=[3001, 3008],
+                               checked_fields=fields,
+                               note='Recorded first-batch rollout statistics match before the first differently weighted actor update; gradient_norm is intentionally excluded.')
+                (new / 'first_batch_pairing_check.json').write_text(json.dumps(pairing, indent=2))
             else:
                 assert summary.get('time_weighting', 'episode_discount') == 'episode_discount'
             checkpoint = torch.load(new / 'validation_checkpoint.pt', map_location='cpu', weights_only=True)
