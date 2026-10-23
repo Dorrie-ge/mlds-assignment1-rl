@@ -1,0 +1,36 @@
+{
+  "training_code_snapshot": "results/pong_representation_training_source.txt",
+  "training_code_sha256": "0413f894d06dea5aae6bb1a9d4f9103ea451dd42792856b8f35cd796e9322ea4",
+  "imported_module_sha256": "b2121d8fdb0696d89070ab3eace4a0b4a216c43cbf307ac675ff191f73797bbb",
+  "base_commit": "d1237856a7111dd9fd726de86983535a154dc2e7",
+  "episodes_per_group": 3000,
+  "evaluation_episodes": 500,
+  "baseline": "value",
+  "representation": "split_frame_difference",
+  "time_weighting": "uniform",
+  "actor_learning_rates": [
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "critic_learning_rate": 0.0003,
+  "seed": 0,
+  "batch_episodes": 8,
+  "max_grad_norm": 5.0,
+  "device": "mps",
+  "initialization": "Fresh actor, critic and Adam states for new rates; existing fresh-run control reused unchanged.",
+  "only_between_group_change": "actor learning rate",
+  "control_directory": "results/pong_repr_motion_value",
+  "control_hashes": {
+    "summary.json": "fe9f6d4997920be7cbf1eef43fc4c37e79815d86f495bc0934948e9a85569a95",
+    "training.csv": "789e682a189fb79d9de4f904d581825d8211f1c1ba884683e43e8191373e31fe",
+    "evaluation.csv": "e2c2abe364f775d9318b02c45b01fdb58d2cb49ac7ed16880e1e7d057c75be93",
+    "random_evaluation.csv": "77392068a50d93f204fb3d8383014abc447734c2ee1998df0fe360a6967173aa",
+    "validation_checkpoint.pt": "d54188c5a8f5ae9d33ec49ff73bf8429fe64f19c79e1ea8b6ce6f9ae8e669417"
+  },
+  "outputs": [
+    "results/pong_repr_motion_value",
+    "results/pong_motion_lr0003_value",
+    "results/pong_motion_lr001_value"
+  ]
+}

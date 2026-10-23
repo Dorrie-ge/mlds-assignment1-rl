@@ -488,3 +488,29 @@ the gradient surrogate; gamma=0.99 remains inside reward-to-go. The existing PDF
 [Raw comparison and uncertainty](results/pong_representation_comparison.json).
 Both models start fresh; only the input encoding differs. Uniform time weights, the CNN,
 value baseline, learning rates, batch size and seeds match. The PDF has not been regenerated.
+
+
+### Fixed-budget actor learning-rate experiment
+
+The unchanged 3,000-episode `pong_repr_motion_value` run at actor lr=0.0001
+is reused as the measured control. Two new policies start fresh at actor
+lr=0.0003 and 0.001, each for 3,000 episodes and 500 evaluation episodes.
+All groups retain split-frame-difference inputs, the same CNN, independent value
+baseline at lr=0.0003, uniform actor time weighting, gamma=0.99 reward-to-go,
+batch size 8, gradient clipping 5, seed 0, MPS and held-out environment seeds.
+The only between-group change is actor learning rate.
+
+[Protocol and control hashes](results/pong_learning_rate_manifest.json) record
+the frozen training implementation. `python run_learning_rate_comparison.py --device mps`
+runs this comparison once; the already-launched local batch uses `--publish` to
+save audited results to GitHub when complete. The first batch of rollout
+statistics matches the unchanged control before the first updated learning-rate
+step. New training data is written to separate result directories.
+
+An [environment diagnostic](results/pong_control_diagnostic.json) records 10
+hand-coded tracking and 10 random episodes on separate seeds, plus paddle
+responses to actions 2 and 3. Those actions move the paddle upward and downward,
+respectively; episodes terminate with valid returns. The simple tracking
+controller averages -16.1 and is weak. It is not a learned policy or evidence
+of successful training. New learning-rate results are reported only after
+training and evaluation finish.
