@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys,csv,json,time
 import numpy as np
-R=Path(__file__).resolve().parent;sys.path.insert(0,str(R))
+R=Path(__file__).resolve().parent.parent;sys.path.insert(0,str(R/'src'))
 from policy_gradient import make_env,preprocess
 
 def locate(frame):

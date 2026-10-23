@@ -14,7 +14,7 @@ import numpy as np
 import torch
 from audit_results import main as audit_all
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 STATUS = ROOT.parent / 'pong_representation_run_status.json'
 LOCK = threading.Lock()
 STATE = {'status': 'preparing', 'runs': {}}
@@ -82,7 +82,7 @@ def summarize(episodes):
     fig.tight_layout()
     fig.savefig(ROOT / 'results/pong_representation_comparison.png', dpi=180)
     plt.close(fig)
-    readme = ROOT / 'README.md'
+    readme = ROOT / 'EXPERIMENTS.md'
     block = ['\n### Measured fixed-budget input comparison', '',
              '| Input | Training episodes | 500-episode evaluation mean ± sample SD |', '|---|---:|---:|']
     block += [f"| {x['representation']} | {episodes} | {x['mean']:.3f} ± {x['sample_sd']:.3f} |" for x in rows]
@@ -106,9 +106,9 @@ def main():
     snapshot = ROOT / 'results/pong_representation_training_source.txt'
     manifest_path = ROOT / 'results/pong_representation_manifest.json'
     assert not manifest_path.exists(), 'Existing comparison: inspect its status instead of duplicating it'
-    snapshot.write_bytes((ROOT / 'pong_batch.py').read_bytes())
+    snapshot.write_bytes((ROOT / 'src/pong_batch.py').read_bytes())
     manifest = dict(training_code_snapshot=str(snapshot.relative_to(ROOT)), training_code_sha256=digest(snapshot),
-                    imported_module_sha256=digest(ROOT / 'policy_gradient.py'), episodes_per_group=args.episodes,
+                    imported_module_sha256=digest(ROOT / 'src/policy_gradient.py'), episodes_per_group=args.episodes,
                     evaluation_episodes=500, initialization='fresh for both models; no checkpoint transfer',
                     only_between_group_change='input representation', baseline='value', time_weighting='uniform',
                     seed=0, lr=.0001, value_lr=.0003, batch_episodes=8, max_grad_norm=5., device=args.device,
@@ -127,7 +127,7 @@ def main():
                 raise TimeoutError('Previous batch did not complete within four hours')
             time.sleep(10)
     assert digest(snapshot) == manifest['training_code_sha256']
-    assert digest(ROOT / 'policy_gradient.py') == manifest['imported_module_sha256']
+    assert digest(ROOT / 'src/policy_gradient.py') == manifest['imported_module_sha256']
     record('training')
     def train(pair):
         mode, name = pair
@@ -139,7 +139,7 @@ def main():
                    '--max-grad-norm', '5', '--seed', '0', '--device', args.device,
                    '--time-weighting', 'uniform', '--representation', mode, '--out', str(out)]
         env = dict(os.environ)
-        env['PYTHONPATH'] = str(ROOT)+os.pathsep+env.get('PYTHONPATH', '')
+        env['PYTHONPATH'] = str(ROOT/'src')+os.pathsep+env.get('PYTHONPATH', '')
         with log.open('w') as stream:
             process = subprocess.Popen(command, stdout=stream, stderr=subprocess.STDOUT, cwd=ROOT, env=env)
             record('running', mode=mode, pid=process.pid)
@@ -153,8 +153,8 @@ def main():
     result = summarize(args.episodes)
     if args.publish:
         assert not git('diff', '--cached', '--name-only').strip(), 'Existing staged work requires review'
-        assert set(git('diff', '--name-only').splitlines()) <= {'README.md', 'results/audit.json'}
-        paths = ['README.md', 'results/audit.json', 'results/pong_representation_comparison.json',
+        assert set(git('diff', '--name-only').splitlines()) <= {'EXPERIMENTS.md', 'results/audit.json'}
+        paths = ['EXPERIMENTS.md', 'results/audit.json', 'results/pong_representation_comparison.json',
                  'results/pong_representation_comparison.png', 'results/pong_representation_manifest.json',
                  'results/pong_representation_training_source.txt']
         paths += [f'results/{name}' for name in NAMES]+[f'logs/{name}.log' for name in NAMES]

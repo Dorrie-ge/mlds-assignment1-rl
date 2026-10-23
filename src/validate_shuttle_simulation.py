@@ -5,7 +5,7 @@ import numpy as np
 
 
 def main():
-    root=Path(__file__).resolve().parent
+    root=Path(__file__).resolve().parent.parent
     data=np.genfromtxt(root/'results/shuttle/values.csv',delimiter=',',names=True)
     policy=data['dispatch_policy'].astype(int)
     rng=np.random.default_rng(314159)

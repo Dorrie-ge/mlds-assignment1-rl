@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from audit_results import main as audit_all
 from run_learning_rate_comparison import digest,git
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent.parent
 STATUS=ROOT.parent/'pong_seed_validation_status.json'
 STATE={'status':'preparing','runs':{}};LOCK=threading.Lock()
 SELECTED='pong_motion_lr001_value'
@@ -23,7 +23,7 @@ def record(status,run=None,**extra):
 
 def analyze(manifest):
     assert digest(ROOT/manifest['training_code_snapshot'])==manifest['training_code_sha256']
-    assert digest(ROOT/'policy_gradient.py')==manifest['imported_module_sha256']
+    assert digest(ROOT/'src/policy_gradient.py')==manifest['imported_module_sha256']
     for filename,expected in manifest['selected_seed0_hashes'].items():assert digest(ROOT/f'results/{SELECTED}'/filename)==expected
     rows=[];training=[]
     for seed,name in ALL:
@@ -58,20 +58,20 @@ def analyze(manifest):
     block=['\n### Independent training-seed confirmation at actor lr=0.001','', '| Training seed | Role | 500-episode mean ± sample SD |','|---|---|---:|']
     block += [f"| {x['seed']} | {x['role']} | {x['evaluation_mean']:.3f} ± {x['evaluation_sample_sd']:.3f} |" for x in rows]
     block += ['',f"Mean across three training-seed means: {means.mean():.3f}; sample SD between seed means: {means.std(ddof=1):.3f}.",f"The two independent confirmation runs average {confirmation.mean():.3f}.",'', '![Seed validation](results/pong_seed_validation.png)','', '[Raw results and scope](results/pong_seed_validation.json). Seed 0 was used for selection; seeds 1 and 2 were held out from that selection. Three training seeds remain a small sample. The PDF has not been regenerated.','']
-    readme=ROOT/'README.md';readme.write_text(readme.read_text()+'\n'.join(block));return result
+    readme=ROOT/'EXPERIMENTS.md';readme.write_text(readme.read_text()+'\n'.join(block));return result
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--device',choices=['mps','cpu','cuda'],default='mps');parser.add_argument('--publish',action='store_true');args=parser.parse_args()
     manifest_path=ROOT/'results/pong_seed_validation_manifest.json';assert not manifest_path.exists(),'Validation already exists: inspect its status; do not duplicate it'
     previous=json.loads((ROOT/'results/pong_learning_rate_manifest.json').read_text());source=ROOT/previous['training_code_snapshot']
     assert digest(source)==previous['training_code_sha256']
-    assert digest(ROOT/'policy_gradient.py')==previous['imported_module_sha256']
+    assert digest(ROOT/'src/policy_gradient.py')==previous['imported_module_sha256']
     selected=ROOT/f'results/{SELECTED}';summary=json.loads((selected/'summary.json').read_text());assert summary['device']==args.device and summary['lr']==.001
-    manifest=dict(training_code_snapshot=str(source.relative_to(ROOT)),training_code_sha256=digest(source),imported_module_sha256=digest(ROOT/'policy_gradient.py'),base_commit=git('rev-parse','HEAD').strip(),actor_lr=.001,critic_lr=.0003,episodes_per_group=3000,evaluation_episodes=500,selection_seed=0,confirmation_seeds=[1,2],device=args.device,initialization='Fresh networks and optimizers for seeds 1 and 2; seed 0 reused unchanged.',between_group_change='training seed, including initialization, sampling and the existing per-seed environment/evaluation seed ranges',selected_seed0_hashes={f:digest(selected/f) for f in ['summary.json','training.csv','evaluation.csv','random_evaluation.csv','validation_checkpoint.pt']},outputs=[f'results/{name}' for _,name in ALL])
+    manifest=dict(training_code_snapshot=str(source.relative_to(ROOT)),training_code_sha256=digest(source),imported_module_sha256=digest(ROOT/'src/policy_gradient.py'),base_commit=git('rev-parse','HEAD').strip(),actor_lr=.001,critic_lr=.0003,episodes_per_group=3000,evaluation_episodes=500,selection_seed=0,confirmation_seeds=[1,2],device=args.device,initialization='Fresh networks and optimizers for seeds 1 and 2; seed 0 reused unchanged.',between_group_change='training seed, including initialization, sampling and the existing per-seed environment/evaluation seed ranges',selected_seed0_hashes={f:digest(selected/f) for f in ['summary.json','training.csv','evaluation.csv','random_evaluation.csv','validation_checkpoint.pt']},outputs=[f'results/{name}' for _,name in ALL])
     manifest_path.write_text(json.dumps(manifest,indent=2));record('training',selection_seed0_reused=f'results/{SELECTED}')
     def train(pair):
         seed,name=pair;out=ROOT/f'results/{name}';assert not out.exists(),out
-        env=dict(os.environ);env['PYTHONPATH']=str(ROOT)+os.pathsep+env.get('PYTHONPATH','')
+        env=dict(os.environ);env['PYTHONPATH']=str(ROOT/'src')+os.pathsep+env.get('PYTHONPATH','')
         command=[sys.executable,'-u',str(source),'--baseline','value','--episodes','3000','--batch-episodes','8','--eval-episodes','500','--lr','.001','--value-lr','.0003','--max-grad-norm','5','--seed',str(seed),'--device',args.device,'--time-weighting','uniform','--representation','split_frame_difference','--out',str(out)]
         with (ROOT/f'logs/{name}.log').open('w') as stream:
             process=subprocess.Popen(command,stdout=stream,stderr=subprocess.STDOUT,cwd=ROOT,env=env);record('running',run=name,pid=process.pid,seed=seed);code=process.wait()
@@ -81,8 +81,8 @@ def main():
     record('auditing');result=analyze(manifest)
     if args.publish:
         assert not git('diff','--cached','--name-only').strip(),'Existing staged work requires review'
-        assert set(git('diff','--name-only').splitlines())<={'README.md','results/audit.json'},'Unexpected tracked changes require review'
-        paths=['README.md','results/audit.json','results/pong_seed_validation_manifest.json','results/pong_seed_validation.json','results/pong_seed_validation.png']+[f'results/{name}' for _,name in NEW]+[f'logs/{name}.log' for _,name in NEW]
+        assert set(git('diff','--name-only').splitlines())<={'EXPERIMENTS.md','results/audit.json'},'Unexpected tracked changes require review'
+        paths=['EXPERIMENTS.md','results/audit.json','results/pong_seed_validation_manifest.json','results/pong_seed_validation.json','results/pong_seed_validation.png']+[f'results/{name}' for _,name in NEW]+[f'logs/{name}.log' for _,name in NEW]
         git('diff','--check');git('add','--',*paths);git('commit','-m','Record independent Pong training-seed validation');git('push','origin','main');git('archive','--format=zip','--output=../mlds_assignment1_measured_runs.zip','HEAD')
     record('complete',results=result,commit=git('rev-parse','HEAD').strip())
 if __name__=='__main__':

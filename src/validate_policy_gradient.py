@@ -1,7 +1,7 @@
 """Check a real network derivative; measure gradient variance at a frozen policy.
 
 Example:
- python validate_policy_gradient.py --game cartpole \
+ python src/validate_policy_gradient.py --game cartpole \
    --checkpoint results/cartpole_value/checkpoint.pt --episodes 64 --out results/validation_cartpole.json
 """
 import argparse

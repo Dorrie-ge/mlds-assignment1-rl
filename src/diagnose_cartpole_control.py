@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 import numpy as np
 from policy_gradient import make_env
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent.parent
 rows=[];trace=[]
 for controller in ['always_left','angle_feedback']:
     env=make_env('cartpole')

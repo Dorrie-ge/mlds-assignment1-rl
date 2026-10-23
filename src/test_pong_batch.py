@@ -38,6 +38,6 @@ assert max(errors)<2e-5 and relative<2e-5,(errors,relative)
 result=dict(passed=True,episode_lengths=[270,7],crosses_chunk_boundary=True,
             reference='Dense average of full discounted episodic gradients, detached pre-fit critic',
             max_parameter_gradient_error=max(errors),relative_l2_error=relative)
-out=Path(__file__).resolve().parent/'results/validation_pong_batch_gradient.json'
+out=Path(__file__).resolve().parent.parent/'results/validation_pong_batch_gradient.json'
 out.write_text(json.dumps(result,indent=2))
 print(json.dumps(result,indent=2))

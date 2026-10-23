@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import numpy as np
 
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent.parent
 START='<!-- MEASUREMENTS START -->'
 END='<!-- MEASUREMENTS END -->'
 
@@ -11,7 +11,7 @@ END='<!-- MEASUREMENTS END -->'
 def main():
     result=ROOT/'results'
     rows=[]
-    config=json.loads((ROOT/'report_config.json').read_text())
+    config=json.loads((ROOT/'reports/report_config.json').read_text())
     main_names=config['main_experiments']
     summaries={name:json.loads((result/name/'summary.json').read_text()) for name in main_names}
     lines=[START,'## Measured results','',
@@ -94,7 +94,7 @@ def main():
         interval=j.get('approximate_ci95')
         gain=f"{j['discounted_improvement_over_random']:.5f} [{interval[0]:.5f}, {interval[1]:.5f}]" if interval else 'Reference'
         lines.append(f"| {name} | {j['mean_discounted_return']:.5f} | {j['mean_score']:.3f} | {gain} |")
-    lines += ['','Reproduce without training: `python evaluate_pong_objective.py --episodes 200 --device cpu`.',
+    lines += ['','Reproduce without training: `python src/evaluate_pong_objective.py --episodes 200 --device cpu`.',
               'An interval including zero does not establish a clear objective gain. Even a positive',
               'discounted gain would not establish that the full game has been mastered.','',
             '### Curves and evaluation histograms','']
@@ -106,9 +106,9 @@ def main():
               'initial Pong smoke test used 2 training and 2 evaluation episodes. Their raw results',
               'are in `results/demos/`; these are separate from all larger measured runs above.','',
               '### Report','',
-              '[Complete PDF report](assignment1_report.pdf). Regenerate with `python prepare_report_figures.py`',
-              'and `python build_report.py`; no new training is needed.',END]
-    readme=ROOT/'README.md'
+              '[Complete PDF report](reports/assignment1_report.pdf). Regenerate with `python src/prepare_report_figures.py`',
+              'and `python src/build_report.py`; no new training is needed.',END]
+    readme=ROOT/'EXPERIMENTS.md'
     text=readme.read_text()
     block='\n'.join(lines)
     if START in text:

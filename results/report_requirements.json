@@ -10,7 +10,7 @@
         "14"
       ],
       "artifacts": [
-        "shuttle.py",
+        "src/shuttle.py",
         "results/shuttle/values.csv",
         "results/shuttle/validation.json"
       ]
@@ -38,8 +38,8 @@
         "12"
       ],
       "artifacts": [
-        "policy_gradient.py",
-        "pong_batch.py"
+        "src/policy_gradient.py",
+        "src/pong_batch.py"
       ]
     },
     {
@@ -82,8 +82,8 @@
         "16"
       ],
       "artifacts": [
-        "policy_gradient.py",
-        "pong_batch.py",
+        "src/policy_gradient.py",
+        "src/pong_batch.py",
         "results/pong_control_diagnostic.json"
       ]
     },
@@ -109,15 +109,15 @@
         "16"
       ],
       "artifacts": [
-        "validate_shuttle_simulation.py",
-        "reproduce_validation.py",
-        "test_pong_time_weighting.py",
-        "test_pong_representation.py",
-        "diagnose_cartpole_control.py",
+        "src/validate_shuttle_simulation.py",
+        "src/reproduce_validation.py",
+        "src/test_pong_time_weighting.py",
+        "src/test_pong_representation.py",
+        "src/diagnose_cartpole_control.py",
         "results/cartpole_control_diagnostic.json",
-        "diagnose_pong_control.py",
+        "src/diagnose_pong_control.py",
         "results/pong_control_diagnostic.json",
-        "diagnose_pong_activations.py",
+        "src/diagnose_pong_activations.py",
         "results/pong_endpoint_activations.json"
       ]
     },
@@ -137,9 +137,9 @@
       ],
       "artifacts": [
         "README.md",
-        "assignment1_report.pdf",
-        "build_report.py",
-        "prepare_report_figures.py"
+        "reports/assignment1_report.pdf",
+        "src/build_report.py",
+        "src/prepare_report_figures.py"
       ]
     }
   ],

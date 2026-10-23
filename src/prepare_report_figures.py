@@ -2,7 +2,7 @@
 from pathlib import Path
 import os,json
 import numpy as np
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent.parent
 os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'results/.matplotlib'))
 import matplotlib;matplotlib.use('Agg')
 import matplotlib.pyplot as plt

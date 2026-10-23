@@ -1,7 +1,7 @@
 """Build the complete assignment report from audited, actually measured results.
 
 No training is launched. Requires the independent seed confirmation to finish.
-Run prepare_report_figures.py first, then this script with ReportLab and NumPy.
+Run python src/prepare_report_figures.py first, then this script with ReportLab and NumPy.
 """
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -12,7 +12,7 @@ from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
 from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,PageBreak,Image,Table,TableStyle,KeepTogether
 from reportlab.lib.utils import ImageReader
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent.parent
 BLUE=colors.HexColor('#173c62');MUTED=colors.HexColor('#526477');LIGHT=colors.HexColor('#edf3f8')
 
 def load(path):return json.loads((ROOT/path).read_text())
@@ -23,7 +23,7 @@ def fnum(x):return f'{x:.3f}'
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def build():
-    config=load('report_config.json');main=config['main_experiments']
+    config=load('reports/report_config.json');main=config['main_experiments']
     seed=load('results/pong_seed_validation.json')
     assert len(seed['runs'])==3 and len(seed['confirmation_seeds'])==2
     audit=load('results/audit.json');assert audit['passed']
@@ -90,7 +90,7 @@ def build():
     table([['Core experiment (strict discounted objective)','Train','500-episode mean +/- SD'],*[[f"{summary(n)['env_id']}, b={summary(n)['baseline']}",summary(n)['episodes'],score(n)] for n in main]],[260,60,200])
     p(f"<b>Improved Pong extension:</b> lr=0.001 reaches {score('pong_motion_lr001_value')} on selection seed 0. The two independent confirmation seeds average {seed['independent_confirmation_mean']:.3f}. Across the three policy means, the average is {seed['three_seed_mean']:.3f} and the sample SD is {seed['sample_sd_between_three_seed_means']:.3f}. Scores remain negative on average; this is improved learning, not stable mastery.")
     p('<b>Objective distinction.</b> Core experiments use the exact start-state discounted objective requested in the handout. Later Pong extensions retain gamma=0.99 inside reward-to-go but remove the outer gamma^t actor weight. This is a different update weighting and is reported explicitly as a supplementary method, not silently substituted for the core objective.')
-    p('Reading order: sections 1-3 define the model and algorithms; sections 4-7 contain all four required plot pairs; sections 8-13 reconstruct the improvement experiments; sections 14-17 cover substantive validation, edge cases, execution instructions and future work. Appendix A inventories every completed experiment.',small=True)
+    p('Reading order: sections 1-3 define the model and algorithms; sections 4-7 contain all four required plot pairs; sections 8-13 reconstruct the improvement experiments; sections 14-18 cover substantive validation, edge cases, execution instructions and future work. Appendix A inventories every completed experiment.',small=True)
     page()
     h('1. Shuttle MDP and solution methods')
     p('The decision state s is the number of passengers waiting before dispatch: s in {0,...,200}. The action a is 0 (wait) or 1 (dispatch one shuttle). Capacity K=15, dispatch cost c_f=100, holding cost c_h=2, discount gamma=0.95 and independent arrivals A uniformly distributed on {1,2,3,4,5} follow the assignment.')
@@ -213,7 +213,7 @@ def build():
     for x in sim['rows']:rows.append([x['initial_state'],fnum(x['dp_cost']),fnum(x['simulated_mean']),fnum(x['standard_error'])])
     table(rows,[105,140,155,120])
     p('For each queue, 40,000 independent 500-step simulations use seed 314159. Four of five values fall in marginal 95% intervals; state 15 differs by -2.44 standard errors and is retained. All five fall in the simultaneous 95% Bonferroni intervals. The maximum omitted discounted tail is below 6.9e-8. Agreement within quantified simulation error supports the transition/cost implementation; it does not validate arbitrary overflow assumptions.')
-    code('python shuttle.py --out runs/shuttle\npython validate_shuttle_simulation.py')
+    code('python src/shuttle.py --out runs/shuttle\npython src/validate_shuttle_simulation.py')
     page()
     h('15. Policy-gradient validation and diagnostics')
     sub('Independent gradients and baseline variance')
@@ -229,7 +229,7 @@ def build():
     response=diag['action_response']
     table([['Real ALE action check','Observed player-paddle response'],['Action 2, three recorded step intervals',f"Center y: {response[0]['paddle_y'][0]:.1f} -> {response[0]['paddle_y'][-1]:.1f} (upward)"],['Action 3, three recorded step intervals',f"Center y: {response[1]['paddle_y'][0]:.1f} -> {response[1]['paddle_y'][-1]:.1f} (downward)"],['Separate 10-episode diagnostic',f"Hand-coded tracking mean {diag['mean_scores']['tracking']:.1f}; random mean {diag['mean_scores']['random']:.1f}"]],[250,270])
     p('These probes confirm movement direction in real frames. The simple tracking controller is weak and is not a trained-policy result. Activation checks on the committed 3,000-episode models found nonzero ReLU activity; the reproducible measurements are in results/pong_endpoint_activations.json. These are network-health checks, not score evidence. Original first-10-step traces remain available for the initial PG runs.')
-    code('python policy_gradient.py --test-only\npython reproduce_validation.py\npython -m unittest test_pong_time_weighting test_pong_representation\npython diagnose_cartpole_control.py\npython diagnose_pong_control.py\npython diagnose_pong_activations.py\npython audit_results.py')
+    code('python src/policy_gradient.py --test-only\npython src/reproduce_validation.py\npython -m unittest discover -s src -p "test_pong_*.py"\npython src/diagnose_cartpole_control.py\npython src/diagnose_pong_control.py\npython src/diagnose_pong_activations.py\npython src/audit_results.py')
     page()
     h('16. Edge cases, objective checks and limits')
     table([['Part / edge case','Handling and evidence'],['Shuttle: s=0, empty dispatch','Never create negative passengers; dispatch still costs 100. Boundary test checks the immediate cost.'],['Shuttle: s=200 and overflow','Waiting yields 200 for every arrival; dispatch yields 186-190. Clipping and overflow assumption are explicit.'],['Shuttle: terminal time and ties','J_500=0; late-horizon actions can differ. Greedy ties choose wait consistently.'],['CartPole: termination or truncation','Both end the sampled episode; no value bootstrap is added. The finite 500-step return is evaluated.'],['Pong: restricted actions and resets','Only actions 2/3; two-frame history resets per episode. Split motion starts with zero change.'],['Sparse rewards / long episodes','Full-episode returns, no score-point reset. Exact gamma^t and uniform variants are explicitly distinguished.'],['Variable trajectory lengths / memory','256-step gradient chunks preserve the sum; Pong averages per episode, not by pooling all steps.'],['Non-finite or extreme gradients','Reject non-finite gradients; batched Pong clips norm at 5. Low-entropy/zero-variance failures are retained.'],['Warm-start continuation','Check episode count against CSV; preserve source prefix, optimizer and CPU sampler RNG; record source hashes.'],['Changing input representation','Reject cross-representation resume; use a fresh network and optimizer for fair comparisons.'],['Baseline fitting leakage','Detach baseline; compute before fitting the current data. Direct variance checks use frozen actor/critic.']],[175,345])
@@ -238,18 +238,18 @@ def build():
     rows=[['Strict-objective policy','Mean discounted return','Mean score']]
     for name,x in obj['summaries'].items():rows.append([name.replace('pong_batch_',''),f"{x['mean_discounted_return']:.4f}",f"{x['mean_score']:.3f}"])
     table(rows,[220,150,150])
-    p('This separate diagnostic uses 200 episodes per policy on held-out seeds starting at 6,000,000. Both trained strict-objective policies improve discounted return over random while remaining poor at whole-game score. This demonstrates why the two metrics must be reported separately; it does not identify exactly which reward timings changed. Run python evaluate_pong_objective.py --episodes 200 --device cpu to reproduce.',small=True)
+    p('This separate diagnostic uses 200 episodes per policy on held-out seeds starting at 6,000,000. Both trained strict-objective policies improve discounted return over random while remaining poor at whole-game score. This demonstrates why the two metrics must be reported separately; it does not identify exactly which reward timings changed. Run python src/evaluate_pong_objective.py --episodes 200 --device cpu to reproduce.',small=True)
     page()
     h('17. Reproduction, evidence and submission')
     p('Use Python 3.12. The measured game runs used PyTorch 2.14.1, Gymnasium 1.4.0, ALE 0.12.1, NumPy 2.5.4, Adam and one CPU thread. CPU was used for CartPole and historical runs, Apple MPS for batched Pong. The recorded lock file describes the actual training environment. Report rendering is separate from training; hardware and numeric differences can change stochastic trajectories.')
     code('python3 -m venv .venv\nsource .venv/bin/activate\npython -m pip install -r requirements-lock.txt')
     p('From the repository root, write repeats to fresh runs/ directories. The four commands below correspond exactly to the core report configurations. Every trained policy is evaluated for 500 episodes; --device cpu is available if MPS is unavailable.')
-    code('python policy_gradient.py --game cartpole --baseline none --lr 0.001 --episodes 2000 --eval-episodes 500 --out runs/cartpole_none\npython policy_gradient.py --game cartpole --baseline value --lr 0.001 --episodes 2000 --eval-episodes 500 --out runs/cartpole_value\npython pong_batch.py --baseline none --lr 0.0001 --episodes 1000 --batch-episodes 8 --eval-episodes 500 --device mps --out runs/pong_none\npython pong_batch.py --baseline value --lr 0.0001 --episodes 1000 --batch-episodes 8 --eval-episodes 500 --device mps --out runs/pong_value')
+    code('python src/policy_gradient.py --game cartpole --baseline none --lr 0.001 --episodes 2000 --eval-episodes 500 --out runs/cartpole_none\npython src/policy_gradient.py --game cartpole --baseline value --lr 0.001 --episodes 2000 --eval-episodes 500 --out runs/cartpole_value\npython src/pong_batch.py --baseline none --lr 0.0001 --episodes 1000 --batch-episodes 8 --eval-episodes 500 --device mps --out runs/pong_none\npython src/pong_batch.py --baseline value --lr 0.0001 --episodes 1000 --batch-episodes 8 --eval-episodes 500 --device mps --out runs/pong_value')
     p('The improved seed-0 extension can be repeated without changing source code. For independent confirmation change --seed to 1 or 2 and choose fresh output directories.')
-    code('python pong_batch.py --baseline value --lr 0.001 --value-lr 0.0003 --episodes 3000 --eval-episodes 500 --batch-episodes 8 --seed 0 --device mps --time-weighting uniform --representation split_frame_difference --out runs/pong_improved_seed0')
+    code('python src/pong_batch.py --baseline value --lr 0.001 --value-lr 0.0003 --episodes 3000 --eval-episodes 500 --batch-episodes 8 --seed 0 --device mps --time-weighting uniform --representation split_frame_difference --out runs/pong_improved_seed0')
     p('The batch scripts run_learning_rate_comparison.py and run_seed_validation.py preserve completed results and reject duplicate manifests. They are one-time experiment controllers, not report-regeneration commands. For a repeat, use the explicit training command with fresh outputs. Exact historical source snapshots and SHA-256 manifests remain in results/. Atari ROMs and virtual environments are not committed.')
-    code('python audit_results.py\npython reproduce_validation.py\npython prepare_report_figures.py\npython build_report.py')
-    p('No retraining is needed to regenerate this PDF or repeat the included actor/critic gradient-variance validation capsules. report_config.json selects the core experiments. results/report_evidence.json ties every reported experiment to raw CSV and summary hashes. The report and required plots are in the public repository. Submit assignment1_report.pdf to Canvas; updating GitHub does not itself submit Canvas.')
+    code('python src/audit_results.py\npython src/reproduce_validation.py\npython src/prepare_report_figures.py\npython src/build_report.py')
+    p('No retraining is needed to regenerate this PDF or repeat the included actor/critic gradient-variance validation capsules. reports/report_config.json selects the core experiments. results/report_evidence.json ties every reported experiment to raw CSV and summary hashes. The report and required plots are in the public repository. Submit reports/assignment1_report.pdf to Canvas; updating GitHub does not itself submit Canvas.')
     page()
     h('18. What three additional months would add')
     table([['Period','Predictions and experiments','Evidence to collect'],['Month 1: isolate causes','Run a no-baseline counterpart to the improved Pong family at matched seeds. Cross strict/uniform weights with actor lr; test constant vs learned baseline. Vary shuttle capacity, cost ratios, queue cap and overflow rule.','Paired seed effects, discounted and undiscounted returns; Bellman residuals; simulated costs and threshold changes.'],['Month 2: quantify robustness','Use at least 10 predeclared training seeds, separate tuning and confirmation seeds, and equal step/update budgets. Test observation noise and initial-state shifts. Study altered Atari sticky actions only as explicitly separate tasks.','Between-seed uncertainty and failure rates; held-out evaluation curves; robustness profiles without conflating environment changes.'],['Month 3: understand learning','Freeze early/mid/late checkpoints to measure baseline gradient variance. Compare architectures and motion encodings. Study nonstationary/heavy-tailed shuttle arrivals. Replicate selected models across CPU/MPS.','Full-gradient covariance traces and baseline calibration; sample and wall-clock efficiency; independent replication and model-assumption sensitivity.']],[115,235,170])
@@ -272,12 +272,12 @@ def build():
         canvas.saveState();canvas.setFillColor(MUTED);canvas.setFont('Helvetica',8)
         canvas.drawString(46,25,'Dorrie-ge | MLDS Assignment 1 | Measured experiments')
         canvas.drawRightString(566,25,str(doc.page));canvas.restoreState()
-    doc=SimpleDocTemplate(str(ROOT/'assignment1_report.pdf'),pagesize=(612,792),leftMargin=46,rightMargin=46,topMargin=39,bottomMargin=43,title='MLDS Assignment 1 - Complete Experimental Report',author='Dorrie-ge')
+    doc=SimpleDocTemplate(str(ROOT/'reports/assignment1_report.pdf'),pagesize=(612,792),leftMargin=46,rightMargin=46,topMargin=39,bottomMargin=43,title='MLDS Assignment 1 - Complete Experimental Report',author='Dorrie-ge')
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
     readme=ROOT/'README.md'
     start='<!-- COMPLETE_REPORT START -->';end='<!-- COMPLETE_REPORT END -->'
     lines=[start,'## Complete report and final evidence','',
-           '[Download the complete PDF report](assignment1_report.pdf). Updated 23 October 2026.',
+           '[Download the complete PDF report](reports/assignment1_report.pdf). Updated 23 October 2026.',
            'The report covers the initial implementation, retained failures, controlled improvements,',
            'independent seed confirmation, required figures, edge cases, quantitative validation and',
            'the additional three-month experiment plan. All values come from stored measurements.','',
@@ -291,7 +291,7 @@ def build():
               'objective is preserved in the separately reported four core experiments.','',
               '[Requirement-to-evidence map](results/report_requirements.json) and',
               '[raw-data report evidence hashes](results/report_evidence.json) support the report.',
-              'Regenerate without training: `python prepare_report_figures.py` then `python build_report.py`.',
+              'Regenerate without training: `python src/prepare_report_figures.py` then `python src/build_report.py`.',
               'Submit the PDF to Canvas; a GitHub update alone does not submit the assignment.',end]
     text=readme.read_text()
     if start in text:
@@ -299,6 +299,6 @@ def build():
     else:
         text=text.replace('## Installation','\n'.join(lines)+'\n\n## Installation',1)
     readme.write_text(text)
-    print('Built',ROOT/'assignment1_report.pdf','from',len(evidence),'audited experiments')
+    print('Built',ROOT/'reports/assignment1_report.pdf','from',len(evidence),'audited experiments')
 
 if __name__=='__main__':build()

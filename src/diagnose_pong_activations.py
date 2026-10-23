@@ -2,7 +2,7 @@ from pathlib import Path
 import sys,io,json,hashlib,time
 import numpy as np
 import torch
-R=Path(__file__).resolve().parent;sys.path.insert(0,str(R))
+R=Path(__file__).resolve().parent.parent;sys.path.insert(0,str(R/'src'))
 from policy_gradient import Network,make_env,preprocess
 from pong_batch import encode_state
 torch.set_num_threads(1)

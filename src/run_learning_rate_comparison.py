@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import torch
 from audit_results import main as audit_all
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent.parent
 STATUS=ROOT.parent/'pong_learning_rate_run_status.json'
 LOCK=threading.Lock();STATE={'status':'preparing','runs':{}}
 CONTROL='pong_repr_motion_value'
@@ -25,7 +25,7 @@ def record(status,run=None,**extra):
 def analyze(manifest):
     source=ROOT/manifest['training_code_snapshot']
     assert digest(source)==manifest['training_code_sha256']
-    assert digest(ROOT/'policy_gradient.py')==manifest['imported_module_sha256']
+    assert digest(ROOT/'src/policy_gradient.py')==manifest['imported_module_sha256']
     for filename,expected in manifest['control_hashes'].items():assert digest(ROOT/f'results/{CONTROL}'/filename)==expected
     rows=[];scores=[];training=[]
     with (ROOT/f'results/{CONTROL}/training.csv').open() as stream:control_training=list(csv.DictReader(stream))
@@ -65,7 +65,7 @@ def analyze(manifest):
     block=['\n### Measured fixed-budget actor learning-rate comparison','', '| Actor learning rate | 500-episode mean ± sample SD |','|---|---:|']
     block += [f"| {x['actor_lr']:g} | {x['evaluation_mean']:.3f} ± {x['evaluation_sample_sd']:.3f} |" for x in rows]
     block += ['', '![Learning-rate comparison](results/pong_learning_rate_comparison.png)','', '[Raw comparison and paired intervals](results/pong_learning_rate_comparison.json).', 'The unchanged 0.0001 control is reused; the two new policies start fresh. This is a one-seed exploratory comparison. The PDF has not been regenerated.','']
-    readme=ROOT/'README.md';readme.write_text(readme.read_text()+'\n'.join(block))
+    readme=ROOT/'EXPERIMENTS.md';readme.write_text(readme.read_text()+'\n'.join(block))
     return result
 
 def main():
@@ -76,11 +76,11 @@ def main():
     assert digest(source)==source_manifest['training_code_sha256']
     control=ROOT/f'results/{CONTROL}';control_summary=json.loads((control/'summary.json').read_text())
     assert control_summary['device']==args.device
-    manifest=dict(training_code_snapshot=str(source.relative_to(ROOT)),training_code_sha256=digest(source),imported_module_sha256=digest(ROOT/'policy_gradient.py'),base_commit=git('rev-parse','HEAD').strip(),episodes_per_group=3000,evaluation_episodes=500,baseline='value',representation='split_frame_difference',time_weighting='uniform',actor_learning_rates=[x[0] for x in ALL],critic_learning_rate=.0003,seed=0,batch_episodes=8,max_grad_norm=5.,device=args.device,initialization='Fresh actor, critic and Adam states for new rates; existing fresh-run control reused unchanged.',only_between_group_change='actor learning rate',control_directory=f'results/{CONTROL}',control_hashes={name:digest(control/name) for name in ['summary.json','training.csv','evaluation.csv','random_evaluation.csv','validation_checkpoint.pt']},outputs=[f'results/{name}' for _,name in ALL])
+    manifest=dict(training_code_snapshot=str(source.relative_to(ROOT)),training_code_sha256=digest(source),imported_module_sha256=digest(ROOT/'src/policy_gradient.py'),base_commit=git('rev-parse','HEAD').strip(),episodes_per_group=3000,evaluation_episodes=500,baseline='value',representation='split_frame_difference',time_weighting='uniform',actor_learning_rates=[x[0] for x in ALL],critic_learning_rate=.0003,seed=0,batch_episodes=8,max_grad_norm=5.,device=args.device,initialization='Fresh actor, critic and Adam states for new rates; existing fresh-run control reused unchanged.',only_between_group_change='actor learning rate',control_directory=f'results/{CONTROL}',control_hashes={name:digest(control/name) for name in ['summary.json','training.csv','evaluation.csv','random_evaluation.csv','validation_checkpoint.pt']},outputs=[f'results/{name}' for _,name in ALL])
     manifest_path.write_text(json.dumps(manifest,indent=2));record('training',control_reused=f'results/{CONTROL}')
     def train(pair):
         rate,name=pair;out=ROOT/f'results/{name}';assert not out.exists(),out
-        env=dict(os.environ);env['PYTHONPATH']=str(ROOT)+os.pathsep+env.get('PYTHONPATH','')
+        env=dict(os.environ);env['PYTHONPATH']=str(ROOT/'src')+os.pathsep+env.get('PYTHONPATH','')
         command=[sys.executable,'-u',str(source),'--baseline','value','--episodes','3000','--batch-episodes','8','--eval-episodes','500','--lr',str(rate),'--value-lr','.0003','--max-grad-norm','5','--seed','0','--device',args.device,'--time-weighting','uniform','--representation','split_frame_difference','--out',str(out)]
         with (ROOT/f'logs/{name}.log').open('w') as stream:
             process=subprocess.Popen(command,stdout=stream,stderr=subprocess.STDOUT,cwd=ROOT,env=env);record('running',run=name,pid=process.pid,actor_lr=rate);code=process.wait()
@@ -90,8 +90,8 @@ def main():
     record('auditing');result=analyze(manifest)
     if args.publish:
         assert not git('diff','--cached','--name-only').strip(),'Existing staged changes need review'
-        assert set(git('diff','--name-only').splitlines())<={'README.md','results/audit.json'},'Unexpected tracked changes need review'
-        paths=['README.md','results/audit.json','results/pong_learning_rate_manifest.json','results/pong_learning_rate_comparison.json','results/pong_learning_rate_comparison.png']+[f'results/{name}' for _,name in NEW]+[f'logs/{name}.log' for _,name in NEW]
+        assert set(git('diff','--name-only').splitlines())<={'EXPERIMENTS.md','results/audit.json'},'Unexpected tracked changes need review'
+        paths=['EXPERIMENTS.md','results/audit.json','results/pong_learning_rate_manifest.json','results/pong_learning_rate_comparison.json','results/pong_learning_rate_comparison.png']+[f'results/{name}' for _,name in NEW]+[f'logs/{name}.log' for _,name in NEW]
         git('diff','--check');git('add','--',*paths);git('commit','-m','Record fixed-budget Pong actor learning-rate comparison');git('push','origin','main');git('archive','--format=zip','--output=../mlds_assignment1_measured_runs.zip','HEAD')
     record('complete',results=result,commit=git('rev-parse','HEAD').strip())
 if __name__=='__main__':

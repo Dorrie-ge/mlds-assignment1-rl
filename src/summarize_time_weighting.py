@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from audit_results import main as audit_all
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 
 
 def digest(path):
@@ -20,9 +20,9 @@ def main():
     rows_out = []
     for kind, manifest_name in [('control', 'pong_budget5000'), ('uniform', 'pong_uniform5000')]:
         manifest = json.loads((ROOT / f'results/{manifest_name}_manifest.json').read_text())
-        source = ROOT / manifest.get('training_code_snapshot', 'pong_batch.py')
+        source = ROOT / manifest.get('training_code_snapshot', 'src/pong_batch.py')
         assert digest(source) == manifest['training_code_sha256']
-        assert digest(ROOT / 'policy_gradient.py') == manifest['imported_training_module_sha256']
+        assert digest(ROOT / 'src/policy_gradient.py') == manifest['imported_training_module_sha256']
         for entry in manifest['runs']:
             old, new = ROOT / entry['source'], ROOT / entry['output']
             assert digest(old / 'checkpoint.pt') == entry['source_checkpoint_sha256']
@@ -119,7 +119,7 @@ def main():
               '[Audit and paired differences](results/pong_time_weighting_comparison.json).',
               'This is one training seed and a warm-start experiment. Uniform time weighting changes',
               'the gradient surrogate; gamma=0.99 remains inside reward-to-go. The existing PDF has not been regenerated.', end]
-    readme = ROOT / 'README.md'
+    readme = ROOT / 'EXPERIMENTS.md'
     text = readme.read_text()
     text = text.replace('### Pong outer time-weighting ablation (running)',
                         '### Pong outer time-weighting ablation (completed)')

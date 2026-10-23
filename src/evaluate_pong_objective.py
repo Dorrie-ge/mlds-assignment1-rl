@@ -9,7 +9,7 @@ from pong_batch import collect
 
 
 def main():
-    root=Path(__file__).resolve().parent
+    root=Path(__file__).resolve().parent.parent
     p=argparse.ArgumentParser()
     p.add_argument('--episodes',type=int,default=200)
     p.add_argument('--device',default='cpu',choices=['cpu','mps','cuda'])

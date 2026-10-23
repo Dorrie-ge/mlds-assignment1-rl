@@ -6,7 +6,7 @@
   "raw_experiment_records": 26,
   "full_500_episode_experiments": 25,
   "source_assignment_pages": 4,
-  "pdf_sha256": "a6c0684a9ad78506bad7ff252a5d68d399c224d9606ad06f51e19fdc276d5581",
+  "pdf_sha256": "fe1aeddbc9b7389cc122047198f7613e0a42dfdc01299bd09cd8d1219c1c95e4",
   "text_within_page_frame": true,
   "required_content_checks": [
     "GitHub username",
@@ -32,5 +32,13 @@
     "https://gymnasium.farama.org/environments/classic_control/cart_pole/",
     "https://ale.farama.org/environments/pong/",
     "https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html"
-  ]
+  ],
+  "pdf_path": "reports/assignment1_report.pdf",
+  "code_directory": "src/",
+  "updated_execution_paths_verified": true,
+  "requirement_artifact_paths_exist": true,
+  "markdown_local_links_valid": true,
+  "core_training_source_bytes_unchanged": true,
+  "relocated_validation_reproduced": true,
+  "relocated_shuttle_validation_passed": true
 }
