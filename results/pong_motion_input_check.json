@@ -1,0 +1,15 @@
+{
+  "environment": "ALE/Pong-v5",
+  "seed": 20000000,
+  "environment_action": 2,
+  "previous_pixel_count": 18,
+  "current_pixel_count": 16,
+  "appearing_pixels": 10,
+  "disappearing_pixels": 12,
+  "signed_difference_exact": true,
+  "network_shape": [
+    2,
+    80,
+    80
+  ]
+}

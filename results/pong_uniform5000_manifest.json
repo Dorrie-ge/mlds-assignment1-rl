@@ -48,5 +48,6 @@
         "device": "mps"
       }
     }
-  ]
+  ],
+  "training_code_snapshot": "results/pong_uniform5000_training_source.txt"
 }

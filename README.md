@@ -424,3 +424,33 @@ and checks that actor backpropagation leaves the critic detached.
 After all four runs finish, `python summarize_time_weighting.py` audits counts,
 checkpoint update steps, preserved CSV prefixes and paired evaluation statistics,
 and writes the comparison plot and measured results to this README.
+
+
+### Fixed-budget input representation experiment
+
+Two fresh value-baseline models compare `--representation stacked_frames` with
+`--representation split_frame_difference`. Each uses 3,000 training episodes and
+500 evaluation episodes. Both use uniform actor time weights from episode 1,
+the same two-channel CNN, gamma=0.99 reward-to-go, actor lr=0.0001, critic
+lr=0.0003, batch size 8, gradient clipping 5 and seed 0.
+
+The motion representation has two binary channels: pixels appearing since the
+previous frame, and pixels disappearing. Their difference reconstructs the
+signed frame difference exactly. Splitting signs preserves them through packed
+binary trajectory storage. The network structure is unchanged. Resuming a
+checkpoint with another representation is rejected; both comparison models
+start fresh with fresh optimizers.
+
+[Experiment manifest](results/pong_representation_manifest.json) and
+[frozen training source](results/pong_representation_training_source.txt) record
+the protocol. [Real-environment input check](results/pong_motion_input_check.png)
+shows the two motion channels. `python -m unittest test_pong_representation test_pong_time_weighting`
+checks encoding, packing, rollout inputs and both time-weighting gradients.
+A separate smoke test used 2 training episodes and 2 evaluation episodes; it is
+not part of the measured 3,000-episode comparison.
+
+`python run_representation_comparison.py --episodes 3000 --device mps` runs the
+comparison once in a fresh results location. The launched local batch waits for
+the preceding weighting experiment to finish delivery, then automatically runs
+both inputs, audits results and publishes measured outputs. No comparison scores
+are claimed while this batch is queued or running.

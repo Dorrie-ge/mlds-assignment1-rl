@@ -20,7 +20,17 @@ def unpack(packed):
     return np.unpackbits(np.asarray(packed),axis=1).reshape(-1,2,80,80).astype(np.float32)
 
 
-def collect(envs,policy,device,seeds,store=True,random_policy=False):
+def encode_state(previous,current,representation='stacked_frames'):
+    if representation=='stacked_frames':
+        return np.stack((previous,current))
+    if representation=='split_frame_difference':
+        # Two binary channels preserve motion sign through packbits. Packing a
+        # signed {-1,0,1} difference directly would silently discard that sign.
+        return np.stack((current>previous,previous>current)).astype(np.float32)
+    raise ValueError(f'Unknown representation: {representation}')
+
+
+def collect(envs,policy,device,seeds,store=True,random_policy=False,representation='stacked_frames'):
     n=len(seeds)
     obs=[envs[i].reset(seed=int(seed))[0] for i,seed in enumerate(seeds)]
     previous=[preprocess(o) for o in obs]
@@ -28,7 +38,7 @@ def collect(envs,policy,device,seeds,store=True,random_policy=False):
     episodes=[dict(packed=[],actions=[],rewards=[],entropy=[],trace=[]) for _ in seeds]
     while active:
         current=[preprocess(obs[i]) for i in active]
-        states=np.stack([np.stack((previous[i],frame)) for i,frame in zip(active,current)])
+        states=np.stack([encode_state(previous[i],frame,representation) for i,frame in zip(active,current)])
         with torch.no_grad():
             if random_policy:
                 actions=np.random.randint(2,size=len(active))
@@ -103,11 +113,11 @@ def save(path,policy,value,opt,vopt,episode,args):
                     episode=episode,config=config,torch_rng=torch.get_rng_state()),path)
 
 
-def evaluate(envs,policy,device,count,seed_start,random_policy=False):
+def evaluate(envs,policy,device,count,seed_start,random_policy=False,representation='stacked_frames'):
     scores=[]
     for start in range(0,count,len(envs)):
         seeds=range(seed_start+start,seed_start+min(start+len(envs),count))
-        episodes=collect(envs,policy,device,seeds,False,random_policy)
+        episodes=collect(envs,policy,device,seeds,False,random_policy,representation)
         scores.extend(sum(ep['rewards']) for ep in episodes)
         if len(scores)%100==0 or len(scores)==count:
             print(f"{'Random' if random_policy else 'Final'} evaluation {len(scores)}/{count}: {np.mean(scores):.3f}",flush=True)
@@ -126,6 +136,7 @@ def main():
     p.add_argument('--seed',type=int,default=0)
     p.add_argument('--device',choices=['cpu','mps','cuda'],default='cpu')
     p.add_argument('--time-weighting',choices=['episode_discount','uniform'],default='episode_discount')
+    p.add_argument('--representation',choices=['stacked_frames','split_frame_difference'],default='stacked_frames')
     p.add_argument('--resume',type=Path)
     p.add_argument('--out',type=Path,required=True)
     args=p.parse_args()
@@ -151,6 +162,8 @@ def main():
         checkpoint=torch.load(args.resume,map_location=device,weights_only=True)
         for field in ['baseline','batch_episodes','lr','value_lr','seed','max_grad_norm']:
             if checkpoint['config'][field]!=getattr(args,field):p.error(f'Resume changes {field}')
+        if checkpoint['config'].get('representation','stacked_frames')!=args.representation:
+            p.error('Resume cannot change representation; train a fresh model for the new input encoding')
         policy.load_state_dict(checkpoint['policy']);opt.load_state_dict(checkpoint['optimizer'])
         if value is not None:
             value.load_state_dict(checkpoint['value']);vopt.load_state_dict(checkpoint['value_optimizer'])
@@ -171,7 +184,8 @@ def main():
         while completed<args.episodes:
             count=min(args.batch_episodes,args.episodes-completed)
             episodes=collect(envs,policy,device,range(20_000_000+args.seed*100000+completed,
-                                                   20_000_000+args.seed*100000+completed+count))
+                                                   20_000_000+args.seed*100000+completed+count),
+                             representation=args.representation)
             norm=update(policy,value,opt,vopt,episodes,device,args.max_grad_norm,args.time_weighting)
             for ep in episodes:
                 completed+=1;training.append(sum(ep['rewards']))
@@ -186,8 +200,8 @@ def main():
     save(args.out/'validation_checkpoint.pt',policy,value,opt,vopt,completed,args)
     torch.save(policy.state_dict(),args.out/'policy.pt')
     policy.eval()
-    scores=evaluate(envs,policy,device,args.eval_episodes,4_000_000+args.seed*10000)
-    random_scores=evaluate(envs,policy,device,args.eval_episodes,4_000_000+args.seed*10000,True)
+    scores=evaluate(envs,policy,device,args.eval_episodes,4_000_000+args.seed*10000,representation=args.representation)
+    random_scores=evaluate(envs,policy,device,args.eval_episodes,4_000_000+args.seed*10000,True,args.representation)
     for env in envs:env.close()
     for name,values in [('evaluation',scores),('random_evaluation',random_scores)]:
         np.savetxt(args.out/f'{name}.csv',values,header='episode_reward',comments='')
@@ -201,6 +215,7 @@ def main():
                             if args.time_weighting=='episode_discount' else
                             'Uniform-time reward-to-go policy-gradient surrogate; gamma=.99 inside returns only; average of per-episode score gradients'),
                  time_weighting=args.time_weighting,time_weighting_start_episode=args.time_weighting_start_episode,
+                 representation=args.representation,
                  train_seed_start=20_000_000+args.seed*100000,evaluation_seed_start=4_000_000+args.seed*10000,
                  versions=dict(torch=torch.__version__,numpy=np.__version__),
                  limitation='One training seed; 500 stochastic evaluation episodes do not measure training-seed variability.')

@@ -1,0 +1,25 @@
+{
+  "training_code_snapshot": "results/pong_representation_training_source.txt",
+  "training_code_sha256": "0413f894d06dea5aae6bb1a9d4f9103ea451dd42792856b8f35cd796e9322ea4",
+  "imported_module_sha256": "b2121d8fdb0696d89070ab3eace4a0b4a216c43cbf307ac675ff191f73797bbb",
+  "episodes_per_group": 3000,
+  "evaluation_episodes": 500,
+  "initialization": "fresh for both models; no checkpoint transfer",
+  "only_between_group_change": "input representation",
+  "baseline": "value",
+  "time_weighting": "uniform",
+  "seed": 0,
+  "lr": 0.0001,
+  "value_lr": 0.0003,
+  "batch_episodes": 8,
+  "max_grad_norm": 5.0,
+  "device": "mps",
+  "representations": [
+    "stacked_frames",
+    "split_frame_difference"
+  ],
+  "outputs": [
+    "results/pong_repr_stack_value",
+    "results/pong_repr_motion_value"
+  ]
+}
