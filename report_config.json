@@ -10,5 +10,17 @@
     "pong": "results/validation_pong_batch.json"
   },
   "repository_visibility": "public",
-  "visibility_verified_date": "2026-10-20"
+  "visibility_verified_date": "2026-10-23",
+  "report_date": "2026-10-23",
+  "report_scope": "Strict discounted-objective core plus failure-driven, explicitly labeled Pong extensions and independent seed confirmation",
+  "source_assignment_sha256": "ba970b9ea7864405d46dfa07b5353205e774210393253da8ca242d756e63e154",
+  "source_assignment_pages": 4,
+  "measurement_commit": "ced3d3ca40f9a27f700a104938a15111be4aab48",
+  "supplementary_results": [
+    "results/pong_budget3000_comparison.json",
+    "results/pong_time_weighting_comparison.json",
+    "results/pong_representation_comparison.json",
+    "results/pong_learning_rate_comparison.json",
+    "results/pong_seed_validation.json"
+  ]
 }

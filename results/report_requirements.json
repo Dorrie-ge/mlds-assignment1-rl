@@ -1,0 +1,147 @@
+{
+  "source_assignment_sha256": "ba970b9ea7864405d46dfa07b5353205e774210393253da8ca242d756e63e154",
+  "source_pages": 4,
+  "requirements": [
+    {
+      "requirement": "Shuttle MDP, assumptions, parameters, T=500 enumeration, VI and PI",
+      "sections": [
+        "1",
+        "2",
+        "14"
+      ],
+      "artifacts": [
+        "shuttle.py",
+        "results/shuttle/values.csv",
+        "results/shuttle/validation.json"
+      ]
+    },
+    {
+      "requirement": "Three labeled shuttle plots",
+      "sections": [
+        "2"
+      ],
+      "artifacts": [
+        "results/shuttle/finite_value.png",
+        "results/shuttle/infinite_value.png",
+        "results/shuttle/optimal_policy.png"
+      ]
+    },
+    {
+      "requirement": "CartPole-v1 gamma=.95 and Pong-v5 gamma=.99; Adam with explained lr changes",
+      "sections": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "12"
+      ],
+      "artifacts": [
+        "policy_gradient.py",
+        "pong_batch.py"
+      ]
+    },
+    {
+      "requirement": "Part 1 and 2 reward curves, 100-episode moving average, 500-episode histograms and mean/sample SD",
+      "sections": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "artifacts": [
+        "results/cartpole_none_lr0001/training.png",
+        "results/cartpole_none_lr0001/evaluation.png",
+        "results/cartpole_none_lr0001/training.csv",
+        "results/cartpole_none_lr0001/evaluation.csv",
+        "results/cartpole_none_lr0001/summary.json",
+        "results/cartpole_value_lr0001/training.png",
+        "results/cartpole_value_lr0001/evaluation.png",
+        "results/cartpole_value_lr0001/training.csv",
+        "results/cartpole_value_lr0001/evaluation.csv",
+        "results/cartpole_value_lr0001/summary.json",
+        "results/pong_batch_none/training.png",
+        "results/pong_batch_none/evaluation.png",
+        "results/pong_batch_none/training.csv",
+        "results/pong_batch_none/evaluation.csv",
+        "results/pong_batch_none/summary.json",
+        "results/pong_batch_value/training.png",
+        "results/pong_batch_value/evaluation.png",
+        "results/pong_batch_value/training.csv",
+        "results/pong_batch_value/evaluation.csv",
+        "results/pong_batch_value/summary.json"
+      ]
+    },
+    {
+      "requirement": "Pong image input and actions restricted to2/3",
+      "sections": [
+        "3",
+        "11",
+        "15",
+        "16"
+      ],
+      "artifacts": [
+        "policy_gradient.py",
+        "pong_batch.py",
+        "results/pong_control_diagnostic.json"
+      ]
+    },
+    {
+      "requirement": "Constant or state-dependent baseline and implementation explanation",
+      "sections": [
+        "3",
+        "5",
+        "7",
+        "15",
+        "16"
+      ],
+      "artifacts": [
+        "results/validation_cartpole_lr0001.json",
+        "results/validation_pong_batch.json"
+      ]
+    },
+    {
+      "requirement": "Problem-specific edge cases and quantitative predicted-behavior validation for every part",
+      "sections": [
+        "14",
+        "15",
+        "16"
+      ],
+      "artifacts": [
+        "validate_shuttle_simulation.py",
+        "reproduce_validation.py",
+        "test_pong_time_weighting.py",
+        "test_pong_representation.py",
+        "diagnose_cartpole_control.py",
+        "results/cartpole_control_diagnostic.json",
+        "diagnose_pong_control.py",
+        "results/pong_control_diagnostic.json",
+        "diagnose_pong_activations.py",
+        "results/pong_endpoint_activations.json"
+      ]
+    },
+    {
+      "requirement": "Additional three-month validation and experiment plan",
+      "sections": [
+        "18"
+      ],
+      "artifacts": []
+    },
+    {
+      "requirement": "GitHub username/repository/link, execution and validation directions, PDF",
+      "sections": [
+        "cover",
+        "17",
+        "Appendix A"
+      ],
+      "artifacts": [
+        "README.md",
+        "assignment1_report.pdf",
+        "build_report.py",
+        "prepare_report_figures.py"
+      ]
+    }
+  ],
+  "scope_note": "Presence and evidence mapping; this is not a guarantee of a grade or a claim that Pong is solved. Uniform-weight extensions are distinguished from strict-objective core experiments."
+}

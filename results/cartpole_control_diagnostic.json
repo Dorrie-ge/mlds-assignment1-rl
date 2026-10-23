@@ -1,0 +1,603 @@
+{
+  "purpose": "Task-level environment, reward and terminal/truncation diagnostic. These deterministic hand-coded controllers are not trained-policy assignment results.",
+  "seed_start": 9500000,
+  "episodes_per_controller": 20,
+  "controllers": {
+    "always_left": "Always action 0",
+    "angle_feedback": "Action 1 iff pole_angle + 0.15*pole_angular_velocity > 0"
+  },
+  "rows": [
+    {
+      "controller": "always_left",
+      "seed": 9500000,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500001,
+      "steps": 10,
+      "total_reward": 10.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500002,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500003,
+      "steps": 10,
+      "total_reward": 10.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500004,
+      "steps": 8,
+      "total_reward": 8.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500005,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500006,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500007,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500008,
+      "steps": 10,
+      "total_reward": 10.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500009,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500010,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500011,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500012,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500013,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500014,
+      "steps": 8,
+      "total_reward": 8.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500015,
+      "steps": 11,
+      "total_reward": 11.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500016,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500017,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500018,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "seed": 9500019,
+      "steps": 9,
+      "total_reward": 9.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500000,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500001,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500002,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500003,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500004,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500005,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500006,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500007,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500008,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500009,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500010,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500011,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500012,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500013,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500014,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500015,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500016,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500017,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500018,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "controller": "angle_feedback",
+      "seed": 9500019,
+      "steps": 500,
+      "total_reward": 500.0,
+      "terminated": false,
+      "truncated": true
+    }
+  ],
+  "first_10_steps": [
+    {
+      "controller": "always_left",
+      "t": 0,
+      "state": [
+        -0.030085543170571327,
+        0.037592921406030655,
+        0.021048402413725853,
+        0.037665799260139465
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 1,
+      "state": [
+        -0.029333684593439102,
+        -0.15782444179058075,
+        0.021801717579364777,
+        0.33691468834877014
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 2,
+      "state": [
+        -0.03249017521739006,
+        -0.35324975848197937,
+        0.02854001149535179,
+        0.6363921761512756
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 3,
+      "state": [
+        -0.03955516964197159,
+        -0.5487578511238098,
+        0.04126785695552826,
+        0.9379245638847351
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 4,
+      "state": [
+        -0.0505303256213665,
+        -0.7444112300872803,
+        0.060026347637176514,
+        1.243283987045288
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 5,
+      "state": [
+        -0.0654185488820076,
+        -0.9402499198913574,
+        0.08489202708005905,
+        1.554150104522705
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 6,
+      "state": [
+        -0.08422354608774185,
+        -1.1362805366516113,
+        0.1159750297665596,
+        1.872065544128418
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 7,
+      "state": [
+        -0.10694915801286697,
+        -1.332463026046753,
+        0.15341633558273315,
+        2.198382616043091
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "always_left",
+      "t": 8,
+      "state": [
+        -0.1335984170436859,
+        -1.528694987297058,
+        0.19738399982452393,
+        2.534201145172119
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 0,
+      "state": [
+        -0.030085543170571327,
+        0.037592921406030655,
+        0.021048402413725853,
+        0.037665799260139465
+      ],
+      "action": 1,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 1,
+      "state": [
+        -0.029333684593439102,
+        0.23240680992603302,
+        0.021801717579364777,
+        -0.24830253422260284
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 2,
+      "state": [
+        -0.02468554861843586,
+        0.03698039799928665,
+        0.016835667192935944,
+        0.05117662250995636
+      ],
+      "action": 1,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 3,
+      "state": [
+        -0.023945940658450127,
+        0.23185694217681885,
+        0.0178592000156641,
+        -0.23614732921123505
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 4,
+      "state": [
+        -0.019308801740407944,
+        0.036484453827142715,
+        0.01313625369220972,
+        0.062115006148815155
+      ],
+      "action": 1,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 5,
+      "state": [
+        -0.018579112365841866,
+        0.23141562938690186,
+        0.014378553256392479,
+        -0.22639457881450653
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 6,
+      "state": [
+        -0.013950800523161888,
+        0.036091163754463196,
+        0.00985066220164299,
+        0.07078897953033447
+      ],
+      "action": 1,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 7,
+      "state": [
+        -0.013228977099061012,
+        0.23107051849365234,
+        0.011266441084444523,
+        -0.21876980364322662
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 8,
+      "state": [
+        -0.00860756728798151,
+        0.03578934073448181,
+        0.00689104525372386,
+        0.0774456262588501
+      ],
+      "action": 1,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "controller": "angle_feedback",
+      "t": 9,
+      "state": [
+        -0.007891780696809292,
+        0.23081183433532715,
+        0.008439958095550537,
+        -0.21305520832538605
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "terminated": false,
+      "truncated": false
+    }
+  ],
+  "mean_scores": {
+    "always_left": 9.15,
+    "angle_feedback": 500.0
+  }
+}

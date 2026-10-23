@@ -106,8 +106,8 @@ def main():
               'initial Pong smoke test used 2 training and 2 evaluation episodes. Their raw results',
               'are in `results/demos/`; these are separate from all larger measured runs above.','',
               '### Report','',
-              '[PDF report](assignment1_report.pdf). Regenerate with `python summarize_results.py`',
-              'and `python build_report.py` after the measurements and variance experiments finish.',END]
+              '[Complete PDF report](assignment1_report.pdf). Regenerate with `python prepare_report_figures.py`',
+              'and `python build_report.py`; no new training is needed.',END]
     readme=ROOT/'README.md'
     text=readme.read_text()
     block='\n'.join(lines)

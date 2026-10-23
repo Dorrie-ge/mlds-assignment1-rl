@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "pages": 21,
+  "embedded_figures": 19,
+  "core_experiments": 4,
+  "raw_experiment_records": 26,
+  "full_500_episode_experiments": 25,
+  "source_assignment_pages": 4,
+  "pdf_sha256": "a6c0684a9ad78506bad7ff252a5d68d399c224d9606ad06f51e19fdc276d5581",
+  "text_within_page_frame": true,
+  "required_content_checks": [
+    "GitHub username",
+    "Dorrie-ge",
+    "Repository",
+    "T=500",
+    "CartPole-v1",
+    "ALE/Pong-v5",
+    "500 episodes",
+    "state-value baseline",
+    "-9.250",
+    "-10.032",
+    "-9.641",
+    "12.146",
+    "500.00",
+    "9.15",
+    "What three additional months",
+    "Appendix A"
+  ],
+  "all_input_hashes_match": true,
+  "external_links": [
+    "https://github.com/Dorrie-ge/mlds-assignment1-rl",
+    "https://gymnasium.farama.org/environments/classic_control/cart_pole/",
+    "https://ale.farama.org/environments/pong/",
+    "https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html"
+  ]
+}

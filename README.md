@@ -3,11 +3,39 @@
 **GitHub username:** Dorrie-ge  
 **Repository:** [Dorrie-ge/mlds-assignment1-rl](https://github.com/Dorrie-ge/mlds-assignment1-rl)
 
-**Visibility:** public, verified October 20, 2026.
+**Visibility:** public, verified October 23, 2026.
 
 This repository implements the shuttle dispatch MDP, episodic REINFORCE, and
 REINFORCE with a learned state-value baseline. Results are measured runs. Short
 training budgets do not establish that a game is solved. Failed runs are retained.
+
+<!-- COMPLETE_REPORT START -->
+## Complete report and final evidence
+
+[Download the complete PDF report](assignment1_report.pdf). Updated 23 October 2026.
+The report covers the initial implementation, retained failures, controlled improvements,
+independent seed confirmation, required figures, edge cases, quantitative validation and
+the additional three-month experiment plan. All values come from stored measurements.
+
+### Improved Pong extension: independent training seeds
+
+| Training seed | Role | 500-episode mean +/- sample SD |
+|---|---|---:|
+| 0 | selection_run | -7.742 +/- 6.311 |
+| 1 | independent_confirmation | -9.250 +/- 3.668 |
+| 2 | independent_confirmation | -10.032 +/- 3.796 |
+
+The two independent confirmation runs average -9.641.
+Across all three policy means: -9.008, with between-seed sample SD 1.164.
+Pong learning improved, but mean scores remain negative. Three seeds are a small sample.
+The improved extension uses uniform actor time weights; the exact start-state discounted
+objective is preserved in the separately reported four core experiments.
+
+[Requirement-to-evidence map](results/report_requirements.json) and
+[raw-data report evidence hashes](results/report_evidence.json) support the report.
+Regenerate without training: `python prepare_report_figures.py` then `python build_report.py`.
+Submit the PDF to Canvas; a GitHub update alone does not submit the assignment.
+<!-- COMPLETE_REPORT END -->
 
 ## Installation
 
@@ -51,8 +79,9 @@ quick environment demo, use `--episodes 5 --eval-episodes 5` for CartPole or
 `--episodes 2 --eval-episodes 2` for Pong, and choose another output directory.
 Those small evaluation budgets do not meet the assignment's 500-episode requirement.
 
-Longer training can be requested with `--episodes 20000` and a new output directory.
-That command describes a future experiment; it is not a completed result here.
+Per-run budgets are recorded in the experiment manifests. The later improvement
+comparisons hold fresh-run budgets at 3,000 episodes; no unrun longer-budget scores
+are reported.
 
 ## Shuttle MDP
 
@@ -357,8 +386,8 @@ are in `results/demos/`; these are separate from all larger measured runs above.
 
 ### Report
 
-[PDF report](assignment1_report.pdf). Regenerate with `python summarize_results.py`
-and `python build_report.py` after the measurements and variance experiments finish.
+[Complete PDF report](assignment1_report.pdf). Regenerate with `python prepare_report_figures.py`
+and `python build_report.py`; no new training is needed.
 <!-- MEASUREMENTS END -->
 
 
@@ -392,8 +421,8 @@ checkpoint/data hashes and unchanged training-code hashes;
 1,000-episode CSV prefix and 375 total optimizer updates per group.
 The recorded elapsed times cover the resumed process (2,000 additional training
 episodes plus evaluation), not the entire 3,000-episode experiment.
-The existing PDF report still describes the earlier 1,000-episode Pong experiment;
-this section records the additional budget experiment separately.
+The complete PDF report now includes both the earlier strict-objective experiments
+and these subsequent budget and algorithm comparisons.
 
 
 ### Pong outer time-weighting ablation (completed)
@@ -409,8 +438,8 @@ Both branches start from the same preserved 3,000-episode checkpoints, including
 actor, critic, Adam states and CPU Torch RNG, and target 5,000 total episodes.
 Uniform weighting begins at episode 3,001. The architecture, learning rates,
 batch size, gradient clipping, environment and seeds are unchanged. Each final
-policy will receive 500 evaluation episodes. Existing results and the PDF are
-preserved; no new scores are claimed before these runs finish.
+policy received 500 evaluation episodes. Original numerical results are preserved;
+the complete PDF now includes the measured comparison.
 
 [Control provenance](results/pong_budget5000_manifest.json) and
 [uniform-weighting provenance](results/pong_uniform5000_manifest.json) describe
@@ -452,8 +481,7 @@ not part of the measured 3,000-episode comparison.
 `python run_representation_comparison.py --episodes 3000 --device mps` runs the
 comparison once in a fresh results location. The launched local batch waits for
 the preceding weighting experiment to finish delivery, then automatically runs
-both inputs, audits results and publishes measured outputs. No comparison scores
-are claimed while this batch is queued or running.
+both inputs, audits results and publishes measured outputs. The completed comparison is reported below and in the complete PDF.
 
 
 <!-- TIME WEIGHTING RESULTS START -->
@@ -473,7 +501,7 @@ Uniform weighting starts at episode 3,001; all other hyperparameters and inherit
 
 [Audit and paired differences](results/pong_time_weighting_comparison.json).
 This is one training seed and a warm-start experiment. Uniform time weighting changes
-the gradient surrogate; gamma=0.99 remains inside reward-to-go. The existing PDF has not been regenerated.
+the gradient surrogate; gamma=0.99 remains inside reward-to-go. These experiments are included in the complete PDF report.
 <!-- TIME WEIGHTING RESULTS END -->
 
 ### Measured fixed-budget input comparison
@@ -487,7 +515,7 @@ the gradient surrogate; gamma=0.99 remains inside reward-to-go. The existing PDF
 
 [Raw comparison and uncertainty](results/pong_representation_comparison.json).
 Both models start fresh; only the input encoding differs. Uniform time weights, the CNN,
-value baseline, learning rates, batch size and seeds match. The PDF has not been regenerated.
+value baseline, learning rates, batch size and seeds match. These experiments are included in the complete PDF report.
 
 
 ### Fixed-budget actor learning-rate experiment
@@ -526,13 +554,13 @@ training and evaluation finish.
 ![Learning-rate comparison](results/pong_learning_rate_comparison.png)
 
 [Raw comparison and paired intervals](results/pong_learning_rate_comparison.json).
-The unchanged 0.0001 control is reused; the two new policies start fresh. This is a one-seed exploratory comparison. The PDF has not been regenerated.
+The unchanged 0.0001 control is reused; the two new policies start fresh. This is a one-seed exploratory comparison. These experiments are included in the complete PDF report.
 
 
 ### Independent confirmation of the selected learning rate
 
 The learning-rate comparison selected actor lr=0.001 using training seed 0.
-Two fresh models now use training seeds 1 and 2, each for 3,000 episodes and
+Two fresh models used training seeds 1 and 2, each for 3,000 episodes and
 500 evaluation episodes. The frozen implementation, CNN, motion input, independent
 value baseline, critic lr=0.0003, uniform actor time weighting, gamma=0.99,
 batch size 8 and clipping 5 remain fixed. Seed changes affect initialization,
@@ -562,4 +590,4 @@ The two independent confirmation runs average -9.641.
 
 ![Seed validation](results/pong_seed_validation.png)
 
-[Raw results and scope](results/pong_seed_validation.json). Seed 0 was used for selection; seeds 1 and 2 were held out from that selection. Three training seeds remain a small sample. The PDF has not been regenerated.
+[Raw results and scope](results/pong_seed_validation.json). Seed 0 was used for selection; seeds 1 and 2 were held out from that selection. Three training seeds remain a small sample. These experiments are included in the complete PDF report.

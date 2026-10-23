@@ -1,0 +1,290 @@
+{
+  "source_assignment_sha256": "ba970b9ea7864405d46dfa07b5353205e774210393253da8ca242d756e63e154",
+  "source_assignment_pages": 4,
+  "report_date": "2026-10-23",
+  "audited_experiments": 26,
+  "core_experiments": [
+    "cartpole_none_lr0001",
+    "cartpole_value_lr0001",
+    "pong_batch_none",
+    "pong_batch_value"
+  ],
+  "experiments": [
+    {
+      "experiment": "cartpole_none",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 9.37,
+      "sample_sd": 0.7551426891402206,
+      "training_csv_sha256": "686941d8d5b80e38f13b1faf0b1299bd7fa32fe7e8cf66cb0a44622aee553b70",
+      "evaluation_csv_sha256": "298ed9548eef8ab01f0f42d28e01474e43c8df1346f4da4d750018a540919053",
+      "summary_sha256": "2d4f11807eb9fc5cc52ad23b4ee360bcc5e150f75a757c799072cb0432071312"
+    },
+    {
+      "experiment": "cartpole_none_lr0001",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 300.24,
+      "sample_sd": 97.96831110088567,
+      "training_csv_sha256": "419a4be62b679dd36855c72c74f9f5abb7bee73dec29ac4447a7fa0cef6bd1e2",
+      "evaluation_csv_sha256": "f1143995af24f5f98fb98938769b303c7cbf023b9e78b63286bd837ab8b3ea2a",
+      "summary_sha256": "63e3241e62580451df3bb964af193d38ff223eab5e0a844eb725aa0f9168e872"
+    },
+    {
+      "experiment": "cartpole_none_lr0001_seed1",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 92.46,
+      "sample_sd": 31.62569792967545,
+      "training_csv_sha256": "d35c9777596032cd53ca27ffe48ba100fd39ebc6bf183e2b55e2baea03471997",
+      "evaluation_csv_sha256": "422e99d9ae911c9cce00bc20119a90393ff1706f66b07496d730197f8b672211",
+      "summary_sha256": "e926ff1ca3e36b9e7f4fa11d96315676c90f9d5a34a1a5668ed65ff732280d90"
+    },
+    {
+      "experiment": "cartpole_none_lr0001_seed2",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 106.554,
+      "sample_sd": 28.961709985609986,
+      "training_csv_sha256": "27a4fc00336cfcbdb1165162f87eb01519dc4519ef03c492d1b41306cbb5c0fb",
+      "evaluation_csv_sha256": "8169e08de1f51c8243c416fbf83aad98b71afe743a9d1fc9a6097fcba4f888fa",
+      "summary_sha256": "9bf20d28baeec2e27bba012a0505839b6de1498ceafc6bd020bc44b5603ba0cd"
+    },
+    {
+      "experiment": "cartpole_none_lr0003",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 171.432,
+      "sample_sd": 42.95998716240483,
+      "training_csv_sha256": "2374f2535ba82b477af8d80a1f997cefe11940e45e0e30444cdc7b1bf327020b",
+      "evaluation_csv_sha256": "12adc40f58f69cc52b3c5975690a4bfbe3f903dcf2e1e6c2f2afe4c0fb748598",
+      "summary_sha256": "67bcc14e1767192c5ba8d45b748ad51ed692547b9df975f84a152d9f9c9dffd1"
+    },
+    {
+      "experiment": "cartpole_value",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 170.168,
+      "sample_sd": 11.183824563347166,
+      "training_csv_sha256": "378642409dddb98588dc95bffde34d8fe2629b6b94da4f55e7c863dddfdad876",
+      "evaluation_csv_sha256": "b4ca4a618173d9035aa4651762b6495524e901984085e124de8c757a207d04eb",
+      "summary_sha256": "44e8cee980b4b2254ff2cc871ba87a40e812cb3bcefdbea3f1958b8b576b08ae"
+    },
+    {
+      "experiment": "cartpole_value_lr0001",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 220.218,
+      "sample_sd": 45.6176326964218,
+      "training_csv_sha256": "96a3cf60588a0048ac0835f3a7cb315dd54028c4312e3a2478cea174d14c0149",
+      "evaluation_csv_sha256": "22be21f541232f2c2662661d5656fd7ec5577f1ae444b9432f32dcb7e86037a9",
+      "summary_sha256": "87b1cfba72096219aced0c9daf771151e352ca1033e780c6f5faf6745a3916ad"
+    },
+    {
+      "experiment": "cartpole_value_lr0001_seed1",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 362.986,
+      "sample_sd": 121.36687208327714,
+      "training_csv_sha256": "a16ce5cd7fdfaf252dfcabb04d284a001882464f241d78b58b44ad41f5249ae3",
+      "evaluation_csv_sha256": "e09c8bee04e7ab83d75e88666a39560e6cc3c6d9687e79577907d4b0c128e773",
+      "summary_sha256": "dafcf7d2bad54981412b26dcdefc2dcd678c2561afb4b467bc3c372bc2b53d1c"
+    },
+    {
+      "experiment": "cartpole_value_lr0001_seed2",
+      "train_episodes": 2000,
+      "evaluation_episodes": 500,
+      "mean": 214.266,
+      "sample_sd": 69.58326598983138,
+      "training_csv_sha256": "8e20d579924f11063a80f3cb1ec5ff8923cbdf325e631db48e6058529a720a73",
+      "evaluation_csv_sha256": "ed5a8e2a2a96b3af717470435f1aa88ca946ec90806bbf0e3a185c006381f7f2",
+      "summary_sha256": "fab922e6c5c5d19ee84ed7ca1d24e0d27de8bed7939581b47e2322a023b59ac7"
+    },
+    {
+      "experiment": "pong_batch_none",
+      "train_episodes": 1000,
+      "evaluation_episodes": 500,
+      "mean": -20.39,
+      "sample_sd": 0.8265993788203161,
+      "training_csv_sha256": "61fdc29cd184ab873b1d8dacf7b89a6833b65c7556c025fa446760c84411820f",
+      "evaluation_csv_sha256": "7bd5ee31702e2cb23f45339c9de1ca2d937b5940728255505f201958105ba89c",
+      "summary_sha256": "337c41b96adc51176a938c3078def8e09011c166fd7b5117049a0b6c591ec5e1"
+    },
+    {
+      "experiment": "pong_batch_value",
+      "train_episodes": 1000,
+      "evaluation_episodes": 500,
+      "mean": -20.72,
+      "sample_sd": 0.5641245190078975,
+      "training_csv_sha256": "dc17fc9ff117f631b32e6c798fd01bf987c837ec18754cb9443c83d2d537d85c",
+      "evaluation_csv_sha256": "8ff77ffcc5777d44eb1d1062bff6d2ce303b3534f101e1cf73d83ee615e5255f",
+      "summary_sha256": "bb5ec255cf79859a860548282154de8fa73386411877bde3beaa7e29f1041c64"
+    },
+    {
+      "experiment": "pong_budget3000_none",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -20.952,
+      "sample_sd": 0.21398031486634608,
+      "training_csv_sha256": "22acd18ce607e9974e4e1d802bf706c0586758b6b25f4e17248f6a36a76328f4",
+      "evaluation_csv_sha256": "787f5da7f7ba9c5bfc975380d500927b896b6cad38081da2f05ee6e63771ba42",
+      "summary_sha256": "4d900006b32826ca2c9c2d943de113666700541cfc8f7bd8e54b398ca3c1c7cb"
+    },
+    {
+      "experiment": "pong_budget3000_value",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -20.548,
+      "sample_sd": 0.6932945367080707,
+      "training_csv_sha256": "1681dc2e88e1b1066496106d599bbac3e9716a2c3979e5e5755c1479683828f4",
+      "evaluation_csv_sha256": "71e3779982af1434e3223c882d5495e4c227318d4b0a3f2e68f4d391f6de6d61",
+      "summary_sha256": "ee19d0cb98b14e594b91c4e0387b822c4e508254393f1e77a8e1fdba15b7bb83"
+    },
+    {
+      "experiment": "pong_budget5000_none",
+      "train_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -20.724,
+      "sample_sd": 0.5625450327108537,
+      "training_csv_sha256": "a7d0ebf2abb5f22af2ee9ef8c3e5f46a2bd0ff569b9f44a1e8a08e98546bddca",
+      "evaluation_csv_sha256": "1355bc857cbfd59e15ca9b79635a12a273327b3155ae4a3b8dffaed4fd26b37d",
+      "summary_sha256": "3b2058b2937938b97aad6274b6fc64ae212db11e4b943f31b9d45bfd348f8821"
+    },
+    {
+      "experiment": "pong_budget5000_value",
+      "train_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -20.17,
+      "sample_sd": 0.9158479978196273,
+      "training_csv_sha256": "94c215c62555ea397304bcf7397280086c36a45579c0994157a54449162ed108",
+      "evaluation_csv_sha256": "16acadd3e6accec909769f7f601a59714d79d02fe88785862cc83e63df9581c7",
+      "summary_sha256": "d1e46a6de8f5065e6942bf2488c5287f43c123ed68c6c96765d59f2feed7479a"
+    },
+    {
+      "experiment": "pong_motion_lr0003_value",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -19.122,
+      "sample_sd": 1.406795702401949,
+      "training_csv_sha256": "56af1d431dcfa8f7493c9c0f3cec5236979b745ed8ec02cec554a476e9c90263",
+      "evaluation_csv_sha256": "1c9dcb2601d6bc52a3cbe008a7c6077621230a4fa86e824679c48e54aca9768c",
+      "summary_sha256": "5940903d26443b4fe5cc2b5fdd00bfdd67c6f457ea30456ee77dadd0d97c37e1"
+    },
+    {
+      "experiment": "pong_motion_lr001_value",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -7.742,
+      "sample_sd": 6.310870794142494,
+      "training_csv_sha256": "f4330249c8cf38fb650ec92f1c320f8ec12740000daa3515ec66cc0055c9f0cf",
+      "evaluation_csv_sha256": "4548c124dfce2c69e97d2dc806dc83e6c4876125c0598f98bf69a1e2c7572d32",
+      "summary_sha256": "0b6ad95fea96a99ea04ff4266559a3f1ea6551af8711970943281811f2eb2080"
+    },
+    {
+      "experiment": "pong_motion_lr001_value_seed1",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -9.25,
+      "sample_sd": 3.668025193157112,
+      "training_csv_sha256": "58750ce22fa23db5413e442ca414ad8d691b03e1e2db7def25fa5be7174b3167",
+      "evaluation_csv_sha256": "43bf5d49854337536c08df96524ea2979bd1cf2298287b699fcd0e7647ed241a",
+      "summary_sha256": "5e94d1f99b56e6ef10a20a71d7dc5d73da57616a3cfbdabdc7b21756145e5596"
+    },
+    {
+      "experiment": "pong_motion_lr001_value_seed2",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -10.032,
+      "sample_sd": 3.7957596845909953,
+      "training_csv_sha256": "9a2785a3d70d54ce6d73b5a26f2bd9c51a0a3ef6c638836ad5e93548aa42db64",
+      "evaluation_csv_sha256": "392cf7fb6588ed32e019fda3e505ff50b9aea9ce43a9328ea4ab103ff05cd514",
+      "summary_sha256": "163917b3d23ca044c31e3ddcb88b45a6003243c5ff14267e8acd0d7df704c599"
+    },
+    {
+      "experiment": "pong_none",
+      "train_episodes": 200,
+      "evaluation_episodes": 500,
+      "mean": -21.0,
+      "sample_sd": 0.0,
+      "training_csv_sha256": "117c89b5d0b43dde0b14c96770bda06db5f26381d23ca4b660a6d51c5b739087",
+      "evaluation_csv_sha256": "07f7aa910c01f88fbaaae26121cd4b080202e06fa3c0617e6106d4eba7f39edc",
+      "summary_sha256": "fadce1ad13bd259e4f1be8bcdfda636daeebb0f13cd4ee476048aabf78f8e2d5"
+    },
+    {
+      "experiment": "pong_repr_motion_value",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -19.888,
+      "sample_sd": 1.0380805471854724,
+      "training_csv_sha256": "789e682a189fb79d9de4f904d581825d8211f1c1ba884683e43e8191373e31fe",
+      "evaluation_csv_sha256": "e2c2abe364f775d9318b02c45b01fdb58d2cb49ac7ed16880e1e7d057c75be93",
+      "summary_sha256": "fe9f6d4997920be7cbf1eef43fc4c37e79815d86f495bc0934948e9a85569a95"
+    },
+    {
+      "experiment": "pong_repr_stack_value",
+      "train_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -20.01,
+      "sample_sd": 1.2169066206767445,
+      "training_csv_sha256": "adaf15f566ac65bde34c84ff82d361f93cba677e382c4c57a2ea05cd344f3db9",
+      "evaluation_csv_sha256": "1088165b0448a12c1512526971ae857c9588277fde4f998b8945efad4da2da36",
+      "summary_sha256": "39b83afd3e83a50c51596455811caca2d7d69596bf1c60a60735d4ba2e7c0625"
+    },
+    {
+      "experiment": "pong_uniform5000_none",
+      "train_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -20.444,
+      "sample_sd": 0.7975815146711276,
+      "training_csv_sha256": "102ffdc54a2771727bf99d7b3b2c5f7357175cb142715ffdedffd886aeac5fae",
+      "evaluation_csv_sha256": "71b6768cd4bafa8504263dfa2712e1f18649c1e331cb8dc1353113d7757d7c93",
+      "summary_sha256": "dae7e284d2b3130a24be28a3f9cdb2f0d883e97f91cf1b64d0b7755d19d3fa5b"
+    },
+    {
+      "experiment": "pong_uniform5000_value",
+      "train_episodes": 5000,
+      "evaluation_episodes": 500,
+      "mean": -19.954,
+      "sample_sd": 1.141266392195929,
+      "training_csv_sha256": "0a41ce8fb980bcc415f7d1bf454db94b5e8d19e82692bb1ff55e440adebc3955",
+      "evaluation_csv_sha256": "5a3c9a1dd606fc1a72f7c643d8c0aa1298e4339bfd7996a0262d0af316f184af",
+      "summary_sha256": "49e22e9b8fead550f7681cc211a91ca45ea790956cfff8b4d88843ef11043746"
+    },
+    {
+      "experiment": "pong_value",
+      "train_episodes": 200,
+      "evaluation_episodes": 500,
+      "mean": -21.0,
+      "sample_sd": 0.0,
+      "training_csv_sha256": "c7011843350a4421685f60972b57c3ddb9d547a992f0d208fe05ea1f61205051",
+      "evaluation_csv_sha256": "07f7aa910c01f88fbaaae26121cd4b080202e06fa3c0617e6106d4eba7f39edc",
+      "summary_sha256": "42a7013b76f8c43b83bd9cce3ae56a0b5be94d716b8564790d974d0796b7a2a3"
+    },
+    {
+      "experiment": "pong_value_early_diagnostic",
+      "train_episodes": 20,
+      "evaluation_episodes": 2,
+      "mean": -20.5,
+      "sample_sd": 0.7071067811865476,
+      "training_csv_sha256": "aa742425f95c2ea6b181904b9806759ad78655f0e221988d0293e6b42fc75f35",
+      "evaluation_csv_sha256": "fc91e6ba1214736d69374a4f52aaa84fb0b2a82249068cc38fe790483dc1cc9f",
+      "summary_sha256": "f5827d9356df2caf9de01796b93853f471be1332d90aa5529c5f631b9c1b11da"
+    }
+  ],
+  "supporting_input_sha256": {
+    "results/shuttle/values.csv": "fe6b915a4c4b828cfcd9145c26adadda577f2cd953f16311bfbf1d360a5a7ff9",
+    "results/shuttle/validation.json": "22e7cb47068e20eb479bf47ab23a8f78e5d22cce9fa97853c2d3228d88679fe8",
+    "results/shuttle/simulation_validation.json": "0858b973905ca0dca23e0bb83617f611d3dfdfc20fbae8d9533e92c7b6b37eb5",
+    "results/validation_cartpole_lr0001.json": "d9be10b600665f017cc0967d1b9c8ac31ad1c00929ec95550af68de22e18a1f1",
+    "results/validation_pong_batch.json": "00758ce0835c3f1db754a4386ad4663100ed314f7974312de52f5bee799efdd4",
+    "results/pong_discounted_objective.json": "9cefdb704d634a7852d8a400836c12f1f0046d3126b3b22c9d49777585fc4bda",
+    "results/pong_control_diagnostic.json": "622e96718d3d667d22be61e0cf56bd628ca7353f2a58a537ae7402126ddda9e9",
+    "results/cartpole_control_diagnostic.json": "be7dc10e1210058ff8f14f59b7e4414a4b686c87586f18abc1edd13d172636c9",
+    "results/pong_endpoint_activations.json": "ddb218157ffd39bd283d04dc3b173226bd152453f0460e4eb78afbe845f80dd8",
+    "results/pong_budget3000_comparison.json": "87e5e319abd434aecf2c18df057161a27127501f1406ef3343e1be7dafd995a2",
+    "results/pong_time_weighting_comparison.json": "b99476b2a0bc70a6599328b51de35ba93155f6e0934a4382c2f60a405bebfdce",
+    "results/pong_representation_comparison.json": "82560c61a2c1e297372ae4c57a21cfa7978b0d543cc110bdfd72d5ec444072b3",
+    "results/pong_learning_rate_comparison.json": "9571f3cdbe5e0a81372e0f0bf61f8bd9d45705bfaa60c479eb60f3769db11745",
+    "results/pong_seed_validation.json": "d638eec46fcb08693ee0893ea899935847d0aebab30d9256dacf00c2872ea265"
+  }
+}
