@@ -1,0 +1,18 @@
+{
+  "baseline": "value",
+  "source": "results/pong_budget3000_value",
+  "output": "results/pong_uniform5000_value",
+  "source_checkpoint_sha256": "6f9d1f45d5ab9a706b8017f257d5e336d3fd4e375a57cc94b33242c3653ad7e8",
+  "source_training_csv_sha256": "1681dc2e88e1b1066496106d599bbac3e9716a2c3979e5e5755c1479683828f4",
+  "time_weighting": "uniform",
+  "time_weighting_start_episode": 3001,
+  "fixed_parameters": {
+    "baseline": "value",
+    "batch_episodes": 8,
+    "lr": 0.0001,
+    "value_lr": 0.0003,
+    "seed": 0,
+    "max_grad_norm": 5.0,
+    "device": "mps"
+  }
+}

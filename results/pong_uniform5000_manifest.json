@@ -1,0 +1,52 @@
+{
+  "training_code_sha256": "81762013e697cb924d23586223e591c6f058d518f05eedf585894a4896e3b3ad",
+  "imported_training_module_sha256": "b2121d8fdb0696d89070ab3eace4a0b4a216c43cbf307ac675ff191f73797bbb",
+  "target_total_episodes": 5000,
+  "starting_episodes": 3000,
+  "additional_training_episodes": 2000,
+  "evaluation_episodes": 500,
+  "parameters_changed": [
+    "episodes: 3000 -> 5000",
+    "outer time weighting: episode_discount -> uniform from episode 3001"
+  ],
+  "warm_start_note": "Actor, critic, optimizer state and CPU Torch RNG inherited from the original 3000-episode discounted-objective checkpoint; not a from-scratch uniform-objective experiment.",
+  "objective_note": "Discounted full-episode reward-to-go at gamma=.99 retained. Outer gamma**t removed only for actor updates after episode 3000.",
+  "runs": [
+    {
+      "baseline": "none",
+      "source": "results/pong_budget3000_none",
+      "output": "results/pong_uniform5000_none",
+      "source_checkpoint_sha256": "c35940bede3a51fb4968d31a55138bfdfc9d2fa7ea9c274dbcf3ebb97216b1ab",
+      "source_training_csv_sha256": "22acd18ce607e9974e4e1d802bf706c0586758b6b25f4e17248f6a36a76328f4",
+      "time_weighting": "uniform",
+      "time_weighting_start_episode": 3001,
+      "fixed_parameters": {
+        "baseline": "none",
+        "batch_episodes": 8,
+        "lr": 0.0001,
+        "value_lr": 0.0003,
+        "seed": 0,
+        "max_grad_norm": 5.0,
+        "device": "mps"
+      }
+    },
+    {
+      "baseline": "value",
+      "source": "results/pong_budget3000_value",
+      "output": "results/pong_uniform5000_value",
+      "source_checkpoint_sha256": "6f9d1f45d5ab9a706b8017f257d5e336d3fd4e375a57cc94b33242c3653ad7e8",
+      "source_training_csv_sha256": "1681dc2e88e1b1066496106d599bbac3e9716a2c3979e5e5755c1479683828f4",
+      "time_weighting": "uniform",
+      "time_weighting_start_episode": 3001,
+      "fixed_parameters": {
+        "baseline": "value",
+        "batch_episodes": 8,
+        "lr": 0.0001,
+        "value_lr": 0.0003,
+        "seed": 0,
+        "max_grad_norm": 5.0,
+        "device": "mps"
+      }
+    }
+  ]
+}

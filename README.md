@@ -394,3 +394,33 @@ The recorded elapsed times cover the resumed process (2,000 additional training
 episodes plus evaluation), not the entire 3,000-episode experiment.
 The existing PDF report still describes the earlier 1,000-episode Pong experiment;
 this section records the additional budget experiment separately.
+
+
+### Pong outer time-weighting ablation (running)
+
+An additional experiment compares the original `--time-weighting episode_discount`
+with `--time-weighting uniform`. The default retains the original calculation.
+Uniform weighting removes only the outer `gamma**t` actor weight; full-episode
+reward-to-go still uses gamma=0.99. This changes the policy-gradient surrogate,
+so it is recorded as a separate method rather than a correction to the original
+start-state discounted objective.
+
+Both branches start from the same preserved 3,000-episode checkpoints, including
+actor, critic, Adam states and CPU Torch RNG, and target 5,000 total episodes.
+Uniform weighting begins at episode 3,001. The architecture, learning rates,
+batch size, gradient clipping, environment and seeds are unchanged. Each final
+policy will receive 500 evaluation episodes. Existing results and the PDF are
+preserved; no new scores are claimed before these runs finish.
+
+[Control provenance](results/pong_budget5000_manifest.json) and
+[uniform-weighting provenance](results/pong_uniform5000_manifest.json) describe
+the paired branches. The original control processes loaded the
+[recorded original training source](results/pong_budget5000_training_source.txt)
+before the optional weighting argument was added.
+
+Verify gradients with `python test_pong_time_weighting.py`. This compares both
+modes, with and without the value baseline, against an independent unchunked loss
+and checks that actor backpropagation leaves the critic detached.
+After all four runs finish, `python summarize_time_weighting.py` audits counts,
+checkpoint update steps, preserved CSV prefixes and paired evaluation statistics,
+and writes the comparison plot and measured results to this README.

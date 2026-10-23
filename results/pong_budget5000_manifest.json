@@ -1,0 +1,49 @@
+{
+  "training_code_sha256": "6f01d4eddedb3c70062039f013f7c0ee898c104385956f88d8dfc4e9a0e8642b",
+  "imported_training_module_sha256": "b2121d8fdb0696d89070ab3eace4a0b4a216c43cbf307ac675ff191f73797bbb",
+  "base_commit": "3cc3db6e7ee2adabac96a88eb6a788a8f22ceb82",
+  "target_total_episodes": 5000,
+  "starting_episodes": 3000,
+  "additional_training_episodes": 2000,
+  "evaluation_episodes": 500,
+  "parameters_changed": [
+    "episodes: 3000 -> 5000"
+  ],
+  "continuation_method": "Existing --resume with copied full checkpoint, optimizer, CPU Torch RNG and original 3000-row CSV",
+  "runs": [
+    {
+      "baseline": "none",
+      "source": "results/pong_budget3000_none",
+      "output": "results/pong_budget5000_none",
+      "source_checkpoint_sha256": "c35940bede3a51fb4968d31a55138bfdfc9d2fa7ea9c274dbcf3ebb97216b1ab",
+      "source_training_csv_sha256": "22acd18ce607e9974e4e1d802bf706c0586758b6b25f4e17248f6a36a76328f4",
+      "fixed_parameters": {
+        "baseline": "none",
+        "batch_episodes": 8,
+        "lr": 0.0001,
+        "value_lr": 0.0003,
+        "seed": 0,
+        "max_grad_norm": 5.0,
+        "device": "mps"
+      }
+    },
+    {
+      "baseline": "value",
+      "source": "results/pong_budget3000_value",
+      "output": "results/pong_budget5000_value",
+      "source_checkpoint_sha256": "6f9d1f45d5ab9a706b8017f257d5e336d3fd4e375a57cc94b33242c3653ad7e8",
+      "source_training_csv_sha256": "1681dc2e88e1b1066496106d599bbac3e9716a2c3979e5e5755c1479683828f4",
+      "fixed_parameters": {
+        "baseline": "value",
+        "batch_episodes": 8,
+        "lr": 0.0001,
+        "value_lr": 0.0003,
+        "seed": 0,
+        "max_grad_norm": 5.0,
+        "device": "mps"
+      }
+    }
+  ],
+  "training_code_snapshot": "results/pong_budget5000_training_source.txt",
+  "note": "Control processes loaded the original code before the optional time-weighting ablation was added."
+}

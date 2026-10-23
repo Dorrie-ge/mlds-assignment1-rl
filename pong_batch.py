@@ -1,7 +1,8 @@
 """Batched on-policy REINFORCE for the assignment's unmodified ALE/Pong-v5.
 
-Same full-episode discounted objective as policy_gradient.py; lower learning rate,
-small initial actor head, and several complete episodes per actor update.
+Default: same full-episode discounted objective as policy_gradient.py.
+An explicit uniform time-weighting ablation keeps discounted reward-to-go but
+removes the outer gamma**t factor; this changes the policy-gradient surrogate.
 """
 import argparse
 import csv
@@ -57,7 +58,9 @@ def collect(envs,policy,device,seeds,store=True,random_policy=False):
     return episodes
 
 
-def update(policy,value,opt,vopt,episodes,device,max_norm):
+def update(policy,value,opt,vopt,episodes,device,max_norm,time_weighting='episode_discount'):
+    if time_weighting not in ('episode_discount','uniform'):
+        raise ValueError(f'Unknown time weighting: {time_weighting}')
     opt.zero_grad(set_to_none=True)
     for ep in episodes:
         length=len(ep['rewards'])
@@ -67,7 +70,10 @@ def update(policy,value,opt,vopt,episodes,device,max_norm):
             target=torch.as_tensor(ep['returns'][sl],device=device)
             with torch.no_grad():
                 baseline=value(x).squeeze(-1) if value is not None else torch.zeros_like(target)
-            weight=torch.tensor(.99**np.arange(start,end),dtype=torch.float32,device=device)
+            # Uniform weighting changes only the outer time factor. The targets
+            # remain full-episode gamma=.99 reward-to-go in both modes.
+            weight=(torch.tensor(.99**np.arange(start,end),dtype=torch.float32,device=device)
+                    if time_weighting=='episode_discount' else torch.ones_like(target))
             actions=torch.tensor(ep['actions'][sl],device=device)
             loss=-(weight*Categorical(logits=policy(x)).log_prob(actions)*(target-baseline)).sum()/len(episodes)
             loss.backward()
@@ -119,6 +125,7 @@ def main():
     p.add_argument('--max-grad-norm',type=float,default=5.)
     p.add_argument('--seed',type=int,default=0)
     p.add_argument('--device',choices=['cpu','mps','cuda'],default='cpu')
+    p.add_argument('--time-weighting',choices=['episode_discount','uniform'],default='episode_discount')
     p.add_argument('--resume',type=Path)
     p.add_argument('--out',type=Path,required=True)
     args=p.parse_args()
@@ -138,8 +145,7 @@ def main():
     opt=torch.optim.Adam(policy.parameters(),lr=args.lr)
     vopt=torch.optim.Adam(value.parameters(),lr=args.value_lr) if value is not None else None
     args.out.mkdir(parents=True,exist_ok=True)
-    config={k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()}
-    (args.out/'config.json').write_text(json.dumps(config,indent=2))
+    args.time_weighting_start_episode=1
     completed=0;training=[];started=time.perf_counter()
     if args.resume:
         checkpoint=torch.load(args.resume,map_location=device,weights_only=True)
@@ -149,10 +155,15 @@ def main():
         if value is not None:
             value.load_state_dict(checkpoint['value']);vopt.load_state_dict(checkpoint['value_optimizer'])
         completed=checkpoint['episode'];torch.set_rng_state(checkpoint['torch_rng'].cpu())
+        previous_weighting=checkpoint['config'].get('time_weighting','episode_discount')
+        args.time_weighting_start_episode=(completed+1 if previous_weighting!=args.time_weighting
+                                          else checkpoint['config'].get('time_weighting_start_episode',1))
         old=np.genfromtxt(args.out/'training.csv',delimiter=',',names=True)
         training=np.atleast_1d(old['reward']).tolist()
         if len(training)!=completed:p.error('CSV and checkpoint episode counts differ')
     elif (args.out/'training.csv').exists():p.error('Existing run: use --resume or another output directory')
+    config={k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()}
+    (args.out/'config.json').write_text(json.dumps(config,indent=2))
     envs=[make_env('pong') for _ in range(args.batch_episodes)]
     with (args.out/'training.csv').open('a' if completed else 'w',newline='') as f:
         writer=csv.writer(f)
@@ -161,7 +172,7 @@ def main():
             count=min(args.batch_episodes,args.episodes-completed)
             episodes=collect(envs,policy,device,range(20_000_000+args.seed*100000+completed,
                                                    20_000_000+args.seed*100000+completed+count))
-            norm=update(policy,value,opt,vopt,episodes,device,args.max_grad_norm)
+            norm=update(policy,value,opt,vopt,episodes,device,args.max_grad_norm,args.time_weighting)
             for ep in episodes:
                 completed+=1;training.append(sum(ep['rewards']))
                 point_steps=np.flatnonzero(ep['rewards'])
@@ -186,7 +197,10 @@ def main():
                  random_mean=float(np.mean(random_scores)),random_std_sample=float(np.std(random_scores,ddof=1)),
                  elapsed_seconds=time.perf_counter()-started,device=str(device),batch_episodes=args.batch_episodes,
                  max_grad_norm=args.max_grad_norm,value_lr=args.value_lr,
-                 objective='E[sum_t gamma**t*r_t]; full episode returns; average of per-episode score gradients',
+                 objective=('E[sum_t gamma**t*r_t]; full episode returns; average of per-episode score gradients'
+                            if args.time_weighting=='episode_discount' else
+                            'Uniform-time reward-to-go policy-gradient surrogate; gamma=.99 inside returns only; average of per-episode score gradients'),
+                 time_weighting=args.time_weighting,time_weighting_start_episode=args.time_weighting_start_episode,
                  train_seed_start=20_000_000+args.seed*100000,evaluation_seed_start=4_000_000+args.seed*10000,
                  versions=dict(torch=torch.__version__,numpy=np.__version__),
                  limitation='One training seed; 500 stochastic evaluation episodes do not measure training-seed variability.')
