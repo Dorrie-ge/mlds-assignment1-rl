@@ -114,6 +114,20 @@
       "sample_sd": 0.0
     },
     {
+      "experiment": "pong_repr_motion_value",
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -19.888,
+      "sample_sd": 1.0380805471854724
+    },
+    {
+      "experiment": "pong_repr_stack_value",
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "mean": -20.01,
+      "sample_sd": 1.2169066206767445
+    },
+    {
       "experiment": "pong_uniform5000_none",
       "training_episodes": 5000,
       "evaluation_episodes": 500,

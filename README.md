@@ -475,3 +475,16 @@ Uniform weighting starts at episode 3,001; all other hyperparameters and inherit
 This is one training seed and a warm-start experiment. Uniform time weighting changes
 the gradient surrogate; gamma=0.99 remains inside reward-to-go. The existing PDF has not been regenerated.
 <!-- TIME WEIGHTING RESULTS END -->
+
+### Measured fixed-budget input comparison
+
+| Input | Training episodes | 500-episode evaluation mean ± sample SD |
+|---|---:|---:|
+| stacked_frames | 3000 | -20.010 ± 1.217 |
+| split_frame_difference | 3000 | -19.888 ± 1.038 |
+
+![Input comparison](results/pong_representation_comparison.png)
+
+[Raw comparison and uncertainty](results/pong_representation_comparison.json).
+Both models start fresh; only the input encoding differs. Uniform time weights, the CNN,
+value baseline, learning rates, batch size and seeds match. The PDF has not been regenerated.

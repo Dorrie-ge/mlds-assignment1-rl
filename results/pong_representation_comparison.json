@@ -1,0 +1,24 @@
+{
+  "runs": [
+    {
+      "representation": "stacked_frames",
+      "episodes": 3000,
+      "mean": -20.01,
+      "sample_sd": 1.2169066206767445,
+      "result_directory": "results/pong_repr_stack_value"
+    },
+    {
+      "representation": "split_frame_difference",
+      "episodes": 3000,
+      "mean": -19.888,
+      "sample_sd": 1.0380805471854724,
+      "result_directory": "results/pong_repr_motion_value"
+    }
+  ],
+  "motion_minus_stack": 0.122,
+  "approximate_paired_ci95": [
+    -0.018252660826587774,
+    0.26225266082658777
+  ],
+  "limitation": "One training seed. Both models start fresh with uniform actor time weights. Paired intervals describe evaluation-rollout variability, not training-seed variability."
+}
