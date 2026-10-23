@@ -514,3 +514,16 @@ respectively; episodes terminate with valid returns. The simple tracking
 controller averages -16.1 and is weak. It is not a learned policy or evidence
 of successful training. New learning-rate results are reported only after
 training and evaluation finish.
+
+### Measured fixed-budget actor learning-rate comparison
+
+| Actor learning rate | 500-episode mean ± sample SD |
+|---|---:|
+| 0.0001 | -19.888 ± 1.038 |
+| 0.0003 | -19.122 ± 1.407 |
+| 0.001 | -7.742 ± 6.311 |
+
+![Learning-rate comparison](results/pong_learning_rate_comparison.png)
+
+[Raw comparison and paired intervals](results/pong_learning_rate_comparison.json).
+The unchanged 0.0001 control is reused; the two new policies start fresh. This is a one-seed exploratory comparison. The PDF has not been regenerated.

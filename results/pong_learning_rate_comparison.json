@@ -1,0 +1,50 @@
+{
+  "runs": [
+    {
+      "actor_lr": 0.0001,
+      "evaluation_mean": -19.888,
+      "evaluation_sample_sd": 1.0380805471854724,
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "result_directory": "results/pong_repr_motion_value",
+      "reused_control": true
+    },
+    {
+      "actor_lr": 0.0003,
+      "evaluation_mean": -19.122,
+      "evaluation_sample_sd": 1.406795702401949,
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "result_directory": "results/pong_motion_lr0003_value",
+      "reused_control": false
+    },
+    {
+      "actor_lr": 0.001,
+      "evaluation_mean": -7.742,
+      "evaluation_sample_sd": 6.310870794142494,
+      "training_episodes": 3000,
+      "evaluation_episodes": 500,
+      "result_directory": "results/pong_motion_lr001_value",
+      "reused_control": false
+    }
+  ],
+  "differences": [
+    {
+      "actor_lr": 0.0003,
+      "mean_gain_vs_control": 0.766,
+      "approximate_paired_ci95": [
+        0.6143504425415138,
+        0.9176495574584862
+      ]
+    },
+    {
+      "actor_lr": 0.001,
+      "mean_gain_vs_control": 12.146,
+      "approximate_paired_ci95": [
+        11.58529938392174,
+        12.706700616078262
+      ]
+    }
+  ],
+  "limitation": "One training seed; confidence intervals cover evaluation-rollout variability only. Comparing several learning rates and selecting the best requires independent confirmation. All new policies start fresh and the measured low-rate control is reused unchanged."
+}

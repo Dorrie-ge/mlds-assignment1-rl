@@ -1,0 +1,16 @@
+{
+  "baseline": "value",
+  "episodes": 3000,
+  "batch_episodes": 8,
+  "eval_episodes": 500,
+  "lr": 0.0003,
+  "value_lr": 0.0003,
+  "max_grad_norm": 5.0,
+  "seed": 0,
+  "device": "mps",
+  "time_weighting": "uniform",
+  "representation": "split_frame_difference",
+  "resume": null,
+  "out": "/Users/shuoyuge/Documents/Codex/2026-10-16/files-mentioned-by-the-user-mlds/outputs/mlds-assignment1-rl/results/pong_motion_lr0003_value",
+  "time_weighting_start_episode": 1
+}
