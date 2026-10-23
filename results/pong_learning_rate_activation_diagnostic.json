@@ -1,0 +1,157 @@
+{
+  "purpose": "Snapshot network-health diagnostic on 256 independent random-policy observations, not a performance evaluation or fair endpoint comparison.",
+  "environment_seed": 9000000,
+  "action_rng_seed": 2026,
+  "results": [
+    {
+      "run": "pong_repr_motion_value",
+      "checkpoint_episode": 3000,
+      "checkpoint_sha256": "5b44b5167e4f666d31f2dbc9502f4d04f910bc35d1a8d3e8d86cbc1897f72e11",
+      "actor_lr": 0.0001,
+      "networks": {
+        "actor": {
+          "relu_layers": [
+            {
+              "layer": 1,
+              "positive_fraction": 0.8072080612182617,
+              "output_std": 0.044722046703100204
+            },
+            {
+              "layer": 3,
+              "positive_fraction": 0.9627113342285156,
+              "output_std": 0.06707391142845154
+            },
+            {
+              "layer": 6,
+              "positive_fraction": 0.452850341796875,
+              "output_std": 0.36653831601142883
+            }
+          ],
+          "action2_probability_mean": 0.3998180329799652,
+          "action2_probability_std_across_states": 0.13800416886806488
+        },
+        "critic": {
+          "relu_layers": [
+            {
+              "layer": 1,
+              "positive_fraction": 0.7980043888092041,
+              "output_std": 0.03530426695942879
+            },
+            {
+              "layer": 3,
+              "positive_fraction": 0.9643764495849609,
+              "output_std": 0.064118392765522
+            },
+            {
+              "layer": 6,
+              "positive_fraction": 0.78125,
+              "output_std": 0.646375298500061
+            }
+          ],
+          "prediction_mean": -1.5024607181549072,
+          "prediction_std": 0.051778394728899
+        }
+      }
+    },
+    {
+      "run": "pong_motion_lr0003_value",
+      "checkpoint_episode": 240,
+      "checkpoint_sha256": "bdd9b1392c777ae15f303f39a8f156ccba2610915c929868b830582e6366ab96",
+      "actor_lr": 0.0003,
+      "networks": {
+        "actor": {
+          "relu_layers": [
+            {
+              "layer": 1,
+              "positive_fraction": 0.500447690486908,
+              "output_std": 0.0315299928188324
+            },
+            {
+              "layer": 3,
+              "positive_fraction": 0.5775012969970703,
+              "output_std": 0.01589074544608593
+            },
+            {
+              "layer": 6,
+              "positive_fraction": 0.205596923828125,
+              "output_std": 0.014434135518968105
+            }
+          ],
+          "action2_probability_mean": 0.4983830451965332,
+          "action2_probability_std_across_states": 3.9036618545651436e-05
+        },
+        "critic": {
+          "relu_layers": [
+            {
+              "layer": 1,
+              "positive_fraction": 0.8051886558532715,
+              "output_std": 0.039179377257823944
+            },
+            {
+              "layer": 3,
+              "positive_fraction": 0.9359912872314453,
+              "output_std": 0.06396238505840302
+            },
+            {
+              "layer": 6,
+              "positive_fraction": 0.819793701171875,
+              "output_std": 0.6925716400146484
+            }
+          ],
+          "prediction_mean": -1.5623257160186768,
+          "prediction_std": 0.04077548533678055
+        }
+      }
+    },
+    {
+      "run": "pong_motion_lr001_value",
+      "checkpoint_episode": 232,
+      "checkpoint_sha256": "e75e98a0248e4c7dcf002fcf2d1497b057ee7a60fe3d658719857c84de348d69",
+      "actor_lr": 0.001,
+      "networks": {
+        "actor": {
+          "relu_layers": [
+            {
+              "layer": 1,
+              "positive_fraction": 0.5000737309455872,
+              "output_std": 0.0321640782058239
+            },
+            {
+              "layer": 3,
+              "positive_fraction": 0.583282470703125,
+              "output_std": 0.016489025205373764
+            },
+            {
+              "layer": 6,
+              "positive_fraction": 0.124664306640625,
+              "output_std": 0.0224178247153759
+            }
+          ],
+          "action2_probability_mean": 0.49558475613594055,
+          "action2_probability_std_across_states": 0.00029325508512556553
+        },
+        "critic": {
+          "relu_layers": [
+            {
+              "layer": 1,
+              "positive_fraction": 0.8048815727233887,
+              "output_std": 0.03883092477917671
+            },
+            {
+              "layer": 3,
+              "positive_fraction": 0.9340019226074219,
+              "output_std": 0.06293889880180359
+            },
+            {
+              "layer": 6,
+              "positive_fraction": 0.819427490234375,
+              "output_std": 0.6390600800514221
+            }
+          ],
+          "prediction_mean": -1.3894507884979248,
+          "prediction_std": 0.03533301502466202
+        }
+      }
+    }
+  ]
+}
