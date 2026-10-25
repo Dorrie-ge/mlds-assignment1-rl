@@ -51,5 +51,14 @@
   "explicit_per_part_prediction_result_interpretation": true,
   "first_ten_decision_trace_included": true,
   "visual_review_passed": true,
-  "all_23_pages_rendered_and_reviewed": true
+  "all_23_pages_rendered_and_reviewed": true,
+  "scope_note": "The validation results in this record apply to the generated report identified by pdf_sha256. The current published report was subsequently replaced with the author-provided PDF described in published_pdf; earlier validation results are retained as provenance.",
+  "published_pdf": {
+    "path": "reports/assignment1_report.pdf",
+    "origin": "Author-provided final PDF",
+    "updated_date": "2026-10-25",
+    "sha256": "4455dba74605f42da86f92e3d822f75e737bcd5b1aed00033b80c8c895d7182e",
+    "pages": 23,
+    "source_copy_verified_identical": true
+  }
 }
